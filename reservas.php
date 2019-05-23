@@ -35,6 +35,56 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
 
         $plantilla->assign('contenidoModal', $contenidoModal);
+
+        $cons = "SELECT * FROM reservas WHERE pid = '$pid' ORDER BY fecha_reserva ASC";
+        $datosRe = $con->selection($cons);
+
+        $tabla = "<table class='tablaRes'>";
+        $tabla .= "<tr>";
+
+        $tabla .= "<td>";
+        $tabla .= "ID Reserva";
+        $tabla .= "</td>";
+        $tabla .= "<td>";
+        $tabla .= "Día de la reserva";
+        $tabla .= "</td>";
+        $tabla .= "<td>";
+        $tabla .= "Hora de la reserva";
+        $tabla .= "</td>";
+        $tabla .= "<td>";
+        $tabla .= 'Nombre completo del usuario';
+        $tabla .= "</td>";
+        $tabla .= "<td>";
+        $tabla .= 'Fecha de la solicitud';
+        $tabla .= "</td>";
+
+
+        $tabla .= "</tr>";
+        foreach ($datosRe as $valores) {
+            $tabla .= "<tr>";
+            $tabla .= "<td>";
+            $tabla .= $valores['rid'];
+            $tabla .= "</td>";
+            $tabla .= "<td>";
+            $tabla .= $valores['fecha_reserva'];
+            $tabla .= "</td>";
+            $tabla .= "<td>";
+            $tabla .= $valores['hora'];
+            $tabla .= "</td>";
+            $tabla .= "<td>";
+            $tabla .= $nombreC;
+            $tabla .= "</td>";
+            $tabla .= "<td>";
+            $tabla .= $valores['fecha_actual'];
+            $tabla .= "</td>";
+
+            $tabla .= "</tr>";
+        }
+
+        $tabla .= "</table>";
+
+
+        $plantilla->assign('tabla', $tabla);
     } else if ($_SESSION['tipo'] == "user") {
 
         $user = $_SESSION['usuario']['nombre'];
@@ -75,7 +125,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $tabla .= "ID Reserva";
         $tabla .= "</td>";
         $tabla .= "<td>";
-        $tabla .= "Fecha de la reserva";
+        $tabla .= "Día de la reserva";
         $tabla .= "</td>";
         $tabla .= "<td>";
         $tabla .= "Hora de la reserva";
@@ -84,11 +134,9 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $tabla .= 'Nombre completo del usuario';
         $tabla .= "</td>";
         $tabla .= "<td>";
-        $tabla .= '';
+        $tabla .= 'Fecha de la solicitud';
         $tabla .= "</td>";
-        $tabla .= "<td>";
-        $tabla .= '';
-        $tabla .= "</td>";
+
 
         $tabla .= "</tr>";
         foreach ($datosRe as $valores) {
@@ -106,11 +154,9 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
             $tabla .= $nombreC;
             $tabla .= "</td>";
             $tabla .= "<td>";
-            $tabla .= $valores[''];
+            $tabla .= $valores['fecha_actual'];
             $tabla .= "</td>";
-            $tabla .= "<td>";
-            $tabla .= $valores[''];
-            $tabla .= "</td>";
+
             $tabla .= "</tr>";
         }
 
