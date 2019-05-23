@@ -11,7 +11,7 @@ $plantilla = new Smarty();
 $plantilla->template_dir = "./template";
 $plantilla->compile_dir = "./template_c";
 
-if (empty($_SESSION['usuario'])) {
+if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     $loginNav = "<li class='nav-item '>
                     <a class='nav-link' href='index.php'>Login
                         <span class='sr-only'>(current)</span>
@@ -26,53 +26,72 @@ if (empty($_SESSION['usuario'])) {
                         <span class='sr-only'>(current)</span>
                     </a>
                  </li>";
-    $user = $_SESSION['usuario']['nombre'];
+    if ($_SESSION['tipo'] == "pabellon") {
+        $name = $_SESSION['pabellon']['nombre'];
+        $pass = $_SESSION['pabellon']['pass'];
 
-    $c = "SELECT * FROM usuarios WHERE user = '$user'";
-    $datos = $con->selection($c);
+        $pabs = "SELECT * FROM pabellones WHERE user_pab = '$name'";
+        $datospab = $con->selection($pabs);
+        $nombreC = $datospab[0]['nombre'];
+        $direccion = $datospab[0]['direccion'];
+        $pid_pab = $datospab[0]['pid'];
+        $nombrePab = $datospab[0]['nombre'];
+        $foto = $datospab[0]['foto'];
+        $pid = $datospab[0]['pid'];
 
-    $foto = $datos[0]['foto'];
-    $email = $datos[0]['email'];
-    $fecha_nac = $datos[0]['fecha_nacimiento'];
-    $pass = $datos[0]['pass'];
-    $nombreC = $datos[0]['nombre_completo'];
-    $direccion = $datos[0]['direccion'];
+        $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
-    $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-    $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+    } else if ($_SESSION['tipo'] == "user") {
+        $user = $_SESSION['usuario']['nombre'];
+        $pass = $_SESSION['usuario']['pass'];
+        $c = "SELECT * FROM usuarios WHERE user = '$user'";
+        $datos = $con->selection($c);
 
-    $plantilla->assign('email', $email);
-    $plantilla->assign('nombre', $user);
-    $plantilla->assign('fecha', $fecha_nac);
-    $plantilla->assign('direccion', $direccion);
-    $plantilla->assign('nombreC', $nombreC);
-    $plantilla->assign('pass', $pass);
-    $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $uid = $datos[0]['uid'];
+        $foto = $datos[0]['foto'];
+        $email = $datos[0]['email'];
+        $fecha_nac = $datos[0]['fecha_nacimiento'];
+        $nombreC = $datos[0]['nombre_completo'];
+        $direccion = $datos[0]['direccion'];
+
+        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+
+        $contenidoModal = " User: $user
+                        <br>
+                        Email: $email
+                        <br>
+                        Password : $pass
+                        <br>
+                        Nombre completo: $nombreC
+                        <br>
+                        Fecha de Nacimiento: $fecha_nac
+                        <br>
+                        Dirección: $direccion";
+    }
+    $plantilla->assign('contenidoModal', $contenidoModal);
     $plantilla->assign('foto_modal', $foto_modal);
-    $loginNav = "";
-}
-$plantilla->assign('perfil', $perfil);
-$plantilla->assign('foroNav', $foroNav);
-$plantilla->assign('loginNav', $loginNav);
+    $plantilla->assign('perfil', $perfil);
+    $plantilla->assign('foroNav', $foroNav);
+    $plantilla->assign('loginNav', $loginNav);
 
 
-if (isset($_POST ['desconectar'])) {
-    $loginNav = "<li class = 'nav-item '>
+    if (isset($_POST ['desconectar'])) {
+        $loginNav = "<li class = 'nav-item '>
             <a class = 'nav-link' href = 'index.php'>Login
             <span class = 'sr-only'>(current)</span>
             </a>
             </li>";
-    $perfil = "<a href='index.php'><img src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
-    $plantilla->assign('perfil', $perfil);
-    $plantilla->assign('loginNav', $loginNav);
+        $perfil = "<a href='index.php'><img src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
+        $plantilla->assign('perfil', $perfil);
+        $plantilla->assign('loginNav', $loginNav);
 
-    $plantilla->assign('foroNav', '');
-    $plantilla->assign('nombre', '');
-    $plantilla->assign('email', '');
-    session_destroy();
+        $plantilla->assign('foroNav', '');
+        session_destroy();
+    }
 }
 
 $plantilla->display("nosotros.tpl");
 ?>
-
-

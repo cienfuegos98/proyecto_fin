@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 19:46:04
-  from 'C:\xampp\htdocs\proyecto_fin\template\comentarios.tpl' */
+/* Smarty version 3.1.33, created on 2019-05-23 17:15:57
+  from 'C:\xxx\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6dc5ce417e0_64026192',
+  'unifunc' => 'content_5ce6b92dcefde2_20382295',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'b4404cc3a971faaea41de0823737aae31239ce31' => 
+    '932faa9f5e548a90aff816f0298b2bdaace8c3d1' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1558633563,
+      0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
+      1 => 1558624556,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6dc5ce417e0_64026192 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce6b92dcefde2_20382295 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -176,6 +176,7 @@ function content_5ce6dc5ce417e0_64026192 (Smarty_Internal_Template $_smarty_tpl)
 </div>
                             <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                                 <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
+
 
                             </div>
                             <div class="modal-footer" style="justify-content: center">

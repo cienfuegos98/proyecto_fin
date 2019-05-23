@@ -50,23 +50,107 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="reservas.php">Mis reservas
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="comentarios.php">Foro
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pabellones.php">Pabellones
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
         </div>
         <br><br><br><br>
         <div id="contenidoPrincipal">
-            <h2 class="h1-responsive font-weight-bold text-center pat">Nuestra historia</h2>
+            <h2 class="h1-responsive font-weight-bold text-center pat">RESERVAS</h2>
             <!-- Section description -->
             <p class=" text-center mx-auto mb-5">
-                Todo comenzó tras años trabajando, se nos ocurrio la idea de crear nuestra propia empresa 
-                de desarollo y diseño con nuestr   a propia identidad, capaz de amoldrse 
-                a nuestros clientes y hacer sus sueños realidad.
-                Nuestros sueños son tus sueños.
+                Lorem ipsum dolor sit amet consectetur adipiscing elit imperdiet ridiculus ad suspendisse auctor, facilisi blandit hendrerit uidiculus sagittis duis penatibus magnis id ut curabitur lectus.
             </p>
             <!--Aqui solo mostraré habilitados las horas que no esten cogidas de ese día-->
         </div>
         {$tabla}
+        {if ($tipo == 'pabellon')}
+            <div class="col-md-6 mb-4">
+                <!-- Main heading -->
+                <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+                <form name="registro" id="registro-form" method="POST" action="reservas.php" enctype="multipart/form-data">
+                    <div class="md-form">
+                        <input type="text" id="pabellon" class="form-control" name="pabellon" value="{$nombrePab}">
+                        <label for="form3">Pabellon</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="direccion" class="form-control" name="direccion" value="{$direccion}">
+                        <label for="form4">Direccion</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="ciudad" class="form-control" name="ciudad" value="{$ciudad}">
+                        <label for="form2">Ciudad</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="cod_postal" class="form-control" name="cod_postal" value="{$cod_postal}">
+                        <label for="form5">Código Postal</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="telefono" class="form-control" name="telefono" value="{$telefono}">
+                        <label for="form5">Teléfono</label>
+                    </div>
+                    <div class="md-form">
+
+                        <textarea id="descripcion" class="md-textarea form-control" rows="8" name="descripcion">{$descripcion}</textarea>
+                        <label for="form2">Descripción</label>
+                    </div>
+                    <div class="md-form">
+                        <textarea id="caracteristicas" class="md-textarea  form-control" name="caracteristicas" rows="8"> {$caracteristicas}</textarea>
+
+                        <label for="form2">Características</label>
+                    </div>
+                    <div class="md-form">
+                        <textarea id="otros_servicios" class="md-textarea  form-control" name="otros_servicios" {$otros_servicios}></textarea>
+
+                        <label for="form2">Otros servicios</label>
+                    </div>
+                    <div class="md-form">
+                        <textarea id="accesibilidad" class="md-textarea  form-control" name="accesibilidad">{$accesibilidad}</textarea>
+
+                        <label for="form2">Accesibilidad</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="tarifa" class="form-control" name="tarifa" value="{$tarifa}">
+                        <label for="form2">Tarifa</label>
+                    </div>
+                    <span for="form2" >¿Quieres una foto de perfil?</span>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01" name="foto">
+                            <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" name="actualizar" value="Actualizar datos"/>
+                    </div>
+                </form>
+            </div>
+        {/if}
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

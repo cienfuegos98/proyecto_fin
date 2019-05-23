@@ -12,17 +12,23 @@ $plantilla->compile_dir = "./template_c";
 
 session_start();
 
-if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
+if (empty($_SESSION['usuario'])) {
     header("Location:index.php?error=Debes iniciar sesion");
 } else {
 
     $con = new BD();
-
-    $_SESSION['pabellon']['pid'] = $_GET['pid'];
-    $_SESSION['pabellon']['nombrePab'] = $_GET['nombre'];
-
-    $pid = $_SESSION['pabellon']['pid'];
-    $nombrePab = $_SESSION['pabellon']['nombrePab'];
+    if (isset($_POST['pid'])) {
+        $pid = $_POST['pid'];
+        $_SESSION['pabellon']['pid'] = $pid;
+    }
+    $id_pab = $_SESSION['pabellon']['pid'];
+    $cons = "SELECT * FROM pabellones WHERE pid = '$id_pab'";
+    print_r($_SESSION);
+//    print $id_pab;
+//    print "SELECT * FROM pabellones WHERE pid = '$id_pab'";
+    //TODOS LOS DATOS DEL PABELLON
+    $datosPab = $con->selection($cons);
+    $nombrePab = $datosPab[0]['nombre'];
 
     $user = $_SESSION['usuario']['nombre'];
     $c = "SELECT * FROM usuarios WHERE user = '$user'";
@@ -53,7 +59,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     }
 
     $hiddenPay = "<input type='hidden' name='item_name_1' value='$nombrePab'>"
-            . "<input type='hidden' name='item_number_1' value='0000$pid'>"
+            . "<input type='hidden' name='item_number_1' value='p$pid'>"
             . "<input type='hidden' name='amount_1' value='$precio'>"
             . "<input name='quantity_1' type='hidden' value='1' />";
     $plantilla->assign('hiddenPay', $hiddenPay);
@@ -71,30 +77,40 @@ if (isset($_POST ['desconectar'])) {
 $tipo = $_SESSION['tipo'];
 $plantilla->assign('tipo', $tipo);
 
-$ano = date("Y");
-
-if (isset($_GET["date"])) {
-    $phpVar1 = $_GET["date"];
-
-    $eleccion = $phpVar1;
-    $_SESSION['date'] = $eleccion;
-}
-
-
+//dias y horas que estan ya alquiladas en BBDD, si ya estan, aparecerán como inactivos
+$fechas_reservadas[] = '';
+$horas_reservadas[] = '';
 //las horas que se pueden contratar desde las 8 hasta las 23
 $horas = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
-//horas que estan ya alquiladas en BBDD, si ya estan, aparecerán como inactivos
-$horasbloqueadas = [8, 9, 10, 11, 12];
+$c = "SELECT fecha_reserva FROM reservas ";
+$datos = $con->selection($c);
+
+foreach ($datos as $value) {
+    $fechas_reservadas[] = $value['fecha_reserva'];
+}
+
+
+if (isset($_GET["date"])) {
+    $eleccion = $_GET["date"];
+    $_SESSION['date'] = $eleccion;
+
+    $consulta = "SELECT hora FROM reservas WHERE fecha_reserva = $eleccion";
+    $horas = $con->selection($c);
+
+    //foreach ($horas as $h) {
+    //  $horas_reservadas[] = $h['hora'];
+    //}
+}
 
 
 
-if (count($horasbloqueadas) > 0) {
+//if (count($horasbloqueadas) > 0) {
 
-    //$horaAct = date("G");
-    //aqui compruebo que si la hora ya ha pasado, la opcion este bloqueada 
-    //y además, si esta en las horas bloqeadas tambien este bloqueada
-//    $select = '';
+$horaAct = date("G");
+//aqui compruebo que si la hora ya ha pasado, la opcion este bloqueada 
+//y además, si esta en las horas bloqeadas tambien este bloqueada
+//$select = '';
 //    foreach ($horas as $h) {
 //        if (/* $h > $horaAct && */ in_array($h, $horasbloqueadas) == false) {
 //            $select .= "<option value='" . $h . ":00'id='hora' >" . $h . ":00</option> ";
@@ -103,18 +119,15 @@ if (count($horasbloqueadas) > 0) {
 //        }
 //    }
 //    $plantilla->assign('select', $select);
-//
-//    if (isset($_GET["hora"])) {
-//        $hora = $_GET["hora"];
-//        $_SESSION['hora'] = $hora;
-//    }
-//
-//    $plantilla->assign('dia', $_SESSION['date']);
-//    $plantilla->assign('hora', $hora);
-} else {
-    print "no hay horas disponibles este día";
-}
-
+//if (isset($_GET["hora"])) {
+// $hora = $_GET["hora"];
+//$_SESSION['hora'] = $hora;
+//}
+//$plantilla->assign('dia', $_SESSION['date']);
+//$plantilla->assign('hora', $hora);
+//} else {
+// print "no hay horas disponibles este día";
+//}
 //if ($_SESSION['date'] == '' || $_SESSION['hora'] == '') {
 //$disabled = 'style="pointer-events: none"';
 //} else {

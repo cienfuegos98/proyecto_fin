@@ -229,17 +229,7 @@
                     </div>
                     <div class="text-center" style="margin-top:5%">{$foto_modal}</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-                        User: {$nombre}
-                        <br>
-                        Email: {$email}
-                        <br>
-                        Password {$pass}
-                        <br>
-                        Nombre completo: {$nombreC}
-                        <br>
-                        Fecha de Nacimiento: {$fecha}
-                        <br>
-                        Dirección: {$direccion}
+                        {$contenidoModal}
 
                     </div>
                     <div class="modal-footer" style="justify-content: center">

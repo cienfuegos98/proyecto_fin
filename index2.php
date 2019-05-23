@@ -98,10 +98,11 @@
 
                         $.ajax({
                             type: "post",
-                            url: 'index2.php',
+                            url: 'index3.php',
                             data: data,
                             success: function (response) {
-
+                                alert(response);
+                                jquery().html(response);
                             }
                         });
                         return false;
@@ -120,6 +121,7 @@
         <div id="id"></div>
     </body>
 </html>
+<div id="respuesta"></div>
 <?php
 print $_POST['fecha'];
 ?>

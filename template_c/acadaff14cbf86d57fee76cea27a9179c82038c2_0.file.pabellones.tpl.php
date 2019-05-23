@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 19:36:37
-  from 'C:\xampp\htdocs\proyecto_fin\template\pabellones.tpl' */
+/* Smarty version 3.1.33, created on 2019-05-23 17:03:22
+  from 'C:\xxx\htdocs\proyecto_fin\template\pabellones.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6da25cf3e02_26558866',
+  'unifunc' => 'content_5ce6b63a1e45b2_90633979',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'c46ea660ecac53f9a9575cea85b43a111fe92fde' => 
+    'acadaff14cbf86d57fee76cea27a9179c82038c2' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
-      1 => 1558632994,
+      0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
+      1 => 1558623788,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6da25cf3e02_26558866 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce6b63a1e45b2_90633979 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -187,15 +187,15 @@ function content_5ce6da25cf3e02_26558866 (Smarty_Internal_Template $_smarty_tpl)
                     collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
                     userCollapseText: '[Ocultar]' // por defecto es 'read less...'
                 });
-                $('.enlace').click(function () {
-                    var id_form = $(this).parent().attr('id');
-                    $('#' + id_form).submit();
+                $('.enlace').click(function(){
+                    var id_form=$(this).parent().attr('id');
+                    $('#'+id_form).submit();
                 });
                 $('#myModal').on('shown.bs.modal', function () {
                     $('#myInput').trigger('focus');
                 });
             });
-
+            
         <?php echo '</script'; ?>
 >
 

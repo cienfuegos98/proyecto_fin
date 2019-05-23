@@ -107,18 +107,7 @@
                     </div>
                     <div class="text-center" style="margin-top:5%">{$foto_modal}</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-                        User: {$nombre}
-                        <br>
-                        Email: {$email}
-                        <br>
-                        Password {$pass}
-                        <br>
-                        Nombre completo: {$nombreC}
-                        <br>
-                        Fecha de Nacimiento: {$fecha}
-                        <br>
-                        Dirección: {$direccion}
-
+                        {$contenidoModal}
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
@@ -154,11 +143,17 @@
                     collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
                     userCollapseText: '[Ocultar]' // por defecto es 'read less...'
                 });
+                $('.enlace').click(function () {
+                    var id_form = $(this).parent().attr('id');
+                    $('#' + id_form).submit();
+                });
+                $('#myModal').on('shown.bs.modal', function () {
+                    $('#myInput').trigger('focus');
+                });
             });
-            $('#myModal').on('shown.bs.modal', function () {
-                $('#myInput').trigger('focus')
-            });
+
         </script>
+
     </body>
 
 </html>
