@@ -73,7 +73,7 @@
                     dayNamesShort: ['Dom', 'Lun', 'Mar', 'MiÃ©', 'Juv', 'Vie', 'SÃ¡b'],
                     dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'SÃ¡'],
                     weekHeader: 'Sm',
-                    dateFormat: 'dd/mm/yy',
+                    dateFormat: 'yy/mm/dd',
                     firstDay: 1,
                     isRTL: false,
                     showMonthAfterYear: false,
@@ -93,7 +93,7 @@
                     }, //elimino los dias del array que le paso
                     onSelect: function (date) {
                         var fecha = document.getElementById("datepicker").value;
-
+                        alert(fecha);
                         var data = {'fecha': fecha};
 
                         $.ajax({
@@ -102,7 +102,7 @@
                             data: data,
                             success: function (response) {
                                 alert(response);
-                                jquery().html(response);
+                                $('#respuesta').html(response);
                             }
                         });
                         return false;
@@ -113,17 +113,15 @@
 
     <head>
         <meta charset = "UTF-8">
-        <title>datepicekr</title>
+        <title>datepicker</title>
     </head>
     <body>
         <div>HOLA QUE TAL</div>
         <div id="datepicker"></div>
         <div id="id"></div>
+        <div id="respuesta"></div>
     </body>
 </html>
-<div id="respuesta"></div>
-<?php
-print $_POST['fecha'];
-?>
+
 
 

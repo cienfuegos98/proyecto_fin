@@ -283,8 +283,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 $plantilla->assign('perfil', $perfil);
 $plantilla->assign('foto_modal', $foto_modal);
 
-$tipo = $_SESSION['tipo'];
-$plantilla->assign('tipo', $tipo);
+
 
 $con->cerrar();
 $plantilla->display("reservas.tpl");

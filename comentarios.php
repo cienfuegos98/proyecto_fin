@@ -71,19 +71,18 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $plantilla->assign('contenidoModal', $contenidoModal);
         $plantilla->assign('nombre', $user);
 
+        $fecha = date("Y") . "-" . date("m") . "-" . date("d");
+        $hora = date("H") . ":" . date("i");
         if (isset($_POST['enviar'])) {
             $comentario = $_POST['comentario'];
             $asunto = $_POST['asunto'];
             $busqueda = $_POST['busqueda'];
-            $insert = "INSERT INTO `comentarios` VALUES('','$comentario','$asunto','$fecha','$hora','$busqueda','$uid', '')";
+            $insert = "INSERT INTO `comentarios` VALUES('','$comentario','$asunto','$fecha','$hora','$busqueda','$uid')";
             $con->run($insert);
         }
     }
     $plantilla->assign('perfil', $perfil);
     $plantilla->assign('foto_modal', $foto_modal);
-
-    $fecha = date("Y") . "-" . date("m") . "-" . date("d");
-    $hora = date("H") . ":" . date("i");
 
 
 
@@ -106,7 +105,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     foreach ($datos as $valores) {
         $cid = $valores['cid'];
         $usuario = $valores['user'];
-        if ($usuario == $nombre || $pid = $valores['pid']) {
+        if ($usuario == $nombre) {
             $posicion = "float-right";
             $text = "text-right";
         } else {

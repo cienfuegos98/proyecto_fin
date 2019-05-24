@@ -24,8 +24,7 @@ if (empty($_SESSION['usuario'])) {
     $id_pab = $_SESSION['pabellon']['pid'];
     $cons = "SELECT * FROM pabellones WHERE pid = '$id_pab'";
     print_r($_SESSION);
-//    print $id_pab;
-//    print "SELECT * FROM pabellones WHERE pid = '$id_pab'";
+
     //TODOS LOS DATOS DEL PABELLON
     $datosPab = $con->selection($cons);
     $nombrePab = $datosPab[0]['nombre'];
@@ -77,32 +76,9 @@ if (isset($_POST ['desconectar'])) {
 $tipo = $_SESSION['tipo'];
 $plantilla->assign('tipo', $tipo);
 
-//dias y horas que estan ya alquiladas en BBDD, si ya estan, aparecerán como inactivos
-$fechas_reservadas[] = '';
-$horas_reservadas[] = '';
+
 //las horas que se pueden contratar desde las 8 hasta las 23
 $horas = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-
-$c = "SELECT fecha_reserva FROM reservas ";
-$datos = $con->selection($c);
-
-foreach ($datos as $value) {
-    $fechas_reservadas[] = $value['fecha_reserva'];
-}
-
-
-if (isset($_GET["date"])) {
-    $eleccion = $_GET["date"];
-    $_SESSION['date'] = $eleccion;
-
-    $consulta = "SELECT hora FROM reservas WHERE fecha_reserva = $eleccion";
-    $horas = $con->selection($c);
-
-    //foreach ($horas as $h) {
-    //  $horas_reservadas[] = $h['hora'];
-    //}
-}
-
 
 
 //if (count($horasbloqueadas) > 0) {
@@ -119,21 +95,7 @@ $horaAct = date("G");
 //        }
 //    }
 //    $plantilla->assign('select', $select);
-//if (isset($_GET["hora"])) {
-// $hora = $_GET["hora"];
-//$_SESSION['hora'] = $hora;
-//}
-//$plantilla->assign('dia', $_SESSION['date']);
-//$plantilla->assign('hora', $hora);
-//} else {
-// print "no hay horas disponibles este día";
-//}
-//if ($_SESSION['date'] == '' || $_SESSION['hora'] == '') {
-//$disabled = 'style="pointer-events: none"';
-//} else {
-//$disabled = '';
-//}
-//$plantilla->assign('disabled', $disabled);
+
 
 if (isset($_POST['reservar'])) {
     print '<h1>RESERVADO</h1>';
