@@ -97,13 +97,19 @@
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-
+                            <li class="nav-item ">
+                                <a class="nav-link" href="reservas.php">Mis reservas
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            {$foroNav}
                             <li class="nav-item active">
                                 <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            {$foroNav}
+
+
                         </ul>
                     </div>
 

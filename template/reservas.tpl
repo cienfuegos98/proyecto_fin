@@ -42,31 +42,31 @@
                     <ul id='imgperfil'  class="nav navbar-nav navbar-right">
                         <a data-toggle="modal" data-target="#exampleModal">{$perfil}</a>
                     </ul>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="pabellones.php">Pabellones
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="reservas.php">Mis reservas
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="comentarios.php">Foro
+                            {$foroNav}
+                            <li class="nav-item ">
+                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+
                         </ul>
-                     
                     </div>
+
                 </div>
+
             </nav>
         </div>
         <br><br><br><br>

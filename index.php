@@ -11,10 +11,10 @@ $plantilla->template_dir = "./template";
 $plantilla->compile_dir = "./template_c";
 
 session_start();
-if ($_SESSION['usuario'] && !$_SESSION['pabellon']) {
+if ($_SESSION['usuario'] && $_SESSION['tipo'] == 'user') {
     header("location:pabellones.php");
 }
-if ($_SESSION['pabellon'] && !$_SESSION['usuario']) {
+if ($_SESSION['usuario'] && $_SESSION['tipo'] == 'pabellon') {
     header("location:reservas.php");
 }
 
@@ -32,13 +32,13 @@ if (isset($_POST['iniciar'])) {
         if ($con->compruebaUsuario($nombre, $pass) == true) {
             $_SESSION['usuario']['nombre'] = $nombre;
             $_SESSION['usuario']['pass'] = $pass;
-            $_SESSION['tipo'] = "user";
+
+            $c = "SELECT uid FROM `usuarios` WHERE user = '$nombre'";
+            $datos = $con->selection($c);
+            $id = $datos[0]['uid'];
+            $tipo = $con->compruebaTipo($id);
+            $_SESSION['tipo'] = $tipo;
             header("Location:pabellones.php");
-        } else if ($con->compruebaPabellon($nombre, $pass) == true) {
-            $_SESSION['pabellon']['nombre'] = $nombre;
-            $_SESSION['pabellon']['pass'] = $pass;
-            $_SESSION['tipo'] = "pabellon";
-            header("Location:reservas.php");
         } else {
             $error = "Usuario o contraseña desconocidos";
             $plantilla->assign('error', $error);
@@ -52,7 +52,6 @@ if (isset($_POST['iniciar'])) {
     if (isset($_GET['error'])) {
         $error = $_GET['error'];
         $plantilla->assign('error', $error);
-        $plantilla->display("login.tpl");
     }
 }
 
@@ -76,19 +75,18 @@ if (isset($_POST['registrarse'])) {
     $destino = $destino . $foto['name'];
 //Muevo de origen a destino el fichero.
     move_uploaded_file($origen, $destino);
-    try {
-        $c = "INSERT INTO `usuarios` VALUES('','$user','$pass','$email','$nombreC','$direccion','$cp','$telefono','$destino','$fecha')";
-        $con->run($c);
-    } catch (Exception $ex) {
-        $error = "Ups! Parece que ese nombre de usuario ya esta en manos de otra persona<br>."
-                . "Prueba con $user 123, $user 123, $user 456, $user 111";
-    }
-    $plantilla->assign('error', $error);
+//    try {
+    $cons = "INSERT INTO `usuarios` VALUES('','$user','$pass')";
+    //$con->run($cons);
+    $c = "INSERT INTO `jugadores` VALUES('','$nombreC','$email',$direccion','$cp','$telefono','$destino','$fecha','','')";
+    $con->run($c);
+    var_dump($c);
+
+//    } catch (Exception $ex) {
+//        $error = "Ups! Parece que ese nombre de usuario ya esta en manos de otra persona<br>."
+//                . "Prueba con $user 123, $user 123, $user 456, $user 111";
+//    }
+    //$plantilla->assign('error', $error);
 }
 
 $plantilla->display("login.tpl");
-
-
-
-
-

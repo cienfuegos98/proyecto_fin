@@ -16,7 +16,7 @@ class BD {
     }
 
 //Creamos el constructor con los atributos de la base de datos
-    public function __construct($host = "localhost", $user = "root", $pass = "", $bd = "futmatch") {
+    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "futmatch1") {
         $this->host = $host;
         $this->user = $user;
         $this->pass = $pass;
@@ -82,7 +82,7 @@ class BD {
 
     //Funcion que comprueba si el usuario es valido o no
     public function compruebaUsuario($nombre, $pass) {
-        $datos = $this->selection("SELECT * FROM usuarios");
+        $datos = $this->selection('SELECT * FROM `usuarios');
         foreach ($datos as $dato) {
             if (($dato['user'] === $nombre) && ($dato['pass'] === $pass)) {
                 return true;
@@ -91,14 +91,16 @@ class BD {
         return false;
     }
 
-    public function compruebaPabellon($nombre, $pass) {
-        $datos = $this->selection("SELECT * FROM pabellones");
-        foreach ($datos as $dato) {
-            if (($dato['user_pab'] === $nombre) && ($dato['pass_pab'] === $pass)) {
-                return true;
-            }
+    public function compruebaTipo($id) {
+        $c1 = "SELECT * FROM `jugadores` WHERE uid = '$id'";
+
+        if (count($this->selection($c1)) > 0) {
+            $tipo = "user";
+        } else {
+            $tipo = "pabellon";
         }
-        return false;
+
+        return $tipo;
     }
 
 }

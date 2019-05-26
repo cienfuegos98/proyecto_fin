@@ -13,7 +13,7 @@ $plantilla->compile_dir = "./template_c";
 
 $con = new BD();
 
-if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
+if (empty($_SESSION['usuario'])) {
     $loginNav = "<li class='nav-item '>
                     <a class='nav-link' href='index.php'>Login
                         <span class='sr-only'>(current)</span>
@@ -28,29 +28,29 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
                         <span class='sr-only'>(current)</span>
                     </a>
                  </li>";
-
+    $user = $_SESSION['usuario']['nombre'];
+    $pass = $_SESSION['usuario']['pass'];
     if ($_SESSION['tipo'] == "pabellon") {
-        $name = $_SESSION['pabellon']['nombre'];
-        $pass = $_SESSION['pabellon']['pass'];
 
-        $pabs = "SELECT * FROM pabellones WHERE user_pab = '$name'";
+        $pabs = "SELECT * FROM `pabellones` as p JOIN `usuarios` as u ON p.pid = u.uid WHERE `user` = '$user'";
         $datospab = $con->selection($pabs);
+
         $nombreC = $datospab[0]['nombre'];
         $direccion = $datospab[0]['direccion'];
         $pid_pab = $datospab[0]['pid'];
         $nombrePab = $datospab[0]['nombre'];
         $foto = $datospab[0]['foto'];
 
-        $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
-        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
+        $contenidoModal = " User: $user <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
+
+        $perfil = "<img src='$foto' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
         $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
 
         $plantilla->assign('contenidoModal', $contenidoModal);
     } else if ($_SESSION['tipo'] == "user") {
-        $user = $_SESSION['usuario']['nombre'];
-        $pass = $_SESSION['usuario']['pass'];
-        $c = "SELECT * FROM usuarios WHERE user = '$user'";
+
+        $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";
         $datos = $con->selection($c);
         $uid = $datos[0]['uid'];
         $foto = $datos[0]['foto'];
@@ -96,9 +96,8 @@ if (isset($_POST ['desconectar'])) {
     session_destroy();
 }
 
-$c = "SELECT * FROM pabellones";
+$c = "SELECT * FROM `usuarios` as u JOIN `pabellones` as p ON p.pid = u.uid";
 $datos = $con->selection($c);
-
 $listadoPabellones = '';
 
 foreach ($datos as $pabellones) {
@@ -117,7 +116,7 @@ foreach ($datos as $pabellones) {
             <form $action method='post' id='form_" . $pid . "'>
                 <input type='hidden' name='pid'  value='" . $pid . "'>
                 <a class='enlace'>
-                <img style='width:100%' src = '" . $pabellones['foto'] . "' class='img-fluid img-pabellon' alt = 'Imagen del" . $pabellones['nombre'] . "' >
+                <img style='width:100%' src = '" . $pabellones['imagen_web'] . "' class='img-fluid img-pabellon' alt = 'Imagen del" . $pabellones['nombre'] . "' >
                 </a>
             </form>            
             <div class = 'stripe dark'>

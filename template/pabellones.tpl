@@ -69,12 +69,13 @@
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+                            {$foroNav}
                             <li class="nav-item ">
                                 <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            {$foroNav}
+
                         </ul>
                     </div>
 

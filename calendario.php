@@ -23,7 +23,6 @@ if (empty($_SESSION['usuario'])) {
     }
     $id_pab = $_SESSION['pabellon']['pid'];
     $cons = "SELECT * FROM pabellones WHERE pid = '$id_pab'";
-    print_r($_SESSION);
 
     //TODOS LOS DATOS DEL PABELLON
     $datosPab = $con->selection($cons);
@@ -76,36 +75,10 @@ if (isset($_POST ['desconectar'])) {
 $tipo = $_SESSION['tipo'];
 $plantilla->assign('tipo', $tipo);
 
-
-//las horas que se pueden contratar desde las 8 hasta las 23
-$horas = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-
-
-//if (count($horasbloqueadas) > 0) {
-
-$horaAct = date("G");
-//aqui compruebo que si la hora ya ha pasado, la opcion este bloqueada 
-//y además, si esta en las horas bloqeadas tambien este bloqueada
-//$select = '';
-//    foreach ($horas as $h) {
-//        if (/* $h > $horaAct && */ in_array($h, $horasbloqueadas) == false) {
-//            $select .= "<option value='" . $h . ":00'id='hora' >" . $h . ":00</option> ";
-//        } else {
-//            $select .= "<option value='" . $h . ":00'id='hora' disabled>" . $h . ":00</option> ";
-//        }
-//    }
-//    $plantilla->assign('select', $select);
-
-
-if (isset($_POST['reservar'])) {
-    print '<h1>RESERVADO</h1>';
-    $_SESSION['date'] = '';
-    $_SESSION['hora'] = '';
-}
-
 if (isset($_POST['cancelar'])) {
     print '<h1>CANCELADO</h1>';
 }
+
 
 $con->cerrar();
 $plantilla->display("calendario.tpl");

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 19:46:04
+/* Smarty version 3.1.33, created on 2019-05-24 22:30:48
   from 'C:\xampp\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6dc5ce417e0_64026192',
+  'unifunc' => 'content_5ce85478243f90_66255532',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4404cc3a971faaea41de0823737aae31239ce31' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1558633563,
+      1 => 1558729845,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6dc5ce417e0_64026192 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce85478243f90_66255532 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -92,12 +92,17 @@ function content_5ce6dc5ce417e0_64026192 (Smarty_Internal_Template $_smarty_tpl)
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
+                                <a class="nav-link" href="reservas.php">Mis reservas
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link " href="comentarios.php">Foro
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>

@@ -11,12 +11,13 @@ $plantilla = new Smarty();
 $plantilla->template_dir = "./template";
 $plantilla->compile_dir = "./template_c";
 
-if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
+if (empty($_SESSION['usuario'])) {
     $loginNav = "<li class='nav-item '>
                     <a class='nav-link' href='index.php'>Login
                         <span class='sr-only'>(current)</span>
                     </a>
                  </li>";
+    $plantilla->assign('loginNav', $loginNav);
     $foroNav = '';
     $perfil = "<a href='index.php'><img src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 } else {
@@ -27,28 +28,30 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
                     </a>
                  </li>";
     if ($_SESSION['tipo'] == "pabellon") {
-        $name = $_SESSION['pabellon']['nombre'];
-        $pass = $_SESSION['pabellon']['pass'];
+        $name = $_SESSION['usuario']['nombre'];
+        $pass = $_SESSION['usuario']['pass'];
 
-        $pabs = "SELECT * FROM pabellones WHERE user_pab = '$name'";
+        $pabs = "SELECT * FROM `pabellones` as p JOIN `usuarios` as u ON p.pid = u.uid WHERE `user` = '$name'";
         $datospab = $con->selection($pabs);
+
         $nombreC = $datospab[0]['nombre'];
         $direccion = $datospab[0]['direccion'];
         $pid_pab = $datospab[0]['pid'];
         $nombrePab = $datospab[0]['nombre'];
         $foto = $datospab[0]['foto'];
-        $pid = $datospab[0]['pid'];
 
         $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
-        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='$foto' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
         $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+
+        $plantilla->assign('contenidoModal', $contenidoModal);
     } else if ($_SESSION['tipo'] == "user") {
         $user = $_SESSION['usuario']['nombre'];
         $pass = $_SESSION['usuario']['pass'];
-        $c = "SELECT * FROM usuarios WHERE user = '$user'";
+        $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";
         $datos = $con->selection($c);
-
+        var_dump($datos);
         $uid = $datos[0]['uid'];
         $foto = $datos[0]['foto'];
         $email = $datos[0]['email'];
@@ -75,7 +78,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     $plantilla->assign('foto_modal', $foto_modal);
     $plantilla->assign('perfil', $perfil);
     $plantilla->assign('foroNav', $foroNav);
-    $plantilla->assign('loginNav', $loginNav);
+    $plantilla->assign('loginNav', '');
 
 
     if (isset($_POST ['desconectar'])) {

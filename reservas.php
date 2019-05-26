@@ -12,20 +12,26 @@ $plantilla->compile_dir = "./template_c";
 
 session_start();
 $tipo = $_SESSION['tipo'];
-if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
+if (empty($_SESSION['usuario'])) {
     header("Location:index.php?error=Debes iniciar sesion");
 } else {
+    $foroNav = "<li class='nav-item '>
+                    <a class='nav-link' href='comentarios.php'>Foro
+                        <span class='sr-only'>(current)</span>
+                    </a>
+                 </li>";
     if (isset($_SESSION['tipo'])) {
         $tipo = $_SESSION['tipo'];
         $plantilla->assign('tipo', $tipo);
     }
     $con = new BD();
     if ($_SESSION['tipo'] == "pabellon") {
-        $name = $_SESSION['pabellon']['nombre'];
-        $pabs = "SELECT * FROM pabellones WHERE user_pab = '$name'";
-        $datospab = $con->selection($pabs);
+        $name = $_SESSION['usuario']['nombre'];
+        $pass = $_SESSION['usuario']['pass'];
 
-        $pass = $_SESSION['pabellon']['pass'];
+        $c = "SELECT * FROM `pabellones` as p JOIN `usuarios` as u ON u.uid = p.pid WHERE `user` = '$name'";
+        $datospab = $con->selection($c);
+
         $nombreC = $datospab[0]['nombre'];
         $pid = $datospab[0]['pid'];
 
@@ -55,19 +61,20 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 
         $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
-        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='$foto' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
         $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
 
         $plantilla->assign('contenidoModal', $contenidoModal);
 
         //SELECT `u`.*,n.title FROM `field_data_field_gr_users_usuario` as u inner join node as n on u.entity_id=n.nid
-        $cons = "SELECT r.*, u.nombre_completo "
-                . "FROM `reservas` as r INNER JOIN `usuarios` as u  ON r.uid = u.uid "
-                . "WHERE pid = '$pid'"
-                . "ORDER BY fecha_reserva ASC , hora asc";
+        $cons = "SELECT r.*, j.nombre_completo 
+        FROM `reservas` as r
+        INNER JOIN `jugadores` as j ON r.uid = j.uid
+        WHERE pid = '$pid'
+        ORDER BY fecha_reserva ASC, hora asc";
         $datosRe = $con->selection($cons);
 
-        $tabla = "<table class='tablaRes'>";
+        $tabla = "<table class = 'tablaRes'>";
         $tabla .= "<tr>";
 
         $tabla .= headerTable();
@@ -91,17 +98,18 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
             $tabla .= $valores['fecha_actual'];
             $tabla .= "</td>";
             $tabla .= "<td>";
-            $tabla .= "<form method='POST' action='reservas.php'>"
-                    . "<input type='hidden' name='rid_borrar' value='" . $valores['rid'] . "'>"
-                    . "<input type='hidden' name='uid' value='" . $valores['uid'] . "'>"
-                    . "<input type='submit' class='btn btn-primary' name='eliminar' value='Eliminar reserva'>"
-                    . "</form>";
+            $tabla .= "<form method = 'POST' action = 'reservas.php'>"
+                    . " < input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
+                    . " < input type = 'hidden' name = 'uid' value = '" . $valores['uid'] . "' > "
+                    . " < input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
+                    . " < /form>";
             $tabla .= "</td>";
             $tabla .= "</tr>";
         }
 
         $tabla .= "</table>";
         $plantilla->assign('tabla', $tabla);
+
 
         if (isset($_POST['actualizar'])) {
             $con = new BD();
@@ -118,18 +126,18 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
             $fecha = $_POST['fecha'];
 
             $insert = "UPDATE pabellones SET "
-                    . "pabellon='$pabellon' "
-                    . "direccion='$direccion' "
-                    . "ciudad='$ciudad' "
-                    . "cod_postal='$cod_postal' "
-                    . "telefono='$telefono' "
-                    . "descripcion='$descripcion' "
-                    . "caracteristicas='$caracteristicas' "
-                    . "otros_servicios='$otros_servicios' "
-                    . "accesibilidad='$accesibilidad' "
-                    . "tarifa='$tarifa' "
-                    . "fecha='$fecha' "
-                    . "WHERE pid='$pid'";
+                    . "pabellon = '$pabellon' "
+                    . "direccion = '$direccion' "
+                    . "ciudad = '$ciudad' "
+                    . "cod_postal = '$cod_postal' "
+                    . "telefono = '$telefono' "
+                    . "descripcion = '$descripcion' "
+                    . "caracteristicas = '$caracteristicas' "
+                    . "otros_servicios = '$otros_servicios' "
+                    . "accesibilidad = '$accesibilidad' "
+                    . "tarifa = '$tarifa' "
+                    . "fecha = '$fecha' "
+                    . "WHERE pid = '$pid'";
 
 
             $con->run($insert);
@@ -159,7 +167,8 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 //';
 //
 //            $headers = "MIME-Version: 1.0\r\n";
-//            $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+//            $headers .= "Content-type: text/html;
+            //charset = iso-8859-1\r\n";
 //
 ////dirección del remitente 
 //            $headers .= "From: Miguel Angel Alvarez <pepito@desarrolloweb.com>\r\n";
@@ -174,7 +183,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 //            $headers .= "Cc: maria@desarrolloweb.com\r\n";
 //
 ////direcciones que recibirán copia oculta 
-//            $headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n";
+//            $headers .= "Bcc: pepe@pepe.com, juan@juan.com\r\n";
 //            if (mail($destinatario, $asunto, $cuerpo, $headers)) {
 //                print "<p></p>";
 //            } else {
@@ -184,7 +193,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     } else if ($_SESSION['tipo'] == "user") {
         $user = $_SESSION['usuario']['nombre'];
         $pass = $_SESSION['usuario']['pass'];
-        $c = "SELECT * FROM usuarios WHERE user = '$user'";
+        $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";
         $datos = $con->selection($c);
         $uid = $datos[0]['uid'];
         $foto = $datos[0]['foto'];
@@ -192,7 +201,6 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $fecha_nac = $datos[0]['fecha_nacimiento'];
         $nombreC = $datos[0]['nombre_completo'];
         $direccion = $datos[0]['direccion'];
-
 
         $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
         $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
@@ -209,10 +217,11 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
                         <br>
                         Dirección: $direccion";
 
-        $cons = "SELECT * FROM reservas WHERE uid = '$uid'  ORDER BY fecha_reserva DESC , hora DESC";
+
+        $cons = "SELECT * FROM reservas WHERE uid = '$uid' ORDER BY fecha_reserva DESC, hora DESC";
         $datosRe = $con->selection($cons);
 
-        $tabla = "<table class='tablaRes'>";
+        $tabla = "<table class = 'tablaRes'>";
         $tabla .= "<tr>";
         $tabla .= headerTable();
         $tabla .= "</tr>";
@@ -241,20 +250,20 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 //            $tabla .= "</td>";
             if (calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) > 0) {
                 $tabla .= "<td>";
-                $tabla .= "<form method='POST' action='reservas.php'>"
-                        . "<input type='hidden' name='rid_borrar' value='" . $valores['rid'] . "'>"
-                        . "<input type='submit' class='btn btn-primary' name='eliminar' value='Eliminar reserva'>"
-                        . "</form>";
+                $tabla .= "<form method = 'POST' action = 'reservas.php'>"
+                        . " < input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
+                        . " < input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
+                        . " < /form>";
                 $tabla .= "</td>";
 
                 $tabla .= "</tr>";
             } else if (calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) == 0) {
                 if ($valores['hora'] > date("H")) {
                     $tabla .= "<td>";
-                    $tabla .= "<form method='POST' action='reservas.php'>"
-                            . "<input type='hidden' name='rid_borrar' value='" . $valores['rid'] . "'>"
-                            . "<input type='submit' class='btn btn-primary' name='eliminar' value='Eliminar reserva'>"
-                            . "</form>";
+                    $tabla .= "<form method = 'POST' action = 'reservas.php'>"
+                            . " < input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
+                            . " < input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
+                            . " < /form>";
                     $tabla .= "</td>";
 
                     $tabla .= "</tr>";
@@ -271,6 +280,18 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         }
         $plantilla->assign('tabla', $tabla);
         $plantilla->assign('contenidoModal', $contenidoModal);
+
+        if (isset($_POST['paypal'])) {
+            print $_POST['mc_gross_1'];
+            print $_POST['payment_date'];
+
+            $hora = $_POST['horaElegida'];
+            $_SESSION['hora'] = $hora;
+        }
+
+
+        print_r($_POST);
+        print_r($_SESSION);
     }
 
     if (isset($_POST ['desconectar'])) {
@@ -282,11 +303,12 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 
 $plantilla->assign('perfil', $perfil);
 $plantilla->assign('foto_modal', $foto_modal);
-
+$plantilla->assign('foroNav', $foroNav);
 
 
 $con->cerrar();
-$plantilla->display("reservas.tpl");
+$plantilla->display("reservas.tpl"
+);
 
 function headerTable() {
     $tabla = "<td>";
@@ -309,7 +331,8 @@ function headerTable() {
     //INSERT INTO `reservas`(`rid`, `fecha_reserva`, `uid`, `pid`, `fecha_actual`, `hora`, `precio`) VALUES ('','2019/05/27','1','4','2019/05/23','12:00','12')
 }
 
-function calcular_fecha($fecha_i, $fecha_f) {
+function calcular_fecha(
+$fecha_i, $fecha_f) {
     $dias = (strtotime($fecha_i) - strtotime($fecha_f)) / 86400;
     $dias = floor($dias);
     return $dias;

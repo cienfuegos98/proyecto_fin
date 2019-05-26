@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 19:36:37
+/* Smarty version 3.1.33, created on 2019-05-24 22:30:51
   from 'C:\xampp\htdocs\proyecto_fin\template\pabellones.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6da25cf3e02_26558866',
+  'unifunc' => 'content_5ce8547b4bac70_29074902',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c46ea660ecac53f9a9575cea85b43a111fe92fde' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
-      1 => 1558632994,
+      1 => 1558729795,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6da25cf3e02_26558866 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce8547b4bac70_29074902 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -94,12 +94,13 @@ function content_5ce6da25cf3e02_26558866 (Smarty_Internal_Template $_smarty_tpl)
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
+
                             <li class="nav-item ">
                                 <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
 
                         </ul>
                     </div>

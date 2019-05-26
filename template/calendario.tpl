@@ -32,7 +32,7 @@
                         dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
                         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
                         weekHeader: 'Sm',
-                        dateFormat: 'dd/mm/yy',
+                        dateFormat: 'yy/mm/dd',
                         firstDay: 1,
                         isRTL: false,
                         showMonthAfterYear: false,
@@ -52,18 +52,25 @@
                             return [disabledDates.indexOf(string) == -1]
                         }, //elimino los dias del array que le paso
                         onSelect: function (date) {
-                            alert(date); //recojo el valor del select
-                            window.location.href = "?date=" + date; //valor que le paso al div y lor recojo en PHP
+                            var fecha = document.getElementById("datepicker").value;
+
+                            var data = {'fecha': fecha};
+
+                            $.ajax({
+                                type: "post",
+                                url: 'index3.php',
+                                data: data,
+                                success: function (response) {
+
+                                    $('#respuesta').html(response);
+                                }
+                            });
+                            return false;
                         }
                     });
 
 
                 });
-                function obtengoHora() { //funcion con la que obtengo la hora del select
-                    var hora = $('select').val(); //recojo el valor del select
-                    alert(hora);
-                    window.location.href = "?hora=" + hora; //valor que le paso al div y lor recojo en PHP
-                }
 
             {/literal}
         </script>
@@ -116,14 +123,10 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
                     <div class = 'view zoom'>
                         <div id="datepicker"></div>
-                        <select name="ab" onchange="obtengoHora();">
-                            <option value='' id='hora'>-- --</option>
-                            {$select}
-                        </select>
+                        <div id="respuesta"></div>
                         <a href="calendario.php" data-toggle="modal"  class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
                     </div>
                 </div>
-
             </div>
         </div>
         <!---------------- Modal -------------------->
@@ -179,12 +182,12 @@
                                 <input name="cmd" type="hidden" value="_cart" />
                                 <input name="upload" type="hidden" value="1" />
                                 <input name="business" type="hidden" value="pgmcastillo98-facilitator@gmail.com" />
-                                <input name="shopping_url" type="hidden" value="http://localhost/proyecto_final/calendario.php" />
+                                <input name="shopping_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="currency_code" type="hidden" value="EUR" />
-                                <input name="return" type="hidden" value="http://localhost/proyecto_final/calendario.php" />
-                                <input name="notify_url" type="hidden" value="http://localhost/proyecto_final/calendario.php" />
+                                <input name="return" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
+                                <input name="notify_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="rm" type="hidden" value="2" />
-                                <input type="image" src="http://www.paypal.com/es_ES/i/btn/x-click-but01.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
+                                <input type="submit"  name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
                                 {$hiddenPay}
                             </form>
                             <form action="calendario.php" method='post'>

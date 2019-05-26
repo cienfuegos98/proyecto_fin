@@ -68,12 +68,17 @@
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
+                                <a class="nav-link" href="reservas.php">Mis reservas
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link " href="comentarios.php">Foro
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>

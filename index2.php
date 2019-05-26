@@ -116,9 +116,7 @@
         <title>datepicker</title>
     </head>
     <body>
-        <div>HOLA QUE TAL</div>
         <div id="datepicker"></div>
-        <div id="id"></div>
         <div id="respuesta"></div>
     </body>
 </html>

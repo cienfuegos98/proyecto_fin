@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-24 01:13:20
+/* Smarty version 3.1.33, created on 2019-05-24 22:31:12
   from 'C:\xampp\htdocs\proyecto_fin\template\reservas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce72910c35055_18185144',
+  'unifunc' => 'content_5ce85490412d31_60571843',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a59915535ce854585e388ef555647790be80fe92' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\reservas.tpl',
-      1 => 1558653196,
+      1 => 1558729869,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce72910c35055_18185144 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce85490412d31_60571843 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -70,37 +70,32 @@ function content_5ce72910c35055_18185144 (Smarty_Internal_Template $_smarty_tpl)
                         <a data-toggle="modal" data-target="#exampleModal"><?php echo $_smarty_tpl->tpl_vars['perfil']->value;?>
 </a>
                     </ul>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="pabellones.php">Pabellones
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="reservas.php">Mis reservas
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="comentarios.php">Foro
+                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
+
+                            <li class="nav-item ">
+                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="pabellones.php">Pabellones
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
+
                 </div>
+
             </nav>
         </div>
         <br><br><br><br>

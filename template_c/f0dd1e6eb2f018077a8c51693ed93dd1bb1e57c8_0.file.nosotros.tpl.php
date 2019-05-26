@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 20:51:01
+/* Smarty version 3.1.33, created on 2019-05-24 22:29:42
   from 'C:\xampp\htdocs\proyecto_fin\template\nosotros.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6eb95d7db50_80264720',
+  'unifunc' => 'content_5ce85436171097_15393490',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f0dd1e6eb2f018077a8c51693ed93dd1bb1e57c8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\nosotros.tpl',
-      1 => 1558637460,
+      1 => 1558729762,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6eb95d7db50_80264720 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce85436171097_15393490 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -122,13 +122,19 @@ function content_5ce6eb95d7db50_80264720 (Smarty_Internal_Template $_smarty_tpl)
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="reservas.php">Mis reservas
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
 
                             <li class="nav-item active">
                                 <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
+
 
                         </ul>
                     </div>

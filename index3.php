@@ -25,6 +25,7 @@ if (isset($_POST['fecha'])) {
     $hora = date("G");
     $actual = date("Y/m/d");
     $fecha = $_POST['fecha'];
+    $_SESSION['reserva'] = $fecha;
 
     $s = "SELECT `hora` FROM `reservas` WHERE `fecha_reserva` = '" . $fecha . "'";
     $horasBloq = $con->selection($s); //horas reservadas
@@ -34,7 +35,7 @@ if (isset($_POST['fecha'])) {
     }
 
     $select = '';
-    $select .= "<select>";
+    $select .= "<select name ='horaElegida'>";
     $select .= "<option>--Selecciona hora--</option>";
     foreach ($horasTotales as $h) {
         if ($fecha === $actual) {
