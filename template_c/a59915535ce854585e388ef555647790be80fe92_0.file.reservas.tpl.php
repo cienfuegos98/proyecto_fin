@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-24 22:31:12
+/* Smarty version 3.1.33, created on 2019-05-27 18:04:29
   from 'C:\xampp\htdocs\proyecto_fin\template\reservas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce85490412d31_60571843',
+  'unifunc' => 'content_5cec0a8d3b0523_45029766',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a59915535ce854585e388ef555647790be80fe92' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\reservas.tpl',
-      1 => 1558729869,
+      1 => 1558973066,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce85490412d31_60571843 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cec0a8d3b0523_45029766 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -114,6 +114,18 @@ function content_5ce85490412d31_60571843 (Smarty_Internal_Template $_smarty_tpl)
                 <!-- Main heading -->
                 <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
                 <form name="registro" id="registro-form" method="POST" action="reservas.php" enctype="multipart/form-data">
+                    <span for="form2" >¿Quieres una foto de perfil?</span>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   value="<?php echo $_smarty_tpl->tpl_vars['foto']->value;?>
+" aria-describedby="inputGroupFileAddon01" name="foto">
+                            <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
+                        </div>
+                    </div>
                     <div class="md-form">
                         <input type="text" id="pabellon" class="form-control" name="pabellon" value="<?php echo $_smarty_tpl->tpl_vars['nombrePab']->value;?>
 ">
@@ -138,6 +150,11 @@ function content_5ce85490412d31_60571843 (Smarty_Internal_Template $_smarty_tpl)
                         <input type="text" id="telefono" class="form-control" name="telefono" value="<?php echo $_smarty_tpl->tpl_vars['telefono']->value;?>
 ">
                         <label for="form5">Teléfono</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="horario" class="form-control" name="horario" value="<?php echo $_smarty_tpl->tpl_vars['horario']->value;?>
+">
+                        <label for="form5">Horario</label>
                     </div>
                     <div class="md-form">
 
@@ -168,14 +185,15 @@ function content_5ce85490412d31_60571843 (Smarty_Internal_Template $_smarty_tpl)
 ">
                         <label for="form2">Tarifa</label>
                     </div>
-                    <span for="form2" >¿Quieres una foto de perfil?</span>
+                    <span for="form2" >¿Quieres cambiar tu imagen corporativa?</span>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                   aria-describedby="inputGroupFileAddon01" name="foto">
+                                   value="<?php echo $_smarty_tpl->tpl_vars['imagen_web']->value;?>
+"aria-describedby="inputGroupFileAddon01" name="imegen_web">
                             <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
                         </div>
                     </div>

@@ -100,20 +100,22 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 
         $cid = $valores['cid'];
         $usuario = $valores['user'];
-        if ($usuario == $user) {
+        if ($usuario === $_SESSION['usuario']['nombre']) {
             $posicion = "float-right";
             $text = "text-right";
+            $comPropiedad = "comentarioMio";
         } else {
             $posicion = "float-left";
             $text = "text-left";
+            $comPropiedad = "comentarioOtro";
         }
         $fotoperfil = "<img src = '" . $valores['foto'] . "' height = '50' width = '50' class = 'rounded-circle hoverable img-responsive $posicion'>";
-        $comentarios .= "<div class = 'mensaje $text'>";
-        $comentarios .= $fotoperfil . "<h5 style = 'margin-left:20px; margin-right: 20px; margin-top: 20px!important;' class = 'mt-0 font-weight-bold blue-text $posicion'>" . $valores['user'] . "</h5>";
-        $comentarios .= "<p style = 'margin-left: 50px; margin-right: 50px;margin-top: 20px;'>" . date('d/m/Y', strtotime($valores['fecha'])) . " " . $valores['hora'] . "</p><br>";
-        $comentarios .= "<p style = 'margin-left: 50px; margin-right: 50px;'>" . $valores['asunto'] . "<br>";
-        $comentarios .= $valores['comentario'] . "<br>";
-        $comentarios .= $valores['busqueda'] . "(prueba)</p><br>";
+        $comentarios .= "<div class = 'mensaje $text $comPropiedad'>";
+        $comentarios .= $fotoperfil . "<h5 style = 'margin-left: 20px; margin-right: 20px; margin-top: 20px!important;' class = 'mt-0 font-weight-bold blue-text $posicion'>" . $valores['user'] . "</h5>";
+        $comentarios .= "<p style='margin-left: 50px; margin-right: 50px; margin-top: 20px;'>" . date('d/m/Y', strtotime($valores['fecha'])) . " " . $valores['hora'] . "</p><br>";
+        $comentarios .= "<p style='margin-left: 50px; margin-right: 50px;'>" . $valores['asunto'] . "<br>";
+        $comentarios .= $valores['comentario'] . "</br>";
+        $comentarios .= $valores['busqueda'] . "(prueba)</p>";
         if ($uid == $valores['uid']) {
             $comentarios .= " <form action = 'comentarios.php' method = 'post'>
             <input class = 'eliminar' type = 'submit' src = 'img/multiplicar.png' name = 'eliminar' value = 'Eliminar'>
@@ -125,12 +127,13 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $comentarios .= "</div>";
     }
 
+    $plantilla->assign('comentarios', $comentarios);
+
     if (isset($_POST ['eliminar'])) {
         $cid = $_POST['hidden_cid'];
         $del = "DELETE FROM comentarios WHERE cid = $cid";
         $con->run($del);
     }
-    $plantilla->assign('comentarios', $comentarios);
 }
 if (isset($_POST ['desconectar'])) {
     session_destroy();

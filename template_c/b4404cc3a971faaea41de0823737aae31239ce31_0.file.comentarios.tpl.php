@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-24 22:30:48
+/* Smarty version 3.1.33, created on 2019-05-27 20:15:00
   from 'C:\xampp\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce85478243f90_66255532',
+  'unifunc' => 'content_5cec29249df6c4_39551453',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4404cc3a971faaea41de0823737aae31239ce31' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1558729845,
+      1 => 1558980878,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce85478243f90_66255532 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cec29249df6c4_39551453 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -58,13 +58,21 @@ function content_5ce85478243f90_66255532 (Smarty_Internal_Template $_smarty_tpl)
                 margin-bottom: 10%;
                 margin-right: 10%;
                 margin-left: 10%;
-                border: 1px solid black;
             }
 
             .mensaje{
                 padding: 3%;
+                margin-top:10px;
+                margin-bottom: 10px;
             }
 
+            .comentarioMio{
+                background-color: #ebffce;
+                border-radius: 1.625rem;
+            }
+            .separadorPeque{
+                height: 20px;
+            }
 
         </style>
     </head>

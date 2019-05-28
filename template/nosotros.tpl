@@ -24,14 +24,6 @@
                 height: 100%;
             }
 
-            @media (min-width: 800px) and (max-width: 850px) {
-                html,
-                body,
-                header,
-                .view {
-                    height: 650px;
-                }
-            }
 
             #registrate-ahora{
                 color: #4285f4;
@@ -132,7 +124,7 @@
             <div id="contenidoPrincipal" class="nosotrosContent">
                 <div class="row tituloPricipal">
                     <div class="fotito col-lg-5">
-                        <div class=" view overlay rounded z-depth-2 mb-lg-0 mb-4">
+                        <div class=" view overlay rounded z-depth-2 mb-lg-0">
                             <img class="img-fluid" src="./img/nosotros/foto1.jpg" alt="Sample image">
                         </div>
 
@@ -195,10 +187,10 @@
                 <div class="row">
 
                     <!-- Grid column -->
-                    <div class=" fotito col-lg-5">
+                    <div class="  col-lg-5">
 
                         <!-- Featured image -->
-                        <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
+                        <div class="view overlay rounded z-depth-2 mb-lg-0">
                             <img class="img-fluid" src="./img/nosotros/foto3.jpg" alt="Sample image">
                         </div>
 

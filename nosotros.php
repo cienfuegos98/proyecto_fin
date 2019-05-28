@@ -51,7 +51,6 @@ if (empty($_SESSION['usuario'])) {
         $pass = $_SESSION['usuario']['pass'];
         $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";
         $datos = $con->selection($c);
-        var_dump($datos);
         $uid = $datos[0]['uid'];
         $foto = $datos[0]['foto'];
         $email = $datos[0]['email'];

@@ -84,6 +84,17 @@
                 <!-- Main heading -->
                 <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
                 <form name="registro" id="registro-form" method="POST" action="reservas.php" enctype="multipart/form-data">
+                    <span for="form2" >¿Quieres una foto de perfil?</span>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   value="{$foto}" aria-describedby="inputGroupFileAddon01" name="foto">
+                            <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
+                        </div>
+                    </div>
                     <div class="md-form">
                         <input type="text" id="pabellon" class="form-control" name="pabellon" value="{$nombrePab}">
                         <label for="form3">Pabellon</label>
@@ -103,6 +114,10 @@
                     <div class="md-form">
                         <input type="text" id="telefono" class="form-control" name="telefono" value="{$telefono}">
                         <label for="form5">Teléfono</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" id="horario" class="form-control" name="horario" value="{$horario}">
+                        <label for="form5">Horario</label>
                     </div>
                     <div class="md-form">
 
@@ -128,14 +143,14 @@
                         <input type="text" id="tarifa" class="form-control" name="tarifa" value="{$tarifa}">
                         <label for="form2">Tarifa</label>
                     </div>
-                    <span for="form2" >¿Quieres una foto de perfil?</span>
+                    <span for="form2" >¿Quieres cambiar tu imagen corporativa?</span>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                   aria-describedby="inputGroupFileAddon01" name="foto">
+                                   value="{$imagen_web}"aria-describedby="inputGroupFileAddon01" name="imegen_web">
                             <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
                         </div>
                     </div>

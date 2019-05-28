@@ -35,13 +35,21 @@
                 margin-bottom: 10%;
                 margin-right: 10%;
                 margin-left: 10%;
-                border: 1px solid black;
             }
 
             .mensaje{
                 padding: 3%;
+                margin-top:10px;
+                margin-bottom: 10px;
             }
 
+            .comentarioMio{
+                background-color: #ebffce;
+                border-radius: 1.625rem;
+            }
+            .separadorPeque{
+                height: 20px;
+            }
 
         </style>
     </head>

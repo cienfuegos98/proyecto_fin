@@ -11,11 +11,8 @@ $plantilla->template_dir = "./template";
 $plantilla->compile_dir = "./template_c";
 
 session_start();
-if ($_SESSION['usuario'] && $_SESSION['tipo'] == 'user') {
+if ($_SESSION['usuario']) {
     header("location:pabellones.php");
-}
-if ($_SESSION['usuario'] && $_SESSION['tipo'] == 'pabellon') {
-    header("location:reservas.php");
 }
 
 $error = '';
@@ -36,6 +33,7 @@ if (isset($_POST['iniciar'])) {
             $c = "SELECT uid FROM `usuarios` WHERE user = '$nombre'";
             $datos = $con->selection($c);
             $id = $datos[0]['uid'];
+            $_SESSION['usuario']['id'] = $id;
             $tipo = $con->compruebaTipo($id);
             $_SESSION['tipo'] = $tipo;
             header("Location:pabellones.php");
@@ -76,9 +74,9 @@ if (isset($_POST['registrarse'])) {
 //Muevo de origen a destino el fichero.
     move_uploaded_file($origen, $destino);
 //    try {
-    $cons = "INSERT INTO `usuarios` VALUES('','$user','$pass')";
-    //$con->run($cons);
-    $c = "INSERT INTO `jugadores` VALUES('','$nombreC','$email',$direccion','$cp','$telefono','$destino','$fecha','','')";
+    $cons = "INSERT INTO `usuarios` VALUES('','$user','$pass', '$destino')";
+    $con->run($cons);
+    $c = "INSERT INTO `jugadores` VALUES('','$nombreC','$email',$direccion','$cp','$telefono','$fecha','','')";
     $con->run($c);
     var_dump($c);
 

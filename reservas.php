@@ -40,12 +40,14 @@ if (empty($_SESSION['usuario'])) {
         $ciudad = $datospab[0]['ciudad'];
         $cod_postal = $datospab[0]['cod_postal'];
         $telefono = $datospab[0]['telefono'];
+        $horario = $datospab[0]['horario'];
         $descripcion = $datospab[0]['descripcion'];
         $caracteristicas = $datospab[0]['caracteristicas'];
         $otros_servicios = $datospab[0]['otros_servicios'];
         $accesibilidad = $datospab[0]['acccesibilidad'];
         $tarifa = $datospab[0]['tarifa'];
         $foto = $datospab[0]['foto'];
+        $imagen_web = $datospab[0]['imagen_web'];
 
         $plantilla->assign('nombrePab', $nombrePab);
         $plantilla->assign('direccion', $direccion);
@@ -58,6 +60,7 @@ if (empty($_SESSION['usuario'])) {
         $plantilla->assign('accesibilidad', $accesibilidad);
         $plantilla->assign('tarifa', $tarifa);
         $plantilla->assign('foto', $foto);
+        $plantilla->assign('horario', $horario);
 
         $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
@@ -89,20 +92,20 @@ if (empty($_SESSION['usuario'])) {
             $tabla .= $valores['fecha_reserva'];
             $tabla .= "</td>";
             $tabla .= "<td>";
-            $tabla .= $valores['hora'];
+            $tabla .= $valores['hora'] . ":00";
             $tabla .= "</td>";
             $tabla .= "<td>";
             $tabla .= $valores['nombre_completo'];
             $tabla .= "</td>";
             $tabla .= "<td>";
-            $tabla .= $valores['fecha_actual'];
+            $tabla .= $valores['fecha_actual_reserva'];
             $tabla .= "</td>";
             $tabla .= "<td>";
             $tabla .= "<form method = 'POST' action = 'reservas.php'>"
-                    . " < input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
-                    . " < input type = 'hidden' name = 'uid' value = '" . $valores['uid'] . "' > "
-                    . " < input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
-                    . " < /form>";
+                    . "<input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
+                    . "<input type = 'hidden' name = 'uid' value = '" . $valores['uid'] . "' > "
+                    . "<input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
+                    . "</form>";
             $tabla .= "</td>";
             $tabla .= "</tr>";
         }
@@ -118,6 +121,7 @@ if (empty($_SESSION['usuario'])) {
             $ciudad = $_POST['ciudad'];
             $cod_postal = $_POST['cod_postal'];
             $telefono = $_POST['telefono'];
+            $horario = $_POST['horario'];
             $descripcion = $_POST['descripcion'];
             $caracteristicas = $_POST['caracteristicas'];
             $otros_servicios = $_POST['otros_servicios'];
@@ -131,6 +135,7 @@ if (empty($_SESSION['usuario'])) {
                     . "ciudad = '$ciudad' "
                     . "cod_postal = '$cod_postal' "
                     . "telefono = '$telefono' "
+                    . "horario = '$horario' "
                     . "descripcion = '$descripcion' "
                     . "caracteristicas = '$caracteristicas' "
                     . "otros_servicios = '$otros_servicios' "
@@ -139,11 +144,8 @@ if (empty($_SESSION['usuario'])) {
                     . "fecha = '$fecha' "
                     . "WHERE pid = '$pid'";
 
-
             $con->run($insert);
         }
-
-
 
         if (isset($_POST ['eliminar'])) {
             $rid_borrar = $_POST['rid_borrar'];
@@ -167,7 +169,7 @@ if (empty($_SESSION['usuario'])) {
 //';
 //
 //            $headers = "MIME-Version: 1.0\r\n";
-//            $headers .= "Content-type: text/html;
+//            $headers .= "Content-type: text / html;
             //charset = iso-8859-1\r\n";
 //
 ////dirección del remitente 
@@ -193,7 +195,7 @@ if (empty($_SESSION['usuario'])) {
     } else if ($_SESSION['tipo'] == "user") {
         $user = $_SESSION['usuario']['nombre'];
         $pass = $_SESSION['usuario']['pass'];
-        $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";
+        $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user' ";
         $datos = $con->selection($c);
         $uid = $datos[0]['uid'];
         $foto = $datos[0]['foto'];
@@ -217,7 +219,6 @@ if (empty($_SESSION['usuario'])) {
                         <br>
                         Dirección: $direccion";
 
-
         $cons = "SELECT * FROM reservas WHERE uid = '$uid' ORDER BY fecha_reserva DESC, hora DESC";
         $datosRe = $con->selection($cons);
 
@@ -240,20 +241,15 @@ if (empty($_SESSION['usuario'])) {
             $tabla .= $nombreC;
             $tabla .= "</td>";
             $tabla .= "<td>";
-            $tabla .= $valores['fecha_actual'];
+            $tabla .= $valores['fecha_actual_reserva'];
             $tabla .= "</td>";
 
-//            $tabla .= "<td>";
-//            $tabla .= calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) . "-";
-//prueba      $tabla .= $valores['hora'] . "-";
-//            $tabla .= date("H");
-//            $tabla .= "</td>";
             if (calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) > 0) {
                 $tabla .= "<td>";
                 $tabla .= "<form method = 'POST' action = 'reservas.php'>"
-                        . " < input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
-                        . " < input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
-                        . " < /form>";
+                        . "<input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
+                        . "<input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
+                        . "</form>";
                 $tabla .= "</td>";
 
                 $tabla .= "</tr>";
@@ -281,17 +277,25 @@ if (empty($_SESSION['usuario'])) {
         $plantilla->assign('tabla', $tabla);
         $plantilla->assign('contenidoModal', $contenidoModal);
 
-        if (isset($_POST['paypal'])) {
-            print $_POST['mc_gross_1'];
-            print $_POST['payment_date'];
+        if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFIED') {
+            $coste = $_POST['mc_gross_1'];
+            $fecha_reserva = $_POST['payment_date'];
+            $pid = $_POST['item_number1'];
 
-            $hora = $_POST['horaElegida'];
-            $_SESSION['hora'] = $hora;
+            $fecha_pago = $_POST['payment_date'];
+            $fecha_d_pago = date("Y-m-d", strtotime($fecha_pago));
+            $fecha_reserva = $_SESSION['reserva'];
+            $fecha_d_reserva = date("Y-m-d", strtotime($fecha_reserva));
+
+            $uid = $_SESSION['usuario']['id'];
+            $hora = 10;
+            //print_r($_POST);
+            //print_r($_SESSION);
+
+            $ins = "INSERT INTO `reservas` "
+                    . "VALUES('','$fecha_d_reserva',$hora,$uid,$pid,'$fecha_d_pago')";
+            $con->run($ins);
         }
-
-
-        print_r($_POST);
-        print_r($_SESSION);
     }
 
     if (isset($_POST ['desconectar'])) {
@@ -300,11 +304,9 @@ if (empty($_SESSION['usuario'])) {
     }
 }
 
-
 $plantilla->assign('perfil', $perfil);
 $plantilla->assign('foto_modal', $foto_modal);
 $plantilla->assign('foroNav', $foroNav);
-
 
 $con->cerrar();
 $plantilla->display("reservas.tpl"

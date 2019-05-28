@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-24 22:29:42
+/* Smarty version 3.1.33, created on 2019-05-27 18:24:37
   from 'C:\xampp\htdocs\proyecto_fin\template\nosotros.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce85436171097_15393490',
+  'unifunc' => 'content_5cec0f45a79470_75912789',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f0dd1e6eb2f018077a8c51693ed93dd1bb1e57c8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\nosotros.tpl',
-      1 => 1558729762,
+      1 => 1558974145,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce85436171097_15393490 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cec0f45a79470_75912789 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -47,14 +47,6 @@ function content_5ce85436171097_15393490 (Smarty_Internal_Template $_smarty_tpl)
                 height: 100%;
             }
 
-            @media (min-width: 800px) and (max-width: 850px) {
-                html,
-                body,
-                header,
-                .view {
-                    height: 650px;
-                }
-            }
 
             #registrate-ahora{
                 color: #4285f4;
@@ -158,7 +150,7 @@ function content_5ce85436171097_15393490 (Smarty_Internal_Template $_smarty_tpl)
             <div id="contenidoPrincipal" class="nosotrosContent">
                 <div class="row tituloPricipal">
                     <div class="fotito col-lg-5">
-                        <div class=" view overlay rounded z-depth-2 mb-lg-0 mb-4">
+                        <div class=" view overlay rounded z-depth-2 mb-lg-0">
                             <img class="img-fluid" src="./img/nosotros/foto1.jpg" alt="Sample image">
                         </div>
 
@@ -221,10 +213,10 @@ function content_5ce85436171097_15393490 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="row">
 
                     <!-- Grid column -->
-                    <div class=" fotito col-lg-5">
+                    <div class="  col-lg-5">
 
                         <!-- Featured image -->
-                        <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
+                        <div class="view overlay rounded z-depth-2 mb-lg-0">
                             <img class="img-fluid" src="./img/nosotros/foto3.jpg" alt="Sample image">
                         </div>
 
