@@ -23,6 +23,11 @@
             .view {
                 height: 100%;
             }
+            
+            html, body
+            {
+                height: 100%;
+            }
 
             #contenidoPrincipal{
                 margin-left: 10%;
@@ -38,6 +43,18 @@
             .pabellon{
                 margin-bottom: 1.5rem!important;
             }
+            
+            #enlace_borrar{
+                color: #4285f4;
+                font-size: 15px;
+            }
+
+            #enlace_borrar:hover{
+                color:  #4285b1;
+                font-size: 17px;
+            }
+            
+            
 
         </style>
     </head>
@@ -77,14 +94,10 @@
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
-
                 </div>
-
             </nav>
-
         </div>
         <br> 
         <div id="contenidoPrincipal">
@@ -114,12 +127,41 @@
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                            <div class="text-center" >
+                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+                     <!--MODAL DE CONFIRMACION-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center">
+       
+                                <form action="pabellones.php" method='post'>
+                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                                </form>
+                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                       
+                        </div>
+                </div>
+            </div>
+        </div>
+  
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
         <!-- SCRIPTS -->
@@ -150,9 +192,10 @@
                     var id_form = $(this).parent().attr('id');
                     $('#' + id_form).submit();
                 });
-                $('#myModal').on('shown.bs.modal', function () {
-                    $('#myInput').trigger('focus');
+                $('#enlace_borrar').click(function () {
+                    $('#exampleModal').modal('hide');
                 });
+               
             });
 
         </script>

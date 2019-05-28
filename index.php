@@ -17,7 +17,7 @@ if ($_SESSION['usuario']) {
 
 $error = '';
 $plantilla->assign('error', $error);
-$perfil = "<a href='index.php'><img  src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
+$perfil = "<a href='index.php'><img  src='./img/imgperfiles/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 $plantilla->assign('perfil', $perfil);
 
 if (isset($_POST['iniciar'])) {

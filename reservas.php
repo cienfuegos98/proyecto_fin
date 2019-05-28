@@ -74,7 +74,7 @@ if (empty($_SESSION['usuario'])) {
         FROM `reservas` as r
         INNER JOIN `jugadores` as j ON r.uid = j.uid
         WHERE pid = '$pid'
-        ORDER BY fecha_reserva ASC, hora asc";
+        ORDER BY fecha_reserva DESC, hora desc";
         $datosRe = $con->selection($cons);
 
         $tabla = "<table class = 'tablaRes'>";
@@ -171,6 +171,7 @@ if (empty($_SESSION['usuario'])) {
 
             $con->run($insert);
             //var_dump($insert);
+            header("location:reservas.php");
         }
 
         if (isset($_POST ['eliminar'])) {

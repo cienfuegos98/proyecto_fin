@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-28 11:48:30
+/* Smarty version 3.1.33, created on 2019-05-28 17:47:23
   from 'C:\xxx\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ced03ee6485f1_18636780',
+  'unifunc' => 'content_5ced580b72ed86_93002777',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '932faa9f5e548a90aff816f0298b2bdaace8c3d1' => 
     array (
       0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1559036860,
+      1 => 1559058442,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ced03ee6485f1_18636780 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced580b72ed86_93002777 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -67,11 +67,31 @@ function content_5ced03ee6485f1_18636780 (Smarty_Internal_Template $_smarty_tpl)
             }
 
             .comentarioMio{
-                background-color: #ebffce;
+                background-color: #dcf8c6;
                 border-radius: 1.625rem;
+                  margin-left: 18%;
+                  border: 1px solid #128c7e;
             }
+            
+            .comentarioOtro{
+                background-color: #f7f1ea;
+                border-radius: 1.625rem;
+                  margin-right: 18%;
+                  border: 1px solid #c4bdb4;
+              
+            }
+            
             .separadorPeque{
                 height: 20px;
+            }
+            #enlace_borrar{
+                color: #4285f4;
+                font-size: 15px;
+            }
+
+            #enlace_borrar:hover{
+                color:  #4285b1;
+                font-size: 17px;
             }
 
         </style>
@@ -134,9 +154,6 @@ function content_5ced03ee6485f1_18636780 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </section>
 
-            <div class="media-body">
-
-
                 <div id="bloqueMensajes">
                     <?php echo $_smarty_tpl->tpl_vars['comentarios']->value;?>
 
@@ -176,36 +193,58 @@ function content_5ced03ee6485f1_18636780 (Smarty_Internal_Template $_smarty_tpl)
                         </form>
                     </div>
                 </div>
-                <!---------------- Modal -------------------->
-                <!---------------- Modal -------------------->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel" style="margin-left:40%">MI PERFIL</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="text-center" style="margin-top:5%"><?php echo $_smarty_tpl->tpl_vars['foto_modal']->value;?>
+            </div>
+               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="margin-left:40%">MI PERFIL</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%"><?php echo $_smarty_tpl->tpl_vars['foto_modal']->value;?>
 </div>
-                            <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-                                <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
 
+                    </div>
+                    <div class="modal-footer" style="justify-content: center">
+                        <form method = 'POST' action = 'pabellones.php'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                            <div class="text-center" >
+                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
                             </div>
-                            <div class="modal-footer" style="justify-content: center">
-                                <form method = 'POST' action = 'pabellones.php'>
-                                    <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
-                                </form>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-                <!---------------- Modal -------------------->
-                <!---------------- Modal -------------------->
             </div>
         </div>
-
+                     <!--MODAL DE CONFIRMACION-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center">
+       
+                                <form action="pabellones.php" method='post'>
+                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                                </form>
+                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                       
+                        </div>
+                </div>
+            </div>
+        </div>
         <!-- SCRIPTS -->
         <!-- JQuery -->
         <?php echo '<script'; ?>
@@ -234,7 +273,13 @@ function content_5ced03ee6485f1_18636780 (Smarty_Internal_Template $_smarty_tpl)
         <?php echo '</script'; ?>
 >
 
-
+        <?php echo '<script'; ?>
+>
+            $('#enlace_borrar').click(function () {
+                    $('#exampleModal').modal('hide');
+                });
+        <?php echo '</script'; ?>
+>
     </body>
 
 </html>

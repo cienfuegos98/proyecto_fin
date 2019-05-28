@@ -103,4 +103,9 @@ class BD {
         return $tipo;
     }
 
+    public function eliminarCuenta($id) {
+        $q = "DELETE *FROM usuarios WHERE uid = $id";
+        $this->run($q);
+    }
+
 }

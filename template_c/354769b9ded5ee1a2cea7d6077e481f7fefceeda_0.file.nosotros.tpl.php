@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-28 11:48:46
+/* Smarty version 3.1.33, created on 2019-05-28 17:47:51
   from 'C:\xxx\htdocs\proyecto_fin\template\nosotros.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ced03feebb526_82122997',
+  'unifunc' => 'content_5ced5827a3b9c0_00525697',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '354769b9ded5ee1a2cea7d6077e481f7fefceeda' => 
     array (
       0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\nosotros.tpl',
-      1 => 1559036924,
+      1 => 1559058470,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ced03feebb526_82122997 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced5827a3b9c0_00525697 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -73,6 +73,15 @@ function content_5ced03feebb526_82122997 (Smarty_Internal_Template $_smarty_tpl)
             #contenidoPrincipal{
                 margin-left: 10%;
                 margin-right: 10%;
+            }
+            #enlace_borrar{
+                color: #4285f4;
+                font-size: 15px;
+            }
+
+            #enlace_borrar:hover{
+                color:  #4285b1;
+                font-size: 17px;
             }
         </style>
 
@@ -258,13 +267,40 @@ function content_5ced03feebb526_82122997 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                         <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
 
-
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                            <div class="text-center" >
+                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                            </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+                     <!--MODAL DE CONFIRMACION-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center">
+       
+                                <form action="pabellones.php" method='post'>
+                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                                </form>
+                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                       
+                        </div>
                 </div>
             </div>
         </div>
@@ -292,6 +328,13 @@ function content_5ced03feebb526_82122997 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript">
             // Animations initialization
             new WOW().init();
+        <?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+>
+            $('#enlace_borrar').click(function () {
+                    $('#exampleModal').modal('hide');
+                });
         <?php echo '</script'; ?>
 >
     </body>

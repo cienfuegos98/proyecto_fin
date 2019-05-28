@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-28 14:35:40
+/* Smarty version 3.1.33, created on 2019-05-28 17:48:50
   from 'C:\xxx\htdocs\proyecto_fin\template\reservas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ced2b1c400084_51415185',
+  'unifunc' => 'content_5ced5862d01852_76986052',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'da6f41665e5cde2ac4c8eee38e3dc3bd71afe8f3' => 
     array (
       0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\reservas.tpl',
-      1 => 1559046930,
+      1 => 1559058529,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ced2b1c400084_51415185 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced5862d01852_76986052 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -48,6 +48,15 @@ function content_5ced2b1c400084_51415185 (Smarty_Internal_Template $_smarty_tpl)
 
             .tablaRes tr td{
                 border: 1px solid black;
+            }
+            #enlace_borrar{
+                color: #4285f4;
+                font-size: 15px;
+            }
+
+            #enlace_borrar:hover{
+                color:  #4285b1;
+                font-size: 17px;
             }
         </style>
     </head>
@@ -239,14 +248,17 @@ function content_5ced2b1c400084_51415185 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                            <div class="text-center" >
+                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--MODAL DE CONFIRMACION
+                     <!--MODAL DE CONFIRMACION-->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -256,18 +268,20 @@ function content_5ced2b1c400084_51415185 (Smarty_Internal_Template $_smarty_tpl)
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres reservar?</div>
+                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-
-                        <form action="reservas.php" method='post'>
-                            <input type="submit"  class="btn btn-primary" name="cancelar" value="CANCELAR">
-                            <input type="submit"  class="btn btn-primary" name="cancelar" value="CANCELAR">
-                        </form>
-                    </div>
+                        <div class="row justify-content-center">
+       
+                                <form action="pabellones.php" method='post'>
+                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                                </form>
+                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                       
+                        </div>
                 </div>
             </div>
         </div>
-    </div>-->
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
          
@@ -319,6 +333,9 @@ function content_5ced2b1c400084_51415185 (Smarty_Internal_Template $_smarty_tpl)
                         }
                         errorElement: "em";
                     });
+                    $('#enlace_borrar').click(function () {
+                        $('#exampleModal').modal('hide');
+                     });
                 });
             <?php echo '</script'; ?>
 >
