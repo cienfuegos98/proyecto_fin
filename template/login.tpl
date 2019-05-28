@@ -343,6 +343,7 @@
                 });
             </script>
         {/literal}
+        
     </body>
 
 </html>

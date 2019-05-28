@@ -16,7 +16,7 @@ class BD {
     }
 
 //Creamos el constructor con los atributos de la base de datos
-    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "futmatch1") {
+    public function __construct($host = "localhost", $user = "root", $pass = "", $bd = "futmatch1") {
         $this->host = $host;
         $this->user = $user;
         $this->pass = $pass;

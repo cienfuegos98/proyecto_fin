@@ -68,11 +68,30 @@
                             return false;
                         }
                     });
-
-
+                    
+                    
+                    
                 });
+                
 
             {/literal}
+        </script>
+        <script>
+            function getval(sel){
+                     alert(sel.value);
+                     var data = {
+                         'hora': sel.value
+                     };
+                     $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#respuesta2').html(response);
+                        }
+                            });
+                            return false;
+            }
         </script>
         <style>
             #contenidoPrincipal{
@@ -124,7 +143,9 @@
                     <div class = 'view zoom'>
                         <div id="datepicker"></div>
                         <div id="respuesta"></div>
-                        <a href="calendario.php" data-toggle="modal"  class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                        <div id="respuesta2"></div>
+                        <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                    <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
             </div>
@@ -165,7 +186,7 @@
         </div>
 
         <!--MODAL DE CONFIRMACION-->
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade show" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -210,5 +231,13 @@
             // Animations initialization
             new WOW().init();
         </script>
+        <!--<script type="text/javascript">
+            $(document).ready(function () {
+                $('#a_modal').click(function () {
+                       document.form_hora.submit();
+                });
+                
+            });
+        </script>-->
     </body>
 </html>

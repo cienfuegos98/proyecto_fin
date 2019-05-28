@@ -3,19 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>jQuery UI Datepicker - Display inline</title>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-        <!-- Bootstrap core CSS -->
+       <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
         <link href="css/mdb.min.css" rel="stylesheet">
         <!-- Your custom styles (optional) -->
         <link href="css/style.min.css" rel="stylesheet">
-        <link rel="icon" type="image/png" href="./img/loading.gif" sizes="16x16">
         <link href="css/style.css" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+        <link rel="icon" type="image/png" href="./img/loading.gif" sizes="16x16">
 
         <style>
             #contenidoPrincipal{
@@ -45,13 +45,15 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="pabellones.php">Pabellones
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="reservas.php">Mis reservas
+                            <li class="nav-item active">
+                                <a class="nav-link" href="reservas.php">
+                                    {if ($tipo == 'pabellon')}Reservas{/if}
+                                     {if ($tipo == 'user')}Mis Reservas{/if}
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -75,91 +77,112 @@
             <!-- Section description -->
             <p class=" text-center mx-auto mb-5">
                 Lorem ipsum dolor sit amet consectetur adipiscing elit imperdiet ridiculus ad suspendisse auctor, facilisi blandit hendrerit uidiculus sagittis duis penatibus magnis id ut curabitur lectus.
-            </p>
-            <!--Aqui solo mostraré habilitados las horas que no esten cogidas de ese día-->
-        </div>
+            </p>       
         {$tabla}
         {if ($tipo == 'pabellon')}
-            <div class="col-md-6 mb-4">
-                <!-- Main heading -->
-                <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
-                <form name="registro" id="registro-form" method="POST" action="reservas.php" enctype="multipart/form-data">
-                    <span for="form2" >¿Quieres una foto de perfil?</span>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                   value="{$foto}" aria-describedby="inputGroupFileAddon01" name="foto">
-                            <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
-                        </div>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="pabellon" class="form-control" name="pabellon" value="{$nombrePab}">
-                        <label for="form3">Pabellon</label>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="direccion" class="form-control" name="direccion" value="{$direccion}">
-                        <label for="form4">Direccion</label>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="ciudad" class="form-control" name="ciudad" value="{$ciudad}">
-                        <label for="form2">Ciudad</label>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="cod_postal" class="form-control" name="cod_postal" value="{$cod_postal}">
-                        <label for="form5">Código Postal</label>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="telefono" class="form-control" name="telefono" value="{$telefono}">
-                        <label for="form5">Teléfono</label>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="horario" class="form-control" name="horario" value="{$horario}">
-                        <label for="form5">Horario</label>
-                    </div>
-                    <div class="md-form">
+            <br>
+        <div class="card card-image accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
 
-                        <textarea id="descripcion" class="md-textarea form-control" rows="8" name="descripcion">{$descripcion}</textarea>
-                        <label for="form2">Descripción</label>
-                    </div>
-                    <div class="md-form">
-                        <textarea id="caracteristicas" class="md-textarea  form-control" name="caracteristicas" rows="8"> {$caracteristicas}</textarea>
+          <!-- Accordion card -->
+          <div class="card">
 
-                        <label for="form2">Características</label>
-                    </div>
-                    <div class="md-form">
-                        <textarea id="otros_servicios" class="md-textarea  form-control" name="otros_servicios" {$otros_servicios}></textarea>
-
-                        <label for="form2">Otros servicios</label>
-                    </div>
-                    <div class="md-form">
-                        <textarea id="accesibilidad" class="md-textarea  form-control" name="accesibilidad">{$accesibilidad}</textarea>
-
-                        <label for="form2">Accesibilidad</label>
-                    </div>
-                    <div class="md-form">
-                        <input type="text" id="tarifa" class="form-control" name="tarifa" value="{$tarifa}">
-                        <label for="form2">Tarifa</label>
-                    </div>
-                    <span for="form2" >¿Quieres cambiar tu imagen corporativa?</span>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                   value="{$imagen_web}"aria-describedby="inputGroupFileAddon01" name="imegen_web">
-                            <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <input type="submit" class="btn btn-primary" name="actualizar" value="Actualizar datos"/>
-                    </div>
-                </form>
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="headingTwo1">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo1"
+                aria-expanded="false" aria-controls="collapseTwo1">
+                <h5 class="mb-0"> ADMINISTRACIÓN DE DATOS  <i class="fas fa-angle-down rotate-icon"></i>
+                </h5>
+              </a>
             </div>
+
+            <!-- Card body -->
+            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
+              <div class="card-body">
+                <div class="col-md-6 mb-4">
+                        <!-- Main heading -->
+                        <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+                       <form name="registro" id="registro-form" method="POST" action="reservas.php" enctype="multipart/form-data">
+                            <span for="form2" >¿Quieres una foto de perfil?</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="foto">
+                                    <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
+                                </div>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="pabellon" class="form-control" name="pabellon" value="{$nombrePab}">
+                                <label for="form3">Pabellon</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="direccion" class="form-control" name="direccion" value="{$direccion}">
+                                <label for="form4">Direccion</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="ciudad" class="form-control" name="ciudad" value="{$ciudad}">
+                                <label for="form2">Ciudad</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="cod_postal" class="form-control" name="cod_postal" value="{$cod_postal}">
+                                <label for="form5">Código Postal</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="telefono" class="form-control" name="telefono" value="{$telefono}">
+                                <label for="form5">Teléfono</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="horario" class="form-control" name="horario" value="{$horario}">
+                                <label for="form5">Horario</label>
+                            </div>
+                            <div class="md-form">
+
+                                <textarea id="descripcion" class="md-textarea form-control" rows="8" name="descripcion">{$descripcion}</textarea>
+                                <label for="form2">Descripción</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="caracteristicas" class="md-textarea  form-control" name="caracteristicas" rows="8"> {$caracteristicas}</textarea>
+
+                                <label for="form2">Características</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="otros_servicios" class="md-textarea  form-control" name="otros_servicios"> {$otros_servicios}</textarea>
+
+                                <label for="form2">Otros servicios</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="accesibilidad" class="md-textarea  form-control" name="accesibilidad">{$accesibilidad}</textarea>
+
+                                <label for="form2">Accesibilidad</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" id="tarifa" class="form-control" name="tarifa" value="{$tarifa}">
+                                <label for="form2">Tarifa</label>
+                            </div>
+                            <span for="form2" >¿Quieres cambiar tu imagen corporativa?</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="imagen_web">
+                                    <label class="custom-file-label" for="inputGroupFile01">Escoge tu imagen</label>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-primary" name="actualizar" value="Actualizar datos"/>
+                            </div>
+                        </form>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {/if}
+        </div>
+     
+        
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -208,6 +231,9 @@
     </div>-->
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
+         {literal}
+                <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
         <script type="text/javascript" src="js/popper.min.js"></script>
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -218,5 +244,31 @@
             // Animations initialization
             new WOW().init();
         </script>
+         <script src="js/jquery.validate.js"></script>
+          <script src="js/jquery.validate.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                    $("#registro-form").validate({
+                        rules: {
+                            pabellon: {
+                                required: true,
+                                maxlength: 20,
+                                minlength: 2
+                            };
+                        },
+                        messages: {
+                            pabellon: {
+                                required: "Campo obligatorio",
+                                minlength: "Nombre demasiado corto",
+                                maxlength: "Nombre demasiado largo"
+                            };
+                        }
+                        errorElement: "em";
+                    });
+                });
+            </script>
+            {/literal}
+         
+        
     </body>
 </html>

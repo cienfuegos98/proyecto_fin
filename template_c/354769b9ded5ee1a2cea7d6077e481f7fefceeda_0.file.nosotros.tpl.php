@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 09:20:52
+/* Smarty version 3.1.33, created on 2019-05-28 11:48:46
   from 'C:\xxx\htdocs\proyecto_fin\template\nosotros.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce649d400ad57_67602824',
+  'unifunc' => 'content_5ced03feebb526_82122997',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '354769b9ded5ee1a2cea7d6077e481f7fefceeda' => 
     array (
       0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\nosotros.tpl',
-      1 => 1558594420,
+      1 => 1559036924,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce649d400ad57_67602824 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced03feebb526_82122997 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -47,14 +47,6 @@ function content_5ce649d400ad57_67602824 (Smarty_Internal_Template $_smarty_tpl)
                 height: 100%;
             }
 
-            @media (min-width: 800px) and (max-width: 850px) {
-                html,
-                body,
-                header,
-                .view {
-                    height: 650px;
-                }
-            }
 
             #registrate-ahora{
                 color: #4285f4;
@@ -122,13 +114,21 @@ function content_5ce649d400ad57_67602824 (Smarty_Internal_Template $_smarty_tpl)
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="reservas.php">
+                                    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>Reservas<?php }?>
+                                     <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>Mis Reservas<?php }?>
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
 
                             <li class="nav-item active">
                                 <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
+
 
                         </ul>
                     </div>
@@ -152,7 +152,7 @@ function content_5ce649d400ad57_67602824 (Smarty_Internal_Template $_smarty_tpl)
             <div id="contenidoPrincipal" class="nosotrosContent">
                 <div class="row tituloPricipal">
                     <div class="fotito col-lg-5">
-                        <div class=" view overlay rounded z-depth-2 mb-lg-0 mb-4">
+                        <div class=" view overlay rounded z-depth-2 mb-lg-0">
                             <img class="img-fluid" src="./img/nosotros/foto1.jpg" alt="Sample image">
                         </div>
 
@@ -215,10 +215,10 @@ function content_5ce649d400ad57_67602824 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="row">
 
                     <!-- Grid column -->
-                    <div class=" fotito col-lg-5">
+                    <div class="  col-lg-5">
 
                         <!-- Featured image -->
-                        <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
+                        <div class="view overlay rounded z-depth-2 mb-lg-0">
                             <img class="img-fluid" src="./img/nosotros/foto3.jpg" alt="Sample image">
                         </div>
 
@@ -256,22 +256,7 @@ function content_5ce649d400ad57_67602824 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="text-center" style="margin-top:5%"><?php echo $_smarty_tpl->tpl_vars['foto_modal']->value;?>
 </div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-                        User: <?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
-
-                        <br>
-                        Email: <?php echo $_smarty_tpl->tpl_vars['email']->value;?>
-
-                        <br>
-                        Password <?php echo $_smarty_tpl->tpl_vars['pass']->value;?>
-
-                        <br>
-                        Nombre completo: <?php echo $_smarty_tpl->tpl_vars['nombreC']->value;?>
-
-                        <br>
-                        Fecha de Nacimiento: <?php echo $_smarty_tpl->tpl_vars['fecha']->value;?>
-
-                        <br>
-                        Dirección: <?php echo $_smarty_tpl->tpl_vars['direccion']->value;?>
+                        <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
 
 
                     </div>

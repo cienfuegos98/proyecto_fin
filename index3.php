@@ -25,8 +25,7 @@ if (isset($_POST['fecha'])) {
     $hora = date("G");
     $actual = date("Y/m/d");
     $fecha = $_POST['fecha'];
-    $_SESSION['reserva'] = $fecha;
-
+    $_SESSION['fecha'] = date("Y-m-d", strtotime($fecha));
     $s = "SELECT `hora` FROM `reservas` WHERE `fecha_reserva` = '" . $fecha . "'";
     $horasBloq = $con->selection($s); //horas reservadas
 
@@ -35,11 +34,11 @@ if (isset($_POST['fecha'])) {
     }
 
     $select = '';
-    $select .= "<select name ='horaElegida'>";
+    $select .= "<select name ='horaElegida' id='selectHora' onchange='getval(this);'>";
     $select .= "<option>--Selecciona hora--</option>";
     foreach ($horasTotales as $h) {
         if ($fecha === $actual) {
-            if ($hora > $h) {
+            if ($hora >= $h) {
                 $select .= "<option value='" . $h . "'id='hora' disabled>" . $h . ":00</option> ";
             } else {
                 $select .= "<option value='" . $h . "'id='hora' >" . $h . ":00</option> ";
@@ -56,5 +55,10 @@ if (isset($_POST['fecha'])) {
     $select .= "</select>";
 
     print $select;
+}
+
+if (isset($_POST['hora'])) {
+    $horaElegida = $_POST['hora'];
+    $_SESSION['hora'] = $horaElegida;
 }
 ?>

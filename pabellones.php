@@ -22,7 +22,10 @@ if (empty($_SESSION['usuario'])) {
     $foroNav = '';
     $perfil = "<a href='index.php'><img  src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 } else {
-
+    if (isset($_SESSION['tipo'])) {
+        $tipo = $_SESSION['tipo'];
+        $plantilla->assign('tipo', $tipo);
+    }
     $foroNav = "<li class='nav-item '>
                     <a class='nav-link' href='comentarios.php'>Foro
                         <span class='sr-only'>(current)</span>
@@ -94,6 +97,7 @@ if (isset($_POST ['desconectar'])) {
     $plantilla->assign('loginNav', $loginNav);
     $plantilla->assign('foroNav', '');
     session_destroy();
+    header("Location:index.php");
 }
 
 $c = "SELECT * FROM `usuarios` as u JOIN `pabellones` as p ON p.pid = u.uid";

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 16:34:47
+/* Smarty version 3.1.33, created on 2019-05-28 15:51:09
   from 'C:\xxx\htdocs\proyecto_fin\template\calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6af87d00147_46684080',
+  'unifunc' => 'content_5ced3ccddf3331_73773632',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f619fb4527ecf7a8358149d2d1ba8faabcabd96e' => 
     array (
       0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\calendario.tpl',
-      1 => 1558621621,
+      1 => 1559051408,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced3ccddf3331_73773632 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -60,7 +60,7 @@ function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl)
                         dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
                         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
                         weekHeader: 'Sm',
-                        dateFormat: 'dd/mm/yy',
+                        dateFormat: 'yy/mm/dd',
                         firstDay: 1,
                         isRTL: false,
                         showMonthAfterYear: false,
@@ -80,20 +80,48 @@ function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl)
                             return [disabledDates.indexOf(string) == -1]
                         }, //elimino los dias del array que le paso
                         onSelect: function (date) {
-                            alert(date); //recojo el valor del select
-                            window.location.href = "?date=" + date; //valor que le paso al div y lor recojo en PHP
+                            var fecha = document.getElementById("datepicker").value;
+
+                            var data = {'fecha': fecha};
+
+                            $.ajax({
+                                type: "post",
+                                url: 'index3.php',
+                                data: data,
+                                success: function (response) {
+
+                                    $('#respuesta').html(response);
+                                }
+                            });
+                            return false;
                         }
                     });
-
-
+                    
+                    
+                    
                 });
-                function obtengoHora() { //funcion con la que obtengo la hora del select
-                    var hora = $('select').val(); //recojo el valor del select
-                    alert(hora);
-                    window.location.href = "?hora=" + hora; //valor que le paso al div y lor recojo en PHP
-                }
+                
 
             
+        <?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+>
+            function getval(sel){
+                     alert(sel.value);
+                     var data = {
+                         'hora': sel.value
+                     };
+                     $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#respuesta2').html(response);
+                        }
+                            });
+                            return false;
+            }
         <?php echo '</script'; ?>
 >
         <style>
@@ -146,15 +174,12 @@ function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
                     <div class = 'view zoom'>
                         <div id="datepicker"></div>
-                        <select name="ab" onchange="obtengoHora();">
-                            <option value='' id='hora'>-- --</option>
-                            <?php echo $_smarty_tpl->tpl_vars['select']->value;?>
-
-                        </select>
-                        <a href="calendario.php" data-toggle="modal"  class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                        <div id="respuesta"></div>
+                        <div id="respuesta2"></div>
+                        <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                    <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
-
             </div>
         </div>
         <!---------------- Modal -------------------->
@@ -200,7 +225,7 @@ function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl)
         </div>
 
         <!--MODAL DE CONFIRMACION-->
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade show" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -217,12 +242,12 @@ function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl)
                                 <input name="cmd" type="hidden" value="_cart" />
                                 <input name="upload" type="hidden" value="1" />
                                 <input name="business" type="hidden" value="pgmcastillo98-facilitator@gmail.com" />
-                                <input name="shopping_url" type="hidden" value="http://localhost/proyecto_final/calendario.php" />
+                                <input name="shopping_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="currency_code" type="hidden" value="EUR" />
-                                <input name="return" type="hidden" value="http://localhost/proyecto_final/calendario.php" />
-                                <input name="notify_url" type="hidden" value="http://localhost/proyecto_final/calendario.php" />
+                                <input name="return" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
+                                <input name="notify_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="rm" type="hidden" value="2" />
-                                <input type="image" src="http://www.paypal.com/es_ES/i/btn/x-click-but01.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
+                                <input type="submit"  name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
                                 <?php echo $_smarty_tpl->tpl_vars['hiddenPay']->value;?>
 
                             </form>
@@ -254,6 +279,16 @@ function content_5ce6af87d00147_46684080 (Smarty_Internal_Template $_smarty_tpl)
             new WOW().init();
         <?php echo '</script'; ?>
 >
+        <!--<?php echo '<script'; ?>
+ type="text/javascript">
+            $(document).ready(function () {
+                $('#a_modal').click(function () {
+                       document.form_hora.submit();
+                });
+                
+            });
+        <?php echo '</script'; ?>
+>-->
     </body>
 </html><?php }
 }

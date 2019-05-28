@@ -12,6 +12,13 @@ $plantilla->compile_dir = "./template_c";
 
 session_start();
 
+
+if (isset($_POST['horaElegida'])) {
+    $hora = $_POST['horaElegida'];
+    print $hora;
+}
+
+
 if (empty($_SESSION['usuario'])) {
     header("Location:index.php?error=Debes iniciar sesion");
 } else {
@@ -57,7 +64,7 @@ if (empty($_SESSION['usuario'])) {
     }
 
     $hiddenPay = "<input type = 'hidden' name = 'item_name_1' value = '$nombrePab'>"
-            . "<input type = 'hidden' name = 'item_number_1' value = '$pid'>"
+            . "<input type = 'hidden' name = 'item_number_1' value = '$id_pab'>"
             . "<input type = 'hidden' name = 'amount_1' value = '$precio'>"
             . "<input name = 'quantity_1' type = 'hidden' value = '1' />";
     $plantilla->assign('hiddenPay', $hiddenPay);

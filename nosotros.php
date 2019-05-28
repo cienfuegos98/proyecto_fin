@@ -22,6 +22,10 @@ if (empty($_SESSION['usuario'])) {
     $perfil = "<a href='index.php'><img src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 } else {
     $con = new BD();
+    if (isset($_SESSION['tipo'])) {
+        $tipo = $_SESSION['tipo'];
+        $plantilla->assign('tipo', $tipo);
+    }
     $foroNav = "<li class='nav-item '>
                     <a class='nav-link' href='comentarios.php'>Foro
                         <span class='sr-only'>(current)</span>

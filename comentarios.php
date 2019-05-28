@@ -13,6 +13,10 @@ $plantilla->compile_dir = "./template_c";
 if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     header("Location:index.php?error=Debes iniciar sesion para leer y escribir comentarios");
 } else {
+    if (isset($_SESSION['tipo'])) {
+        $tipo = $_SESSION['tipo'];
+        $plantilla->assign('tipo', $tipo);
+    }
     $con = new BD();
     if ($_SESSION['tipo'] == "pabellon") {
         $name = $_SESSION['usuario']['nombre'];
@@ -132,7 +136,8 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     if (isset($_POST ['eliminar'])) {
         $cid = $_POST['hidden_cid'];
         $del = "DELETE FROM comentarios WHERE cid = $cid";
-        $con->run($del);
+        $comentario = $con->run($del);
+        header("location:comentarios.php");
     }
 }
 if (isset($_POST ['desconectar'])) {

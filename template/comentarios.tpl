@@ -76,7 +76,9 @@
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="reservas.php">Mis reservas
+                                <a class="nav-link" href="reservas.php">
+                                    {if ($tipo == 'pabellon')}Reservas{/if}
+                                     {if ($tipo == 'user')}Mis Reservas{/if}
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>

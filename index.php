@@ -76,10 +76,10 @@ if (isset($_POST['registrarse'])) {
 //    try {
     $cons = "INSERT INTO `usuarios` VALUES('','$user','$pass', '$destino')";
     $con->run($cons);
-    $c = "INSERT INTO `jugadores` VALUES('','$nombreC','$email',$direccion','$cp','$telefono','$fecha','','')";
-    $con->run($c);
-    var_dump($c);
-
+    //$user_id = $con->lastInsertId();
+    $c = "INSERT INTO `jugadores` VALUES('$user_id','$nombreC','$email',$direccion','$cp','$telefono','$fecha','','')";
+    //$con->run($c);
+    //var_dump($c);
 //    } catch (Exception $ex) {
 //        $error = "Ups! Parece que ese nombre de usuario ya esta en manos de otra persona<br>."
 //                . "Prueba con $user 123, $user 123, $user 456, $user 111";

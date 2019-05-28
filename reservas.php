@@ -44,7 +44,7 @@ if (empty($_SESSION['usuario'])) {
         $descripcion = $datospab[0]['descripcion'];
         $caracteristicas = $datospab[0]['caracteristicas'];
         $otros_servicios = $datospab[0]['otros_servicios'];
-        $accesibilidad = $datospab[0]['acccesibilidad'];
+        $accesibilidad = $datospab[0]['accesibilidad'];
         $tarifa = $datospab[0]['tarifa'];
         $foto = $datospab[0]['foto'];
         $imagen_web = $datospab[0]['imagen_web'];
@@ -60,6 +60,7 @@ if (empty($_SESSION['usuario'])) {
         $plantilla->assign('accesibilidad', $accesibilidad);
         $plantilla->assign('tarifa', $tarifa);
         $plantilla->assign('foto', $foto);
+        $plantilla->assign('imagen_web', $imagen_web);
         $plantilla->assign('horario', $horario);
 
         $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
@@ -69,7 +70,6 @@ if (empty($_SESSION['usuario'])) {
 
         $plantilla->assign('contenidoModal', $contenidoModal);
 
-        //SELECT `u`.*,n.title FROM `field_data_field_gr_users_usuario` as u inner join node as n on u.entity_id=n.nid
         $cons = "SELECT r.*, j.nombre_completo 
         FROM `reservas` as r
         INNER JOIN `jugadores` as j ON r.uid = j.uid
@@ -127,24 +127,50 @@ if (empty($_SESSION['usuario'])) {
             $otros_servicios = $_POST['otros_servicios'];
             $accesibilidad = $_POST['accesibilidad'];
             $tarifa = $_POST['tarifa'];
-            $fecha = $_POST['fecha'];
 
-            $insert = "UPDATE pabellones SET "
-                    . "pabellon = '$pabellon' "
-                    . "direccion = '$direccion' "
-                    . "ciudad = '$ciudad' "
-                    . "cod_postal = '$cod_postal' "
-                    . "telefono = '$telefono' "
-                    . "horario = '$horario' "
-                    . "descripcion = '$descripcion' "
-                    . "caracteristicas = '$caracteristicas' "
-                    . "otros_servicios = '$otros_servicios' "
-                    . "accesibilidad = '$accesibilidad' "
-                    . "tarifa = '$tarifa' "
-                    . "fecha = '$fecha' "
+            $destino = "./img/imgperfiles/";
+
+            if ($_FILES['foto']['name'] != '') {
+                $foto_perfil = $_FILES['foto'];
+                $origen = $foto_perfil['tmp_name'];
+                $destino_f_perfil = $destino . $foto_perfil['name'];
+                move_uploaded_file($origen, $destino_f_perfil);
+            } else {
+                $destino_f_perfil = $foto;
+            }
+
+            if ($_FILES['imagen_web']['name'] != '') {
+                $imagen = $_FILES['imagen_web'];
+                $origen = $imagen['tmp_name'];
+                $destino_img = $destino . $imagen['name'];
+                move_uploaded_file($origen, $destino_img);
+            } else {
+                $destino_img = $imagen_web;
+            }
+
+            $insert = "UPDATE usuarios SET "
+                    . "foto  = '$destino_f_perfil' "
                     . "WHERE pid = '$pid'";
 
             $con->run($insert);
+
+            $insert = "UPDATE pabellones SET "
+                    . "nombre  = '$pabellon', "
+                    . "direccion = '$direccion', "
+                    . "ciudad = '$ciudad', "
+                    . "cod_postal = '$cod_postal', "
+                    . "telefono = '$telefono', "
+                    . "horario = '$horario', "
+                    . "descripcion = '$descripcion', "
+                    . "caracteristicas = '$caracteristicas', "
+                    . "otros_servicios = '$otros_servicios', "
+                    . "accesibilidad = '$accesibilidad', "
+                    . "tarifa = '$tarifa', "
+                    . "imagen_web  = '$destino_img' "
+                    . "WHERE pid = '$pid'";
+
+            $con->run($insert);
+            //var_dump($insert);
         }
 
         if (isset($_POST ['eliminar'])) {
@@ -191,6 +217,7 @@ if (empty($_SESSION['usuario'])) {
 //            } else {
 //                print "<p>error</p>";
 //            }
+            header("location:reservas.php");
         }
     } else if ($_SESSION['tipo'] == "user") {
         $user = $_SESSION['usuario']['nombre'];
@@ -219,7 +246,7 @@ if (empty($_SESSION['usuario'])) {
                         <br>
                         Dirección: $direccion";
 
-        $cons = "SELECT * FROM reservas WHERE uid = '$uid' ORDER BY fecha_reserva DESC, hora DESC";
+        $cons = "SELECT r.*, p.nombre FROM `reservas` as r INNER JOIN pabellones p ON p.pid = r.pid ORDER BY fecha_reserva DESC, hora DESC";
         $datosRe = $con->selection($cons);
 
         $tabla = "<table class = 'tablaRes'>";
@@ -243,9 +270,13 @@ if (empty($_SESSION['usuario'])) {
             $tabla .= "<td>";
             $tabla .= $valores['fecha_actual_reserva'];
             $tabla .= "</td>";
+            $tabla .= "<td>";
+            $tabla .= $valores['nombre'];
+            $tabla .= "</td>";
+
 
             if (calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) > 0) {
-                $tabla .= "<td>";
+                $tabla .= "<td> ";
                 $tabla .= "<form method = 'POST' action = 'reservas.php'>"
                         . "<input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
                         . "<input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
@@ -257,9 +288,9 @@ if (empty($_SESSION['usuario'])) {
                 if ($valores['hora'] > date("H")) {
                     $tabla .= "<td>";
                     $tabla .= "<form method = 'POST' action = 'reservas.php'>"
-                            . " < input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
-                            . " < input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
-                            . " < /form>";
+                            . "<input type = 'hidden' name = 'rid_borrar' value = '" . $valores['rid'] . "' > "
+                            . "<input type = 'submit' class = 'btn btn-primary' name = 'eliminar' value = 'Eliminar reserva'>"
+                            . "</form>";
                     $tabla .= "</td>";
 
                     $tabla .= "</tr>";
@@ -273,28 +304,30 @@ if (empty($_SESSION['usuario'])) {
             $rid_borrar = $_POST['rid_borrar'];
             $del = "DELETE FROM reservas WHERE rid = '" . $rid_borrar . "'";
             $con->run($del);
+            header("location:reservas.php");
         }
         $plantilla->assign('tabla', $tabla);
         $plantilla->assign('contenidoModal', $contenidoModal);
 
         if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFIED') {
             $coste = $_POST['mc_gross_1'];
-            $fecha_reserva = $_POST['payment_date'];
             $pid = $_POST['item_number1'];
 
             $fecha_pago = $_POST['payment_date'];
             $fecha_d_pago = date("Y-m-d", strtotime($fecha_pago));
-            $fecha_reserva = $_SESSION['reserva'];
+            $fecha_reserva = $_SESSION['fecha'];
+            $hora_reserva = $_SESSION['hora'];
             $fecha_d_reserva = date("Y-m-d", strtotime($fecha_reserva));
 
             $uid = $_SESSION['usuario']['id'];
-            $hora = 10;
-            //print_r($_POST);
-            //print_r($_SESSION);
+
+            print_r($_SESSION);
+            print_r($_SESSION);
 
             $ins = "INSERT INTO `reservas` "
-                    . "VALUES('','$fecha_d_reserva',$hora,$uid,$pid,'$fecha_d_pago')";
+                    . "VALUES('','$fecha_d_reserva',$hora_reserva,$uid,$pid,'$fecha_d_pago')";
             $con->run($ins);
+            //header("location:reservas.php");
         }
     }
 
@@ -328,9 +361,10 @@ function headerTable() {
     $tabla .= "<td>";
     $tabla .= 'Fecha de la solicitud';
     $tabla .= "</td>";
+    $tabla .= "<td>";
+    $tabla .= 'Pabellón';
+    $tabla .= "</td>";
     return $tabla;
-
-    //INSERT INTO `reservas`(`rid`, `fecha_reserva`, `uid`, `pid`, `fecha_actual`, `hora`, `precio`) VALUES ('','2019/05/27','1','4','2019/05/23','12:00','12')
 }
 
 function calcular_fecha(

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 17:15:57
+/* Smarty version 3.1.33, created on 2019-05-28 11:48:30
   from 'C:\xxx\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce6b92dcefde2_20382295',
+  'unifunc' => 'content_5ced03ee6485f1_18636780',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '932faa9f5e548a90aff816f0298b2bdaace8c3d1' => 
     array (
       0 => 'C:\\xxx\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1558624556,
+      1 => 1559036860,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce6b92dcefde2_20382295 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced03ee6485f1_18636780 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -58,13 +58,21 @@ function content_5ce6b92dcefde2_20382295 (Smarty_Internal_Template $_smarty_tpl)
                 margin-bottom: 10%;
                 margin-right: 10%;
                 margin-left: 10%;
-                border: 1px solid black;
             }
 
             .mensaje{
                 padding: 3%;
+                margin-top:10px;
+                margin-bottom: 10px;
             }
 
+            .comentarioMio{
+                background-color: #ebffce;
+                border-radius: 1.625rem;
+            }
+            .separadorPeque{
+                height: 20px;
+            }
 
         </style>
     </head>
@@ -92,12 +100,19 @@ function content_5ce6b92dcefde2_20382295 (Smarty_Internal_Template $_smarty_tpl)
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
+                                <a class="nav-link" href="reservas.php">
+                                    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>Reservas<?php }?>
+                                     <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>Mis Reservas<?php }?>
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link " href="comentarios.php">Foro
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="nosotros.php">Sobre Nosotros
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -176,7 +191,6 @@ function content_5ce6b92dcefde2_20382295 (Smarty_Internal_Template $_smarty_tpl)
 </div>
                             <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                                 <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
-
 
                             </div>
                             <div class="modal-footer" style="justify-content: center">
