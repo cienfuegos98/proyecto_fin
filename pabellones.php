@@ -13,6 +13,8 @@ $plantilla->compile_dir = "./template_c";
 
 $con = new BD();
 
+
+
 if (empty($_SESSION['usuario'])) {
     $loginNav = "<li class='nav-item '>
                     <a class='nav-link' href='index.php'>Login
@@ -22,6 +24,8 @@ if (empty($_SESSION['usuario'])) {
     $foroNav = '';
     $perfil = "<a href='index.php'><img  src='./img/imgperfiles/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 } else {
+
+
     if (isset($_SESSION['tipo'])) {
         $tipo = $_SESSION['tipo'];
         $plantilla->assign('tipo', $tipo);
@@ -31,8 +35,10 @@ if (empty($_SESSION['usuario'])) {
                         <span class='sr-only'>(current)</span>
                     </a>
                  </li>";
+
     $user = $_SESSION['usuario']['nombre'];
     $pass = $_SESSION['usuario']['pass'];
+
     if ($_SESSION['tipo'] == "pabellon") {
 
         $pabs = "SELECT * FROM `pabellones` as p JOIN `usuarios` as u ON p.pid = u.uid WHERE `user` = '$user'";
@@ -79,6 +85,21 @@ if (empty($_SESSION['usuario'])) {
 
         if (isset($_POST['aceptarBorrar'])) {
             $con->eliminarCuenta($uid);
+            session_destroy();
+            header("Location:index.php");
+        }
+
+        if (!isset($_SESSION['auxiliar'])) {
+            $q = "SELECT * FROM `reservas` WHERE uid = '$uid' AND fecha_reserva = '" . date("Y-m-d") . "' ORDER BY hora ASC";
+            $datosRe = $con->selection($q);
+            print_r($datosRe[0]);
+
+            $fecha = $datosRe[0]['fecha_reserva'];
+            $hora = $datosRe[0]['hora'];
+            $load = "alerta(" . $fecha . "," . $hora . ")";
+            $plantilla->assign('load', $load);
+            print_r($q);
+            $_SESSION['auxiliar'] = true;
         }
     }
 
@@ -92,11 +113,11 @@ $plantilla->assign('loginNav', $loginNav);
 
 if (isset($_POST ['desconectar'])) {
     $loginNav = "<li class = 'nav-item '>
-            <a class = 'nav-link' href = 'index.php'>Login
-            <span class = 'sr-only'>(current)</span>
-            </a>
-            </li>";
-    $perfil = "<a href='index.php'><img src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
+                    <a class = 'nav-link' href = 'index.php'>Login
+                    <span class = 'sr-only'>(current)</span>
+                    </a>
+                    </li>";
+    $perfil = "<a href = 'index.php'><img src = './img/user.png' height = '40' width = '40' class = 'rounded-circle hoverable img-responsive'></a>";
     $plantilla->assign('perfil', $perfil);
     $plantilla->assign('loginNav', $loginNav);
     $plantilla->assign('foroNav', '');
@@ -111,33 +132,33 @@ $listadoPabellones = '';
 foreach ($datos as $pabellones) {
     $pid = $pabellones['pid'];
     if ($_SESSION['tipo'] == 'user') {
-        $action = "action='calendario.php'";
+        $action = "action = 'calendario.php'";
     } else if ($pid == $pid_pab) {
-        $action = "action='reservas.php'";
+        $action = "action = 'reservas.php'";
     } else {
         $action = "";
     }
     $listadoPabellones .= "
-            <div class = 'col-lg-6 col-md-6 mb-lg-0 mb-4 pabellon'>
-            <div class = 'card collection-card z-depth-1-half'>
-            <div class = 'view zoom'>
-            <form $action method='post' id='form_" . $pid . "'>
-                <input type='hidden' name='pid'  value='" . $pid . "'>
-                <a class='enlace'>
-                <img style='width:100%' src = '" . $pabellones['imagen_web'] . "' class='img-fluid img-pabellon' alt = 'Imagen del" . $pabellones['nombre'] . "' >
-                </a>
-            </form>            
-            <div class = 'stripe dark'>
-            <a>
-            <div class='expandable fototxt'>
-            <h3>" . $pabellones['nombre'] . "</h3>
-            <p>" . $pabellones['descripcion'] . "</p>
-            </div>
-            </a>
-            </div>
-            </div>
-            </div>
-            </div>";
+                    <div class = 'col-lg-6 col-md-6 mb-lg-0 mb-4 pabellon'>
+                    <div class = 'card collection-card z-depth-1-half'>
+                    <div class = 'view zoom'>
+                    <form $action method = 'post' id = 'form_" . $pid . "' >
+                    <input type = 'hidden' name = 'pid' value = '" . $pid . "' >
+                    <a class = 'enlace'>
+                    <img style = 'width:100%' src = '" . $pabellones['imagen_web'] . "' class = 'img-fluid img-pabellon' alt = 'Imagen del" . $pabellones['nombre'] . "' >
+                    </a>
+                    </form>
+                    <div class = 'stripe dark'>
+                    <a>
+                    <div class = 'expandable fototxt'>
+                    <h3>" . $pabellones['nombre'] . "</h3>
+                    <p>" . $pabellones['descripcion'] . "</p>
+                    </div>
+                    </a>
+                    </div>
+                    </div>
+                    </div>
+                    </div>";
 }
 $con->cerrar();
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 12:25:48
+/* Smarty version 3.1.33, created on 2019-05-30 01:18:39
   from 'C:\xampp\htdocs\proyecto_fin\template\pabellones.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee5e2cb88a15_82371731',
+  'unifunc' => 'content_5cef134f7ddad5_76196870',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c46ea660ecac53f9a9575cea85b43a111fe92fde' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
-      1 => 1559125482,
+      1 => 1559171916,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee5e2cb88a15_82371731 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cef134f7ddad5_76196870 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +81,8 @@ function content_5cee5e2cb88a15_82371731 (Smarty_Internal_Template $_smarty_tpl)
 
         </style>
     </head>
-    <body>
+    <body onload="<?php echo $_smarty_tpl->tpl_vars['load']->value;?>
+">
         <div>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
                 <div class="container">
@@ -190,61 +191,87 @@ function content_5cee5e2cb88a15_82371731 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!---------------- Modal -------------------->
-            <!---------------- Modal -------------------->
-            <!-- SCRIPTS -->
-            <!-- JQuery -->
-            <?php echo '<script'; ?>
+        <!---------------- Modal -------------------->
+        <!---------------- Modal -------------------->
+
+        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe3" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">RECORDATORIO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center" id="textoRec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/jquery-3.4.0.min.js"><?php echo '</script'; ?>
 >
-            <!-- Bootstrap tooltips -->
-            <?php echo '<script'; ?>
+        <!-- Bootstrap tooltips -->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/popper.min.js"><?php echo '</script'; ?>
 >
-            <!-- Bootstrap core JavaScript -->
-            <?php echo '<script'; ?>
+        <!-- Bootstrap core JavaScript -->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/bootstrap.min.js"><?php echo '</script'; ?>
 >
-            <!-- MDB core JavaScript -->
-            <?php echo '<script'; ?>
+        <!-- MDB core JavaScript -->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/mdb.min.js"><?php echo '</script'; ?>
 >
-            <!-- Initializations -->
-            <?php echo '<script'; ?>
+        <!-- Initializations -->
+        <?php echo '<script'; ?>
  type="text/javascript">
-                // Animations initialization
-                new WOW().init();
-            <?php echo '</script'; ?>
+            // Animations initialization
+            new WOW().init();
+        <?php echo '</script'; ?>
 >
-            <?php echo '<script'; ?>
+        <?php echo '<script'; ?>
  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.min.js"><?php echo '</script'; ?>
 >
-            <?php echo '<script'; ?>
+        <?php echo '<script'; ?>
  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.js"><?php echo '</script'; ?>
 >
+        
             <?php echo '<script'; ?>
  type="text/javascript">
-                $(document).ready(function () {
-                    $('div.expandable p').expander({
-                        slicePoint: 250, // si eliminamos por defecto es 100 caracteres
-                        expandText: '[Leer más...]', // por defecto es 'read more...'
-                        collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
-                        userCollapseText: '[Ocultar]' // por defecto es 'read less...'
-                    });
-                    $('.enlace').click(function () {
-                        var id_form = $(this).parent().attr('id');
-                        $('#' + id_form).submit();
-                    });
-                    $('#enlace_borrar').click(function () {
-                        $('#exampleModal').modal('hide');
-                    });
-
+            $(document).ready(function () {
+                $('div.expandable p').expander({
+                    slicePoint: 250, // si eliminamos por defecto es 100 caracteres
+                    expandText: '[Leer más...]', // por defecto es 'read more...'
+                    collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+                    userCollapseText: '[Ocultar]' // por defecto es 'read less...'
                 });
+                $('.enlace').click(function () {
+                    var id_form = $(this).parent().attr('id');
+                    $('#' + id_form).submit();
+                });
+                $('#enlace_borrar').click(function () {
+                    $('#exampleModal').modal('hide');
+                });
+            });
+            function alerta(fecha, hora) {
+                alert(hora);
+                $('#exampleModal3').modal('show');
+                document.getElementById("textoRec").innerHTML = "Le recordamos que tiene una reserva hoy, dia " + fecha + " a las " + hora + ":00, \n\
+        esperamos que disfrute su partido y que deje un comentario en el foro de ello.\n\ GRACIAS!";
+                $('#fecha').value = fecha;
+                $('#hora').value = hora;
+            }
 
             <?php echo '</script'; ?>
 >
-
+        
     </body>
 
 </html>

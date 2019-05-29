@@ -77,12 +77,7 @@ if (isset($_POST['registrarse'])) {
     if ($con->compruebaUser($user) == true && $con->compruebaEmail($email) == true) {
         $cons = "INSERT INTO `usuarios` VALUES('','$user','$pass', '$destino')";
         $con->run($cons);
-
-        $q = "SELECT * FROM `usuarios` WHERE `user` = '$user'";
-        $u = $con->selection($cons);
-        //var_dump($u);
-        $user_id = $u['uid'];
-
+        $user_id = $con->con->lastInsertId();
         $c = "INSERT INTO `jugadores` VALUES('$user_id','$nombreC','$email','$direccion','$cp','$telefono','$fecha','','')";
         $con->run($c);
         $plantilla->assign('error2', '');

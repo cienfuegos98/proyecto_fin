@@ -62,7 +62,7 @@ if (empty($_SESSION['usuario'])) {
     } else {
         $precio = 12;
     }
-
+    $_SESSION['precioReserva'] = $precio;
     $hiddenPay = "<input type = 'hidden' name = 'item_name_1' value = '$nombrePab'>"
             . "<input type = 'hidden' name = 'item_number_1' value = '$id_pab'>"
             . "<input type = 'hidden' name = 'amount_1' value = '$precio'>"

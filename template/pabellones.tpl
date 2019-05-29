@@ -58,7 +58,7 @@
 
         </style>
     </head>
-    <body>
+    <body onload="{$load}">
         <div>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
                 <div class="container">
@@ -161,45 +161,71 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!---------------- Modal -------------------->
-            <!---------------- Modal -------------------->
-            <!-- SCRIPTS -->
-            <!-- JQuery -->
-            <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
-            <!-- Bootstrap tooltips -->
-            <script type="text/javascript" src="js/popper.min.js"></script>
-            <!-- Bootstrap core JavaScript -->
-            <script type="text/javascript" src="js/bootstrap.min.js"></script>
-            <!-- MDB core JavaScript -->
-            <script type="text/javascript" src="js/mdb.min.js"></script>
-            <!-- Initializations -->
-            <script type="text/javascript">
-                // Animations initialization
-                new WOW().init();
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.js"></script>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('div.expandable p').expander({
-                        slicePoint: 250, // si eliminamos por defecto es 100 caracteres
-                        expandText: '[Leer más...]', // por defecto es 'read more...'
-                        collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
-                        userCollapseText: '[Ocultar]' // por defecto es 'read less...'
-                    });
-                    $('.enlace').click(function () {
-                        var id_form = $(this).parent().attr('id');
-                        $('#' + id_form).submit();
-                    });
-                    $('#enlace_borrar').click(function () {
-                        $('#exampleModal').modal('hide');
-                    });
+        <!---------------- Modal -------------------->
+        <!---------------- Modal -------------------->
 
+        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe3" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">RECORDATORIO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center" id="textoRec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- Initializations -->
+        <script type="text/javascript">
+            // Animations initialization
+            new WOW().init();
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.js"></script>
+        {literal}
+            <script type="text/javascript">
+            $(document).ready(function () {
+                $('div.expandable p').expander({
+                    slicePoint: 250, // si eliminamos por defecto es 100 caracteres
+                    expandText: '[Leer más...]', // por defecto es 'read more...'
+                    collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+                    userCollapseText: '[Ocultar]' // por defecto es 'read less...'
                 });
+                $('.enlace').click(function () {
+                    var id_form = $(this).parent().attr('id');
+                    $('#' + id_form).submit();
+                });
+                $('#enlace_borrar').click(function () {
+                    $('#exampleModal').modal('hide');
+                });
+            });
+            function alerta(fecha, hora) {
+                alert(hora);
+                $('#exampleModal3').modal('show');
+                document.getElementById("textoRec").innerHTML = "Le recordamos que tiene una reserva hoy, dia " + fecha + " a las " + hora + ":00, \n\
+        esperamos que disfrute su partido y que deje un comentario en el foro de ello.\n\ GRACIAS!";
+                $('#fecha').value = fecha;
+                $('#hora').value = hora;
+            }
 
             </script>
-
+        {/literal}
     </body>
 
 </html>

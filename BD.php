@@ -3,7 +3,7 @@
 class BD {
 
 //Inicializamos las variables
-    private $con; //conexion
+    public $con; //conexion
     private $error;
     private $host;
     private $user;
@@ -104,9 +104,15 @@ class BD {
     }
 
     public function eliminarCuenta($id) {
-        $q = "DELETE * FROM `usuarios` WHERE uid = `$id`";
-        var_dump($q);
+        $q = "DELETE FROM jugadores WHERE uid = $id";
         $this->run($q);
+
+        $c = "UPDATE usuarios 
+            SET user = 'Usuario$id', 
+            pass = NULL, 
+            foto ='./img/imgperfiles/user.png'
+            WHERE uid = $id";
+        $this->run($c);
     }
 
     public function compruebaUser($user) {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 14:41:54
+/* Smarty version 3.1.33, created on 2019-05-29 20:14:09
   from 'C:\xampp\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee7e12bb92b4_73817480',
+  'unifunc' => 'content_5ceecbf18b0575_20336524',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4404cc3a971faaea41de0823737aae31239ce31' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1559133694,
+      1 => 1559153648,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee7e12bb92b4_73817480 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -56,8 +56,8 @@ function content_5cee7e12bb92b4_73817480 (Smarty_Internal_Template $_smarty_tpl)
             }
             #bloqueMensajes{
                 margin-bottom: 10%;
-                margin-right: 10%;
-                margin-left: 10%;
+                margin-right: 5%;
+
             }
 
             .mensaje{
@@ -93,6 +93,11 @@ function content_5cee7e12bb92b4_73817480 (Smarty_Internal_Template $_smarty_tpl)
                 color:  #4285b1;
                 font-size: 17px;
             }
+            .linea{
+                border-color:#c4bdb4!important;
+                margin-bottom: 5%;
+                margin-top: -5%;
+            }
 
         </style>
     </head>
@@ -121,8 +126,7 @@ function content_5cee7e12bb92b4_73817480 (Smarty_Internal_Template $_smarty_tpl)
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="reservas.php">
-                                    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>Reservas<?php }?>
-                                    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>Mis Reservas<?php }?>
+                                    Administración
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -153,46 +157,48 @@ function content_5cee7e12bb92b4_73817480 (Smarty_Internal_Template $_smarty_tpl)
                     <!--listadoMensajes-->
                 </div>
             </section>
+            <div class="row flex mx-auto">
+                <div id="bloqueMensajes" class="col-8">
+                    <?php echo $_smarty_tpl->tpl_vars['comentarios']->value;?>
 
-            <div id="bloqueMensajes">
-                <?php echo $_smarty_tpl->tpl_vars['comentarios']->value;?>
+                </div>
+                <div id="filtrado" class="col-3">
+                    <h4 class="h4-responsive font-weight-bold pat my-4">Filtrar por: </h4>
+                    <form action="comentarios.php" method="POST">
+                        <!-- Group of default radios - option 1 -->
+                        <div class="custom-control custom-radio my-2">
+                            <input type="radio" value="sin" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked>
+                            <label class="custom-control-label" for="defaultGroupExample1">Sin filtro</label>
+                        </div>
 
+                        <!-- Group of default radios - option 2 -->
+                        <div class="custom-control custom-radio my-2">
+                            <input type="radio" value="equipo" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
+                            <label class="custom-control-label" for="defaultGroupExample2">Equipo</label>
+                        </div>
+
+                        <!-- Group of default radios - option 3 -->
+                        <div class="custom-control custom-radio my-2">
+                            <input type="radio" value="portero" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
+                            <label class="custom-control-label" for="defaultGroupExample3">Portero</label>
+                        </div>
+                        <div class="custom-control custom-radio my-2">
+                            <input type="radio" value="ala" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
+                            <label class="custom-control-label" for="defaultGroupExample4">Ala</label>
+                        </div>
+                        <div class="custom-control custom-radio my-2">
+                            <input type="radio" value="defensa" class="custom-control-input" id="defaultGroupExample5" name="groupOfDefaultRadios">
+                            <label class="custom-control-label" for="defaultGroupExample5">Defensa</label>
+                        </div>
+                        <div class="custom-control custom-radio my-2">
+                            <input type="radio" value="delantero" class="custom-control-input" id="defaultGroupExample6" name="groupOfDefaultRadios">
+                            <label class="custom-control-label" for="defaultGroupExample6">Delantero</label>
+                        </div>
+                        <input type="submit" name="filtrar" class="btn btn-primary" value="FILTRAR COMENTARIOS" class="my-4"/>
+                    </form>
+                </div>
             </div>
-            <div id="filtrado">
-                <form action="comentarios.php" method="POST">
-                    <!-- Group of default radios - option 1 -->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="sin" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked>
-                        <label class="custom-control-label" for="defaultGroupExample1">Sin filtro</label>
-                    </div>
-
-                    <!-- Group of default radios - option 2 -->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="equipo" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
-                        <label class="custom-control-label" for="defaultGroupExample2">Filtrar por búsqueda de equipo</label>
-                    </div>
-
-                    <!-- Group of default radios - option 3 -->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="portero" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
-                        <label class="custom-control-label" for="defaultGroupExample3">Filtrar por búsqueda de Portero</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="ala" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
-                        <label class="custom-control-label" for="defaultGroupExample4">Filtrar por búsqueda de Ala</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="defensa" class="custom-control-input" id="defaultGroupExample5" name="groupOfDefaultRadios">
-                        <label class="custom-control-label" for="defaultGroupExample5">Filtrar por búsqueda de Defensa</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="delantero" class="custom-control-input" id="defaultGroupExample6" name="groupOfDefaultRadios">
-                        <label class="custom-control-label" for="defaultGroupExample6">Filtrar por búsqueda de Delantero</label>
-                    </div>
-                    <input type="submit" name="filtrar" value="FILTRAR COMENTARIOS"/>
-                </form>
-            </div>
-
+            <hr class="linea"/>
             <div class="media mt-3 shadow-textarea">
                 <div style="margin-right:15px;"><?php echo $_smarty_tpl->tpl_vars['fotoperfil']->value;?>
 </div>
