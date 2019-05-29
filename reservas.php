@@ -74,7 +74,7 @@ if (empty($_SESSION['usuario'])) {
         FROM `reservas` as r
         INNER JOIN `jugadores` as j ON r.uid = j.uid
         WHERE pid = '$pid'
-        ORDER BY fecha_reserva DESC, hora desc";
+        ORDER BY fecha_reserva ASC, hora ASC";
         $datosRe = $con->selection($cons);
 
         $tabla = "<table class = 'tablaRes'>";
@@ -247,7 +247,7 @@ if (empty($_SESSION['usuario'])) {
                         <br>
                         Dirección: $direccion";
 
-        $cons = "SELECT r.*, p.nombre FROM `reservas` as r INNER JOIN pabellones p ON p.pid = r.pid ORDER BY fecha_reserva DESC, hora DESC";
+        $cons = "SELECT r.*, p.nombre FROM `reservas` as r INNER JOIN pabellones p ON p.pid = r.pid ORDER BY fecha_reserva ASC, hora ASC";
         $datosRe = $con->selection($cons);
 
         $tabla = "<table class = 'tablaRes'>";
@@ -310,25 +310,24 @@ if (empty($_SESSION['usuario'])) {
         $plantilla->assign('tabla', $tabla);
         $plantilla->assign('contenidoModal', $contenidoModal);
 
-        if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFIED') {
-            $coste = $_POST['mc_gross_1'];
-            $pid = $_POST['item_number1'];
+        if ($_POST) {
+            if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFIED') {
+                $coste = $_POST['mc_gross_1'];
+                $pid = $_POST['item_number1'];
 
-            $fecha_pago = $_POST['payment_date'];
-            $fecha_d_pago = date("Y-m-d", strtotime($fecha_pago));
-            $fecha_reserva = $_SESSION['fecha'];
-            $hora_reserva = $_SESSION['hora'];
-            $fecha_d_reserva = date("Y-m-d", strtotime($fecha_reserva));
+                $fecha_pago = $_POST['payment_date'];
+                $fecha_d_pago = date("Y-m-d", strtotime($fecha_pago));
+                $fecha_reserva = $_SESSION['fecha'];
+                $hora_reserva = $_SESSION['hora'];
+                $fecha_d_reserva = date("Y-m-d", strtotime($fecha_reserva));
 
-            $uid = $_SESSION['usuario']['id'];
+                $uid = $_SESSION['usuario']['id'];
 
-            print_r($_SESSION);
-            print_r($_SESSION);
-
-            $ins = "INSERT INTO `reservas` "
-                    . "VALUES('','$fecha_d_reserva',$hora_reserva,$uid,$pid,'$fecha_d_pago')";
-            $con->run($ins);
-            //header("location:reservas.php");
+                $ins = "INSERT INTO `reservas` "
+                        . "VALUES('','$fecha_d_reserva',$hora_reserva,$uid,$pid,'$fecha_d_pago')";
+                $con->run($ins);
+                header("location:reservas.php");
+            }
         }
     }
 

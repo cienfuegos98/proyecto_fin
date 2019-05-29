@@ -109,19 +109,21 @@
                         </div>
                         <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body"  style="padding:10% 10% 5% 10%;">
                                     <form name="login" id="login-form" method="POST" action="index.php">
                                         <h2 class="dark-grey-text text-center">
                                             <strong>Inicio de sesión</strong>
                                         </h2>
                                         <span style="color:red">{$error}</span>
                                         <div class="md-form">
+                                            <i class="fas fa-user prefix"></i>
                                             <input type="text" id="usuario" class="form-control" name="usuario">
                                             <label for="form3">Usuario</label>
                                         </div>
                                         <div class="md-form">
-                                            <input type="text" id="pass" class="form-control" name="pass">
-                                            <label for="form2">Password</label>
+                                            <i class="fas fa-lock prefix"></i>
+                                            <input type="password" id="pass" class="form-control" name="pass">
+                                            <label for="inputValidationEx2" data-error="wrong" data-success="right">Password</label>
                                         </div>
                                         <div class="text-center">
                                             <a id="olvidado-contraseña">¿Has olvidado tu contraseña?</a>
@@ -342,7 +344,7 @@
                 });
             </script>
         {/literal}
-        
+
     </body>
 
 </html>

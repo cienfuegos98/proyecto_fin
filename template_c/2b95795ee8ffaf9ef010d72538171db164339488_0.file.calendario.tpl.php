@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-27 17:35:46
+/* Smarty version 3.1.33, created on 2019-05-29 11:06:07
   from 'C:\xampp\htdocs\proyecto_fin\template\calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cec03d2b008c7_79951017',
+  'unifunc' => 'content_5cee4b7f2eda18_26533616',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2b95795ee8ffaf9ef010d72538171db164339488' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\calendario.tpl',
-      1 => 1558967599,
+      1 => 1559118223,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cec03d2b008c7_79951017 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -96,17 +96,47 @@ function content_5cec03d2b008c7_79951017 (Smarty_Internal_Template $_smarty_tpl)
                             return false;
                         }
                     });
-
-
+                    
+                    
+                    
                 });
+                
 
             
+        <?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+>
+            function getval(sel){
+                     alert(sel.value);
+                     var data = {
+                         'hora': sel.value
+                     };
+                     $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#respuesta2').html(response);
+                        }
+                            });
+                            return false;
+            }
         <?php echo '</script'; ?>
 >
         <style>
             #contenidoPrincipal{
                 margin-left: 15%;
                 margin-right: 15%;
+            }
+            #enlace_borrar{
+                color: #4285f4;
+                font-size: 15px;
+            }
+
+            #enlace_borrar:hover{
+                color:  #4285b1;
+                font-size: 17px;
             }
         </style>
     </head>
@@ -154,7 +184,9 @@ function content_5cec03d2b008c7_79951017 (Smarty_Internal_Template $_smarty_tpl)
                     <div class = 'view zoom'>
                         <div id="datepicker"></div>
                         <div id="respuesta"></div>
-                        <a href="calendario.php" data-toggle="modal"  class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                        <div id="respuesta2"></div>
+                        <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                    <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
             </div>
@@ -202,7 +234,7 @@ function content_5cec03d2b008c7_79951017 (Smarty_Internal_Template $_smarty_tpl)
         </div>
 
         <!--MODAL DE CONFIRMACION-->
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade show" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -236,6 +268,58 @@ function content_5cec03d2b008c7_79951017 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </div>
+                            <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="margin-left:40%">MI PERFIL</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%"><?php echo $_smarty_tpl->tpl_vars['foto_modal']->value;?>
+</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
+
+                    </div>
+                    <div class="modal-footer" style="justify-content: center">
+                        <form method = 'POST' action = 'pabellones.php'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                            <div class="text-center" >
+                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+                     <!--MODAL DE CONFIRMACION-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center">
+       
+                                <form action="pabellones.php" method='post'>
+                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                                </form>
+                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                       
+                        </div>
+                </div>
+            </div>
+        </div>
+                            
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
         <?php echo '<script'; ?>
@@ -256,6 +340,16 @@ function content_5cec03d2b008c7_79951017 (Smarty_Internal_Template $_smarty_tpl)
             new WOW().init();
         <?php echo '</script'; ?>
 >
+        <!--<?php echo '<script'; ?>
+ type="text/javascript">
+            $(document).ready(function () {
+                $('#a_modal').click(function () {
+                       document.form_hora.submit();
+                });
+                
+            });
+        <?php echo '</script'; ?>
+>-->
     </body>
 </html><?php }
 }

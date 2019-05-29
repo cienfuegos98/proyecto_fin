@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 01:47:47
+/* Smarty version 3.1.33, created on 2019-05-29 10:52:08
   from 'C:\xampp\htdocs\proyecto_fin\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce5dfa37f0745_39632340',
+  'unifunc' => 'content_5cee48383f4711_46869938',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3b0d532dffa6224e7695478c105eca287a3642dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\login.tpl',
-      1 => 1558555863,
+      1 => 1559119927,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce5dfa37f0745_39632340 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Material Design Bootstrap</title>
         <!-- Font Awesome -->
@@ -134,7 +133,7 @@ function content_5ce5dfa37f0745_39632340 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                         <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body"  style="padding:10% 10% 5% 10%;">
                                     <form name="login" id="login-form" method="POST" action="index.php">
                                         <h2 class="dark-grey-text text-center">
                                             <strong>Inicio de sesión</strong>
@@ -142,12 +141,14 @@ function content_5ce5dfa37f0745_39632340 (Smarty_Internal_Template $_smarty_tpl)
                                         <span style="color:red"><?php echo $_smarty_tpl->tpl_vars['error']->value;?>
 </span>
                                         <div class="md-form">
+                                            <i class="fas fa-user prefix"></i>
                                             <input type="text" id="usuario" class="form-control" name="usuario">
                                             <label for="form3">Usuario</label>
                                         </div>
                                         <div class="md-form">
-                                            <input type="text" id="pass" class="form-control" name="pass">
-                                            <label for="form2">Password</label>
+                                            <i class="fas fa-lock prefix"></i>
+                                            <input type="password" id="pass" class="form-control" name="pass">
+                                            <label for="inputValidationEx2" data-error="wrong" data-success="right">Password</label>
                                         </div>
                                         <div class="text-center">
                                             <a id="olvidado-contraseña">¿Has olvidado tu contraseña?</a>
@@ -384,6 +385,7 @@ function content_5ce5dfa37f0745_39632340 (Smarty_Internal_Template $_smarty_tpl)
             <?php echo '</script'; ?>
 >
         
+
     </body>
 
 </html>
