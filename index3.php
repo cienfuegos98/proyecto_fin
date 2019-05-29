@@ -20,19 +20,20 @@ $horasBloqueadas = array();
 foreach (range(8, 23) as $h) {
     $horasTotales[] = $h; //todas las horas posibles
 }
-
+$pid = $_SESSION['pabellon']['pid'];
 if (isset($_POST['fecha'])) {
     $hora = date("G");
-    $actual = date("Y/m/d");
-    $fecha = $_POST['fecha'];
-    $_SESSION['fecha'] = date("Y-m-d", strtotime($fecha));
-    $s = "SELECT `hora` FROM `reservas` WHERE `fecha_reserva` = '" . $fecha . "'";
+    $actual = date("Y-m-d");
+    $fecha = date("Y-m-d", strtotime($_POST['fecha']));
+    $_SESSION['fecha'] = $fecha;
+    $s = "SELECT `hora` FROM `reservas` "
+            . "WHERE `fecha_reserva` = '" . $fecha . "'"
+            . "AND `pid` = '" . $pid . "'";
     $horasBloq = $con->selection($s); //horas reservadas
 
     foreach ($horasBloq as $horasB) {
         $horasBloqueadas[] = $horasB['hora'];
     }
-
     $select = '';
     $select .= "<select name ='horaElegida' id='selectHora' onchange='getval(this);'>";
     $select .= "<option>--Selecciona hora--</option>";

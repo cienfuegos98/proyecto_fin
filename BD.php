@@ -82,7 +82,7 @@ class BD {
 
     //Funcion que comprueba si el usuario es valido o no
     public function compruebaUsuario($nombre, $pass) {
-        $datos = $this->selection('SELECT * FROM `usuarios');
+        $datos = $this->selection('SELECT user, pass FROM `usuarios');
         foreach ($datos as $dato) {
             if (($dato['user'] === $nombre) && ($dato['pass'] === $pass)) {
                 return true;
@@ -104,8 +104,31 @@ class BD {
     }
 
     public function eliminarCuenta($id) {
-        $q = "DELETE *FROM usuarios WHERE uid = $id";
+        $q = "DELETE * FROM `usuarios` WHERE uid = `$id`";
+        var_dump($q);
         $this->run($q);
+    }
+
+    public function compruebaUser($user) {
+        $q = "SELECT user FROM usuarios";
+        $datos = $this->selection($q);
+        foreach ($datos as $dato) {
+            if ($dato['user'] === $user) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function compruebaEmail($email) {
+        $q = "SELECT email FROM jugadores";
+        $datos = $this->selection($q);
+        foreach ($datos as $dato) {
+            if ($dato['email'] === $email) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

@@ -23,7 +23,7 @@
             .view {
                 height: 100%;
             }
-            
+
             html, body
             {
                 height: 100%;
@@ -43,7 +43,7 @@
             .pabellon{
                 margin-bottom: 1.5rem!important;
             }
-            
+
             #enlace_borrar{
                 color: #4285f4;
                 font-size: 15px;
@@ -53,8 +53,8 @@
                 color:  #4285b1;
                 font-size: 17px;
             }
-            
-            
+
+
 
         </style>
     </head>
@@ -83,8 +83,8 @@
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="reservas.php">
-                                   {if ($tipo == 'pabellon')}Reservas{/if}
-                                     {if ($tipo == 'user')}Mis Reservas{/if}
+                                    {if ($tipo == 'pabellon')}Reservas{/if}
+                                    {if ($tipo == 'user')}Mis Reservas{/if}
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -137,7 +137,7 @@
                 </div>
             </div>
         </div>
-                     <!--MODAL DE CONFIRMACION-->
+        <!--MODAL DE CONFIRMACION-->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -148,57 +148,57 @@
                         </button>
                     </div>
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
-                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                        Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                         <div class="row justify-content-center">
-       
-                                <form action="pabellones.php" method='post'>
-                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
-                                </form>
-                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
-                       
+
+                            <form action="pabellones.php" method='post'>
+                                <button type="submit"  class="btn btn-primary" name="aceptarBorrar" >ACEPTAR</button>
+                            </form>
+                            <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-  
-        <!---------------- Modal -------------------->
-        <!---------------- Modal -------------------->
-        <!-- SCRIPTS -->
-        <!-- JQuery -->
-        <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <!-- Initializations -->
-        <script type="text/javascript">
-            // Animations initialization
-            new WOW().init();
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('div.expandable p').expander({
-                    slicePoint: 250, // si eliminamos por defecto es 100 caracteres
-                    expandText: '[Leer más...]', // por defecto es 'read more...'
-                    collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
-                    userCollapseText: '[Ocultar]' // por defecto es 'read less...'
-                });
-                $('.enlace').click(function () {
-                    var id_form = $(this).parent().attr('id');
-                    $('#' + id_form).submit();
-                });
-                $('#enlace_borrar').click(function () {
-                    $('#exampleModal').modal('hide');
-                });
-               
-            });
 
-        </script>
+            <!---------------- Modal -------------------->
+            <!---------------- Modal -------------------->
+            <!-- SCRIPTS -->
+            <!-- JQuery -->
+            <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+            <!-- Bootstrap tooltips -->
+            <script type="text/javascript" src="js/popper.min.js"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+            <!-- Initializations -->
+            <script type="text/javascript">
+                // Animations initialization
+                new WOW().init();
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('div.expandable p').expander({
+                        slicePoint: 250, // si eliminamos por defecto es 100 caracteres
+                        expandText: '[Leer más...]', // por defecto es 'read more...'
+                        collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+                        userCollapseText: '[Ocultar]' // por defecto es 'read less...'
+                    });
+                    $('.enlace').click(function () {
+                        var id_form = $(this).parent().attr('id');
+                        $('#' + id_form).submit();
+                    });
+                    $('#enlace_borrar').click(function () {
+                        $('#exampleModal').modal('hide');
+                    });
+
+                });
+
+            </script>
 
     </body>
 

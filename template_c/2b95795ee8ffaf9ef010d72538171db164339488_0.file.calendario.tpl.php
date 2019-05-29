@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 11:06:07
+/* Smarty version 3.1.33, created on 2019-05-29 12:16:32
   from 'C:\xampp\htdocs\proyecto_fin\template\calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee4b7f2eda18_26533616',
+  'unifunc' => 'content_5cee5c000900c7_82540088',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2b95795ee8ffaf9ef010d72538171db164339488' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\calendario.tpl',
-      1 => 1559118223,
+      1 => 1559124985,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -96,31 +96,30 @@ function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl)
                             return false;
                         }
                     });
-                    
-                    
-                    
+
+
+
                 });
-                
+
 
             
         <?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
 >
-            function getval(sel){
-                     alert(sel.value);
-                     var data = {
-                         'hora': sel.value
-                     };
-                     $.ajax({
-                        type: "post",
-                        url: 'index3.php',
-                        data: data,
-                        success: function (response) {
-                            $('#respuesta2').html(response);
-                        }
-                            });
-                            return false;
+            function getval(sel) {
+                var data = {
+                    'hora': sel.value
+                };
+                $.ajax({
+                    type: "post",
+                    url: 'index3.php',
+                    data: data,
+                    success: function (response) {
+                        $('#respuesta2').html(response);
+                    }
+                });
+                return false;
             }
         <?php echo '</script'; ?>
 >
@@ -186,7 +185,7 @@ function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl)
                         <div id="respuesta"></div>
                         <div id="respuesta2"></div>
                         <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
-                    <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
+                        <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
             </div>
@@ -268,7 +267,7 @@ function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </div>
-                            <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -295,7 +294,7 @@ function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </div>
-                     <!--MODAL DE CONFIRMACION-->
+        <!--MODAL DE CONFIRMACION-->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -306,50 +305,41 @@ function content_5cee4b7f2eda18_26533616 (Smarty_Internal_Template $_smarty_tpl)
                         </button>
                     </div>
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
-                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                        Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                         <div class="row justify-content-center">
-       
-                                <form action="pabellones.php" method='post'>
-                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
-                                </form>
-                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
-                       
+
+                            <form action="pabellones.php" method='post'>
+                                <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                            </form>
+                            <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-                            
-        <!---------------- Modal -------------------->
-        <!---------------- Modal -------------------->
-        <?php echo '<script'; ?>
+
+            <!---------------- Modal -------------------->
+            <!---------------- Modal -------------------->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/popper.min.js"><?php echo '</script'; ?>
 >
-        <!-- Bootstrap core JavaScript -->
-        <?php echo '<script'; ?>
+            <!-- Bootstrap core JavaScript -->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/bootstrap.min.js"><?php echo '</script'; ?>
 >
-        <!-- MDB core JavaScript -->
-        <?php echo '<script'; ?>
+            <!-- MDB core JavaScript -->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/mdb.min.js"><?php echo '</script'; ?>
 >
-        <!-- Initializations -->
-        <?php echo '<script'; ?>
+            <!-- Initializations -->
+            <?php echo '<script'; ?>
  type="text/javascript">
-            // Animations initialization
-            new WOW().init();
-        <?php echo '</script'; ?>
+                // Animations initialization
+                new WOW().init();
+            <?php echo '</script'; ?>
 >
-        <!--<?php echo '<script'; ?>
- type="text/javascript">
-            $(document).ready(function () {
-                $('#a_modal').click(function () {
-                       document.form_hora.submit();
-                });
-                
-            });
-        <?php echo '</script'; ?>
->-->
+
     </body>
 </html><?php }
 }

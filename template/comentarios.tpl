@@ -46,18 +46,18 @@
             .comentarioMio{
                 background-color: #dcf8c6;
                 border-radius: 1.625rem;
-                  margin-left: 18%;
-                  border: 1px solid #128c7e;
+                margin-left: 18%;
+                border: 1px solid #128c7e;
             }
-            
+
             .comentarioOtro{
                 background-color: #f7f1ea;
                 border-radius: 1.625rem;
-                  margin-right: 18%;
-                  border: 1px solid #c4bdb4;
-              
+                margin-right: 18%;
+                border: 1px solid #c4bdb4;
+
             }
-            
+
             .separadorPeque{
                 height: 20px;
             }
@@ -98,7 +98,7 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="reservas.php">
                                     {if ($tipo == 'pabellon')}Reservas{/if}
-                                     {if ($tipo == 'user')}Mis Reservas{/if}
+                                    {if ($tipo == 'user')}Mis Reservas{/if}
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -130,16 +130,51 @@
                 </div>
             </section>
 
-                <div id="bloqueMensajes">
-                    {$comentarios}
-                </div>
+            <div id="bloqueMensajes">
+                {$comentarios}
+            </div>
+            <div id="filtrado">
+                <form action="comentarios.php" method="POST">
+                    <!-- Group of default radios - option 1 -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="sin" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked>
+                        <label class="custom-control-label" for="defaultGroupExample1">Sin filtro</label>
+                    </div>
 
-                <div class="media mt-3 shadow-textarea">
-                    <div style="margin-right:15px;">{$fotoperfil}</div>
-                    <div class="media-body">
-                        <h5 class="mt-0 font-weight-bold blue-text">{$nombre}</h5>
-                        <!--Disabled option-->
-                        <form action="comentarios.php" method="POST">
+                    <!-- Group of default radios - option 2 -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="equipo" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample2">Filtrar por búsqueda de equipo</label>
+                    </div>
+
+                    <!-- Group of default radios - option 3 -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="portero" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample3">Filtrar por búsqueda de Portero</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="ala" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample4">Filtrar por búsqueda de Ala</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="defensa" class="custom-control-input" id="defaultGroupExample5" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample5">Filtrar por búsqueda de Defensa</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="delantero" class="custom-control-input" id="defaultGroupExample6" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample6">Filtrar por búsqueda de Delantero</label>
+                    </div>
+                    <input type="submit" name="filtrar" value="FILTRAR COMENTARIOS"/>
+                </form>
+            </div>
+
+            <div class="media mt-3 shadow-textarea">
+                <div style="margin-right:15px;">{$fotoperfil}</div>
+                <div class="media-body">
+                    <h5 class="mt-0 font-weight-bold blue-text">{$nombre}</h5>
+                    <!--Disabled option-->
+                    <form action="comentarios.php" method="POST">
+                        {if ($tipo == 'user')}
                             <div class="form-group" style="color:#757575">
                                 <label >Filtrar por búsqueda: </label>
                                 <select class="form-control " id="exampleSelect1" name="busqueda">
@@ -152,22 +187,23 @@
                                     <option value="delantero">Delantero</option>
                                 </select>
                             </div>
-                            <div class="md-form">
-                                <input type="text" id="form1" class="form-control" name="asunto">
-                                <label for="form1">Asunto</label>
-                            </div>
-                            <div class="md-form">
-                                <textarea id="form7" class="md-textarea form-control" rows="3" name="comentario"></textarea>
-                                <label for="form7">Escribe tu comentario</label>
-                            </div>
-                            <div class="text-center">
-                                <input type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario"/>
-                            </div>
-                        </form>
-                    </div>
+                        {/if}
+                        <div class="md-form">
+                            <input type="text" id="form1" class="form-control" name="asunto">
+                            <label for="form1">Asunto</label>
+                        </div>
+                        <div class="md-form">
+                            <textarea id="form7" class="md-textarea form-control" rows="3" name="comentario"></textarea>
+                            <label for="form7">Escribe tu comentario</label>
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario"/>
+                        </div>
+                    </form>
                 </div>
             </div>
-               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -192,7 +228,7 @@
                 </div>
             </div>
         </div>
-                     <!--MODAL DE CONFIRMACION-->
+        <!--MODAL DE CONFIRMACION-->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -203,42 +239,42 @@
                         </button>
                     </div>
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
-                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                        Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                         <div class="row justify-content-center">
-       
-                                <form action="pabellones.php" method='post'>
-                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
-                                </form>
-                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
-                       
+
+                            <form action="pabellones.php" method='post'>
+                                <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                            </form>
+                            <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- SCRIPTS -->
-        <!-- JQuery -->
-        <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <!-- Initializations -->
+            <!-- SCRIPTS -->
+            <!-- JQuery -->
+            <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+            <!-- Bootstrap tooltips -->
+            <script type="text/javascript" src="js/popper.min.js"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+            <!-- Initializations -->
 
-        <script type="text/javascript">
-            // Animations initialization
+            <script type="text/javascript">
+                // Animations initialization
 
-            new WOW().init();
+                new WOW().init();
 
-        </script>
+            </script>
 
-        <script>
-            $('#enlace_borrar').click(function () {
+            <script>
+                $('#enlace_borrar').click(function () {
                     $('#exampleModal').modal('hide');
                 });
-        </script>
+            </script>
     </body>
 
 </html>

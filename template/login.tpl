@@ -123,7 +123,7 @@
                                         <div class="md-form">
                                             <i class="fas fa-lock prefix"></i>
                                             <input type="password" id="pass" class="form-control" name="pass">
-                                            <label for="inputValidationEx2" data-error="wrong" data-success="right">Password</label>
+                                            <label for="inputValidationEx2">Password</label>
                                         </div>
                                         <div class="text-center">
                                             <a id="olvidado-contraseña">¿Has olvidado tu contraseña?</a>
@@ -155,6 +155,7 @@
                         <div class="col-md-6 mb-4">
                             <!-- Main heading -->
                             <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+                            <span style="color:red">{$error2}</span>
                             <form name="registro" id="registro-form" method="POST" action="index.php" enctype="multipart/form-data">
                                 <div class="md-form">
                                     <input type="text" id="usuario" class="form-control" name="usuario">
@@ -266,6 +267,7 @@
                             minlength: 9
                         },
                         fecha_nac: {
+                            required: true,
                             date: true
                         }
                     },
@@ -282,7 +284,7 @@
                         },
                         email: {
                             required: "Campo obligatorio",
-                            email: "Introduce un emailválido",
+                            email: "Introduce un email válido",
                             maxlength: "Campo demasiado largo"
                         },
                         nombreC: {
@@ -293,18 +295,19 @@
                         direccion: {
                             required: "Campo obligatorio",
                             maxlength: "Campo demasiado largo",
-                            minlength: "Nombre demasiado corto"
+                            minlength: "Campo demasiado corto"
                         },
                         cp: {
                             maxlength: 13,
-                            minlength: "Nombre demasiado corto"
+                            minlength: "Campo demasiado corto"
                         },
                         tlf: {
                             required: "Campo obligatorio",
                             maxlength: "Campo demasiado largo",
-                            minlength: "Nombre demasiado corto"
+                            minlength: "Campo demasiado corto"
                         },
                         fecha_nac: {
+                            required: "Campo obligatorio",
                             date: "Introduce fecha válida"
                         }
                     },

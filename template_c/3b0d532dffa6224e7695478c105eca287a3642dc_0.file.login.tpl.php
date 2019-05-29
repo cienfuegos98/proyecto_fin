@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 10:52:08
+/* Smarty version 3.1.33, created on 2019-05-29 13:41:13
   from 'C:\xampp\htdocs\proyecto_fin\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee48383f4711_46869938',
+  'unifunc' => 'content_5cee6fd9d1bd68_00300755',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3b0d532dffa6224e7695478c105eca287a3642dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\login.tpl',
-      1 => 1559119927,
+      1 => 1559130054,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -148,7 +148,7 @@ function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl)
                                         <div class="md-form">
                                             <i class="fas fa-lock prefix"></i>
                                             <input type="password" id="pass" class="form-control" name="pass">
-                                            <label for="inputValidationEx2" data-error="wrong" data-success="right">Password</label>
+                                            <label for="inputValidationEx2">Password</label>
                                         </div>
                                         <div class="text-center">
                                             <a id="olvidado-contraseña">¿Has olvidado tu contraseña?</a>
@@ -180,6 +180,8 @@ function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="col-md-6 mb-4">
                             <!-- Main heading -->
                             <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+                            <span style="color:red"><?php echo $_smarty_tpl->tpl_vars['error2']->value;?>
+</span>
                             <form name="registro" id="registro-form" method="POST" action="index.php" enctype="multipart/form-data">
                                 <div class="md-form">
                                     <input type="text" id="usuario" class="form-control" name="usuario">
@@ -304,6 +306,7 @@ function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl)
                             minlength: 9
                         },
                         fecha_nac: {
+                            required: true,
                             date: true
                         }
                     },
@@ -320,7 +323,7 @@ function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl)
                         },
                         email: {
                             required: "Campo obligatorio",
-                            email: "Introduce un emailválido",
+                            email: "Introduce un email válido",
                             maxlength: "Campo demasiado largo"
                         },
                         nombreC: {
@@ -331,18 +334,19 @@ function content_5cee48383f4711_46869938 (Smarty_Internal_Template $_smarty_tpl)
                         direccion: {
                             required: "Campo obligatorio",
                             maxlength: "Campo demasiado largo",
-                            minlength: "Nombre demasiado corto"
+                            minlength: "Campo demasiado corto"
                         },
                         cp: {
                             maxlength: 13,
-                            minlength: "Nombre demasiado corto"
+                            minlength: "Campo demasiado corto"
                         },
                         tlf: {
                             required: "Campo obligatorio",
                             maxlength: "Campo demasiado largo",
-                            minlength: "Nombre demasiado corto"
+                            minlength: "Campo demasiado corto"
                         },
                         fecha_nac: {
+                            required: "Campo obligatorio",
                             date: "Introduce fecha válida"
                         }
                     },

@@ -20,7 +20,7 @@ if (empty($_SESSION['usuario'])) {
                     </a>
                  </li>";
     $foroNav = '';
-    $perfil = "<a href='index.php'><img  src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
+    $perfil = "<a href='index.php'><img  src='./img/imgperfiles/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 } else {
     if (isset($_SESSION['tipo'])) {
         $tipo = $_SESSION['tipo'];
@@ -76,6 +76,10 @@ if (empty($_SESSION['usuario'])) {
                         Fecha de Nacimiento: $fecha_nac
                         <br>
                         Dirección: $direccion";
+
+        if (isset($_POST['aceptarBorrar'])) {
+            $con->eliminarCuenta($uid);
+        }
     }
 
     $plantilla->assign('contenidoModal', $contenidoModal);

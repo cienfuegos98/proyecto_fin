@@ -50,7 +50,6 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         }
     } else if ($_SESSION['tipo'] == "user") {
 
-
         $user = $_SESSION['usuario']['nombre'];
         $pass = $_SESSION['usuario']['pass'];
         $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";
@@ -90,14 +89,38 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         }
     }
 
-    $plantilla->assign('perfil', $perfil);
-    $plantilla->assign('foto_modal', $foto_modal);
 
-    $listadoComentarios = "SELECT * FROM `comentarios` as com JOIN `usuarios` as users ON users.`uid` = com.uid";
+    if (isset($_POST['groupOfDefaultRadios'])) {
+        $filtro = $_POST['groupOfDefaultRadios'];
+        if ($filtro == 'equipo') {
+            $listadoComentarios = "SELECT * FROM `comentarios` as com "
+                    . "JOIN `usuarios` as users ON users.`uid` = com.uid"
+                    . " WHERE com.busqueda = 'equipo'";
+        } else if ($filtro == 'ala') {
+            $listadoComentarios = "SELECT * FROM `comentarios` as com "
+                    . "JOIN `usuarios` as users ON users.`uid` = com.uid "
+                    . " WHERE busqueda = 'ala'";
+        } else if ($filtro == 'delantero') {
+            $listadoComentarios = "SELECT * FROM `comentarios` as com "
+                    . "JOIN `usuarios` as users ON users.`uid` = com.uid "
+                    . " WHERE busqueda = 'delantero'";
+        } else if ($filtro == 'portero') {
+            $listadoComentarios = "SELECT * FROM `comentarios` as com "
+                    . "JOIN `usuarios` as users ON users.`uid` = com.uid "
+                    . " WHERE busqueda = 'portero'";
+        } else if ($filtro == 'defensa') {
+            $listadoComentarios = "SELECT * FROM `comentarios` as com "
+                    . "JOIN `usuarios` as users ON users.`uid` = com.uid "
+                    . " WHERE busqueda = 'defensa'";
+        } else {
+            $listadoComentarios = "SELECT * FROM `comentarios` as com JOIN `usuarios` as users ON users.`uid` = com.uid";
+        }
+    } else {
+        $listadoComentarios = "SELECT * FROM `comentarios` as com JOIN `usuarios` as users ON users.`uid` = com.uid";
+    }
+    var_dump($listadoComentarios);
     $coms = $con->selection($listadoComentarios);
 
-    $fotoperfil = "<img src = '" . $foto . "' height = '60' width = '60' class = 'rounded-circle hoverable img-responsive float-left'>";
-    $plantilla->assign('fotoperfil', $fotoperfil);
     $comentarios = '';
     $user = $_SESSION['usuario']['nombre'];
     foreach ($coms as $valores) {
@@ -132,14 +155,19 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     }
 
     $plantilla->assign('comentarios', $comentarios);
-
-    if (isset($_POST ['eliminar'])) {
-        $cid = $_POST['hidden_cid'];
-        $del = "DELETE FROM comentarios WHERE cid = $cid";
-        $comentario = $con->run($del);
-        header("location:comentarios.php");
-    }
 }
+$fotoperfil = "<img src = '" . $foto . "' height = '60' width = '60' class = 'rounded-circle hoverable img-responsive float-left'>";
+$plantilla->assign('fotoperfil', $fotoperfil);
+$plantilla->assign('perfil', $perfil);
+$plantilla->assign('foto_modal', $foto_modal);
+
+if (isset($_POST ['eliminar'])) {
+    $cid = $_POST['hidden_cid'];
+    $del = "DELETE FROM comentarios WHERE cid = $cid";
+    $comentario = $con->run($del);
+    header("location:comentarios.php");
+}
+
 if (isset($_POST ['desconectar'])) {
     session_destroy();
 }

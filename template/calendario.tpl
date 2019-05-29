@@ -68,29 +68,28 @@
                             return false;
                         }
                     });
-                    
-                    
-                    
+
+
+
                 });
-                
+
 
             {/literal}
         </script>
         <script>
-            function getval(sel){
-                     alert(sel.value);
-                     var data = {
-                         'hora': sel.value
-                     };
-                     $.ajax({
-                        type: "post",
-                        url: 'index3.php',
-                        data: data,
-                        success: function (response) {
-                            $('#respuesta2').html(response);
-                        }
-                            });
-                            return false;
+            function getval(sel) {
+                var data = {
+                    'hora': sel.value
+                };
+                $.ajax({
+                    type: "post",
+                    url: 'index3.php',
+                    data: data,
+                    success: function (response) {
+                        $('#respuesta2').html(response);
+                    }
+                });
+                return false;
             }
         </script>
         <style>
@@ -154,7 +153,7 @@
                         <div id="respuesta"></div>
                         <div id="respuesta2"></div>
                         <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
-                    <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
+                        <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
             </div>
@@ -228,7 +227,7 @@
                 </div>
             </div>
         </div>
-                            <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -253,7 +252,7 @@
                 </div>
             </div>
         </div>
-                     <!--MODAL DE CONFIRMACION-->
+        <!--MODAL DE CONFIRMACION-->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -264,39 +263,32 @@
                         </button>
                     </div>
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
-                    Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                        Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                         <div class="row justify-content-center">
-       
-                                <form action="pabellones.php" method='post'>
-                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
-                                </form>
-                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
-                       
+
+                            <form action="pabellones.php" method='post'>
+                                <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                            </form>
+                            <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-                            
-        <!---------------- Modal -------------------->
-        <!---------------- Modal -------------------->
-        <script type="text/javascript" src="js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <!-- Initializations -->
-        <script type="text/javascript">
-            // Animations initialization
-            new WOW().init();
-        </script>
-        <!--<script type="text/javascript">
-            $(document).ready(function () {
-                $('#a_modal').click(function () {
-                       document.form_hora.submit();
-                });
-                
-            });
-        </script>-->
+
+            <!---------------- Modal -------------------->
+            <!---------------- Modal -------------------->
+            <script type="text/javascript" src="js/popper.min.js"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+            <!-- Initializations -->
+            <script type="text/javascript">
+                // Animations initialization
+                new WOW().init();
+            </script>
+
     </body>
 </html>
