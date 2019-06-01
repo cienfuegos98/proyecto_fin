@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 13:41:13
+/* Smarty version 3.1.33, created on 2019-06-01 20:41:29
   from 'C:\xampp\htdocs\proyecto_fin\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee6fd9d1bd68_00300755',
+  'unifunc' => 'content_5cf2c6d9155618_34255948',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3b0d532dffa6224e7695478c105eca287a3642dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\login.tpl',
-      1 => 1559130054,
+      1 => 1559405454,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf2c6d9155618_34255948 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -71,17 +71,17 @@ function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl)
 
             .error {
                 color:#FF0000;
-
             }
         </style>
 
     </head>
+
     <body>
         <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark">
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+                <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/">
                     <strong>FUTMATCH</strong>
                 </a>
 
@@ -151,13 +151,13 @@ function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl)
                                             <label for="inputValidationEx2">Password</label>
                                         </div>
                                         <div class="text-center">
-                                            <a id="olvidado-contraseña">¿Has olvidado tu contraseña?</a>
+                                            <a id="olvidado-contraseña" data-toggle="modal" data-target="#exampleModal">¿Has olvidado tu contraseña?</a>
                                         </div>
                                         <div class="text-center">
                                             <input type="submit" class="btn btn-primary" name="iniciar" value="Iniciar sesion"/>
                                         </div>
                                         <div class="text-center" >
-                                            <span class="nuevo">¿Eres nuevo?</span> <a  id="olvidado-contraseña">Registrate ahora</a>
+                                            <span class="nuevo" >¿Eres nuevo?</span> <a  id="olvidado-contraseña" href="#" data-ancla="registro" class="ancla">Registrate ahora</a>
                                         </div>
                                     </form>
                                 </div>
@@ -166,9 +166,11 @@ function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </div>
+
         </div>
-        <main>
-            <div class="container">
+        <div id="registro"></div>
+        <main   
+            <div class="container" >
                 <!--Section: Main info-->
                 <section class="mt-5 wow fadeIn">
                     <!--Grid row-->
@@ -219,13 +221,24 @@ function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl)
                                 <span for="form2" >¿Quieres una foto de perfil?</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Subir foto</span>
                                     </div>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile01"
                                                aria-describedby="inputGroupFileAddon01" name="foto">
-                                        <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
+                                        <label class="custom-file-label" for="inputGroupFile01"></label>
                                     </div>
+                                </div>
+                                <br>
+                                <label class="custom-file" >Pregunta de seguridad</label>
+                                <select name ='pregunta' id='pregunta' class='custom-select'>
+                                    <option value="Nombre de tu primer animal">Nombre de tu animal preferido</option>
+                                    <option value="Nombre de tu serie preferida">Nombre de tu serie preferida</option>
+                                    <option value="Nombre de tu objeto preferido">Nombre de tu objeto preferido</option>
+                                </select>
+                                <div class="md-form">
+                                    <input type="text" id="respuesta" class="form-control" name="respuesta">
+                                    <label for="form5">Respuesta</label>
                                 </div>
                                 <div class="text-center">
                                     <input type="submit" class="btn btn-primary" name="registrarse" value="Registrarse"/>
@@ -236,7 +249,39 @@ function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl)
                 </section>
             </div>
         </main>
-        <br><br> <br><br>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title text-center col-12" id="exampleModalLabel">RECUPERAR CONTRASEÑA</h5>
+                        <button type="button" class="close position-absolute text-right col-12 px-5" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Introduce tu email para que podamos enviarte tu contraseña y asegurarmos de que eres tu.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="justify-content-center">
+
+                            <div class="md-form">
+                                <input type="text" id="emailAJAX" class="form-control" name="emailAJAX" value=''>
+                                <label for="form3">Email</label>
+                            </div>
+                            <div class="md-form">
+                                <div id="formresp"></div>
+                                <div id='r' class='my-4'></div>
+                            </div>
+                            <div class="text-center" >
+                                <button onclick ="valorEmail($('#emailAJAX').val());
+                                        return false;" class="btn btn-primary " name="emailConfirm" >ACEPTAR</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br> 
         <!-- SCRIPTS -->
 
         <!-- JQuery -->
@@ -386,6 +431,59 @@ function content_5cee6fd9d1bd68_00300755 (Smarty_Internal_Template $_smarty_tpl)
                         errorElement: "em"
                     });
                 });
+            <?php echo '</script'; ?>
+>
+            <?php echo '<script'; ?>
+>
+                //Cuando cargue la página completamente
+                $(document).ready(function () {
+                    //Creamos un evento click para el enlace
+                    $(".ancla").click(function (evento) {
+                        //Anulamos la funcionalidad por defecto del evento
+                        evento.preventDefault();
+                        //Creamos el string del enlace ancla
+                        var codigo = "#" + $(this).data("ancla");
+                        //Funcionalidad de scroll lento para el enlace ancla en 3 segundos
+                        $("html,body").animate({scrollTop: $(codigo).offset().top}, 1000);
+                    });
+                });
+            <?php echo '</script'; ?>
+>
+            <?php echo '<script'; ?>
+>
+                function getResp(r) {
+                    var email = $('#emailhidden').val();
+                    var data = {
+                        'respuestaP': r,
+                        'emailhidden': email
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#r').html(response);
+                        }
+                    });
+                    return false;
+                }
+                function valorEmail(correo) {
+
+
+                    var data = {
+                        'email': correo
+                    };
+
+                    $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#formresp').html(response);
+                        }
+                    });
+                    return false;
+                }
             <?php echo '</script'; ?>
 >
         

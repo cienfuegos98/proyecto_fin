@@ -137,4 +137,23 @@ class BD {
         return true;
     }
 
+    public function compruebaResp($r, $email) {
+        $q = "SELECT respuesta FROM `jugadores` WHERE respuesta = '" . $r . "' AND email ='$email'";
+        $datos = $this->selection($q);
+        if ($datos != null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function runPS(string $sentencia, array $datos) {
+        try {
+            $stmt = $this->con->prepare($sentencia);
+            $stmt->execute($datos);
+        } catch (Exception $ex) {
+            $this->info = "Error " . $ex->getMessage() . "<br/><hr /> No se ha ejecutado bien la acción en la base de datos.";
+        }
+    }
+
 }

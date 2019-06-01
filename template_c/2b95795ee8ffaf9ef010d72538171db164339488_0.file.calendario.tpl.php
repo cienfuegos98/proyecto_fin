@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 12:16:32
+/* Smarty version 3.1.33, created on 2019-06-01 01:38:32
   from 'C:\xampp\htdocs\proyecto_fin\template\calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee5c000900c7_82540088',
+  'unifunc' => 'content_5cf1baf8d99319_30374030',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2b95795ee8ffaf9ef010d72538171db164339488' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\calendario.tpl',
-      1 => 1559124985,
+      1 => 1559344133,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf1baf8d99319_30374030 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -66,9 +66,7 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                         showMonthAfterYear: false,
                         yearSuffix: ''
                     };
-
                     $.datepicker.setDefaults($.datepicker.regional['es']);
-
                     var disabledDates = ['13/05/2019', '10/05/2019']; //Este array lo recogere desde PHP; es un array de las fechas que el usuario y ha reservado
 
                     //opciones del datepicker
@@ -81,9 +79,7 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                         }, //elimino los dias del array que le paso
                         onSelect: function (date) {
                             var fecha = document.getElementById("datepicker").value;
-
                             var data = {'fecha': fecha};
-
                             $.ajax({
                                 type: "post",
                                 url: 'index3.php',
@@ -96,33 +92,38 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                             return false;
                         }
                     });
-
-
-
                 });
-
-
-            
-        <?php echo '</script'; ?>
+            <?php echo '</script'; ?>
 >
-        <?php echo '<script'; ?>
+            <?php echo '<script'; ?>
 >
-            function getval(sel) {
-                var data = {
-                    'hora': sel.value
-                };
-                $.ajax({
-                    type: "post",
-                    url: 'index3.php',
-                    data: data,
-                    success: function (response) {
-                        $('#respuesta2').html(response);
+
+                function getval(sel) {
+
+                    var data = {
+                        'hora': sel.value
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#respuesta2').html(response);
+                        }
+                    });
+                    return false;
+                }
+                function dis(valor) {
+                    if (valor.value === '--Selecciona hora--') {
+                        $('#a_modal').attr("disabled", true);
+                    } else {
+                        $('#a_modal').attr("disabled", false);
                     }
-                });
-                return false;
-            }
-        <?php echo '</script'; ?>
+                }
+            <?php echo '</script'; ?>
 >
+
+        
         <style>
             #contenidoPrincipal{
                 margin-left: 15%;
@@ -184,12 +185,36 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                         <div id="datepicker"></div>
                         <div id="respuesta"></div>
                         <div id="respuesta2"></div>
-                        <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                        <button disabled href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</button>
                         <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
+                <img src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
+"/>
             </div>
+            <div><?php echo $_smarty_tpl->tpl_vars['nombrePab']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['direccionP']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['ciudad']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['cod_postal']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['telefono']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['horario']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['descripcion']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['otros_servicios']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['accesibilidad']->value;?>
+</div>
+            <div><?php echo $_smarty_tpl->tpl_vars['tarifa']->value;?>
+</div>
+
         </div>
+
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -243,8 +268,16 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                         </button>
                     </div>
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres reservar?</div>
-                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-
+                    <div class="modal-body text-center">
+                        <div class="row justify-content-center w-20">
+                            <div class=" float-left">Fecha de la reserva:<br>Hora de la reserva: 
+                            </div>
+                            <div class="float-right"><?php echo $_smarty_tpl->tpl_vars['fecha_reserva']->value;?>
+ <br><?php echo $_smarty_tpl->tpl_vars['hora_reserva']->value;?>
+</div>
+                            En el pabellon: <?php echo $_smarty_tpl->tpl_vars['nombrePab']->value;?>
+;
+                        </div>
                         <div class="modal-footer" style="justify-content: center">
                             <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                                 <input name="cmd" type="hidden" value="_cart" />
@@ -255,7 +288,7 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                                 <input name="return" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="notify_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="rm" type="hidden" value="2" />
-                                <input type="submit"  name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
+                                <input type="submit" class="btn btn-primary" name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro" value="REALIZAR PAGO">
                                 <?php echo $_smarty_tpl->tpl_vars['hiddenPay']->value;?>
 
                             </form>
@@ -267,7 +300,7 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </div>
-        <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -284,7 +317,7 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
                             <div class="text-center" >
                                 <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
@@ -318,26 +351,27 @@ function content_5cee5c000900c7_82540088 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </div>
-
-            <!---------------- Modal -------------------->
-            <!---------------- Modal -------------------->
-            <?php echo '<script'; ?>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!---------------- Modal -------------------->
+        <!---------------- Modal -------------------->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/popper.min.js"><?php echo '</script'; ?>
 >
-            <!-- Bootstrap core JavaScript -->
-            <?php echo '<script'; ?>
+        <!-- Bootstrap core JavaScript -->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/bootstrap.min.js"><?php echo '</script'; ?>
 >
-            <!-- MDB core JavaScript -->
-            <?php echo '<script'; ?>
+        <!-- MDB core JavaScript -->
+        <?php echo '<script'; ?>
  type="text/javascript" src="js/mdb.min.js"><?php echo '</script'; ?>
 >
-            <!-- Initializations -->
-            <?php echo '<script'; ?>
+        <!-- Initializations -->
+        <?php echo '<script'; ?>
  type="text/javascript">
-                // Animations initialization
-                new WOW().init();
-            <?php echo '</script'; ?>
+            // Animations initialization
+            new WOW().init();
+        <?php echo '</script'; ?>
 >
 
     </body>

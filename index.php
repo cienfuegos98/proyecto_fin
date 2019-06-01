@@ -11,13 +11,13 @@ $plantilla->template_dir = "./template";
 $plantilla->compile_dir = "./template_c";
 
 session_start();
-if ($_SESSION['usuario']) {
+if (isset($_SESSION['usuario'])) {
     header("location:pabellones.php");
 }
 
 $error = '';
 $plantilla->assign('error', $error);
-$perfil = "<a href='index.php'><img  src='./img/imgperfiles/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
+$perfil = "<a href='index.php'><img  src='./img/imgperfiles/user.png' height='40' width='40' class='imgperfil rounded-circle hoverable img-responsive'></a>";
 $plantilla->assign('perfil', $perfil);
 
 if (isset($_POST['iniciar'])) {
@@ -64,22 +64,34 @@ if (isset($_POST['registrarse'])) {
     $telefono = $_POST['tlf'];
     $fecha = $_POST['fecha_nac'];
     $fecha_nac = date("Y-m-d", strtotime($fecha));
+    $pregunta = $_POST['pregunta'];
+    $respuesta = $_POST['respuesta'];
 
     $foto = $_FILES['foto'];
     $destino = "./img/imgperfiles/user.png";
     if ($_FILES['foto']['name'] != '') {
         $destino = "./img/imgperfiles/";
+        rename($foto['name'], $user . "_" . $foto['name']);
         $origen = $foto['tmp_name'];
-        $destino = $destino . $foto['name'];
+        $destino = $destino . $user . "_" . $foto['name'];
         move_uploaded_file($origen, $destino);
     }
 
     if ($con->compruebaUser($user) == true && $con->compruebaEmail($email) == true) {
-        $cons = "INSERT INTO `usuarios` VALUES('','$user','$pass', '$destino')";
-        $con->run($cons);
+        $cons = "INSERT INTO `usuarios` VALUES('',:user,:pass,:foto)";
+        $array1 = array(':user' => $user, ':pass' => $pass, ':foto' => $destino);
+        $con->runPS($cons, $array1);
+
         $user_id = $con->con->lastInsertId();
-        $c = "INSERT INTO `jugadores` VALUES('$user_id','$nombreC','$email','$direccion','$cp','$telefono','$fecha','','')";
-        $con->run($c);
+
+        $c = "INSERT INTO `jugadores` VALUES(:uid,:nombre_completo,:email,:direccion,:u_cod_postal,:telefono,:fecha_nacimiento,:pregunta,:respuesta)";
+        $array2 = array(':uid' => $user_id, ':nombre_completo' => $nombreC, ':email' => $email,
+            ':direccion' => $direccion, ':u_cod_postal' => $cp, ':telefono' => $telefono,
+            ':fecha_nacimiento' => $fecha_nac, ':pregunta' => $pregunta, ':respuesta' => $respuesta);
+        $con->runPS($c, $array2);
+
+        var_dump($c);
+
         $plantilla->assign('error2', '');
     } else if ($con->compruebaEmail($email) == false) {
         $error2 = "Este email ya esta en uso, prueba otro";

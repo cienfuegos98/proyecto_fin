@@ -54,11 +54,19 @@
                 font-size: 17px;
             }
 
+            #exampleModal3{
+                font-size: 20px;
+            }
 
 
         </style>
     </head>
-    <body onload="{$load}">
+    {if ($tipo == 'user')}
+        <body {$load}>
+        {/if}
+        {if ($tipo == 'pabellon')}
+        <body>
+        {/if}
         <div>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
                 <div class="container">
@@ -81,13 +89,14 @@
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="reservas.php">
-                                    {if ($tipo == 'pabellon')}Reservas{/if}
-                                    {if ($tipo == 'user')}Mis Reservas{/if}
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
+                            {if ($tipo != '')}
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="reservas.php">
+                                        Administración
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                            {/if}
                             {$foroNav}
                             <li class="nav-item ">
                                 <a class="nav-link" href="nosotros.php">Sobre Nosotros
@@ -127,13 +136,17 @@
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
-                            <div class="text-center" >
-                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
-                            </div>
+                            {if ($tipo != 'pabellon')}
+                                <div class="text-center" >
+                                    <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                                </div>
+                            {/if}
                         </form>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -216,10 +229,10 @@
                 });
             });
             function alerta(fecha, hora) {
-                alert(hora);
+
                 $('#exampleModal3').modal('show');
-                document.getElementById("textoRec").innerHTML = "Le recordamos que tiene una reserva hoy, dia " + fecha + " a las " + hora + ":00, \n\
-        esperamos que disfrute su partido y que deje un comentario en el foro de ello.\n\ GRACIAS!";
+                document.getElementById("textoRec").innerHTML = "Le recordamos que tiene una reserva hoy, dia " + fecha + " a las " + hora + ":00. <br> \n\
+       Esperamos que disfrute su partido y que deje un comentario en el foro de ello.<br> GRACIAS!";
                 $('#fecha').value = fecha;
                 $('#hora').value = hora;
             }

@@ -16,6 +16,7 @@ $con = new BD();
 
 
 if (empty($_SESSION['usuario'])) {
+    $plantilla->assign('tipo', '');
     $loginNav = "<li class='nav-item '>
                     <a class='nav-link' href='index.php'>Login
                         <span class='sr-only'>(current)</span>
@@ -51,10 +52,10 @@ if (empty($_SESSION['usuario'])) {
         $foto = $datospab[0]['foto'];
 
 
-        $contenidoModal = " User: $user <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
+        $contenidoModal = " User: $user <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
-        $perfil = "<img src='$foto' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' class='imgperfil rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' class='imgmodal rounded-circle hoverable img-responsive'>";
 
         $plantilla->assign('contenidoModal', $contenidoModal);
     } else if ($_SESSION['tipo'] == "user") {
@@ -68,15 +69,14 @@ if (empty($_SESSION['usuario'])) {
         $nombreC = $datos[0]['nombre_completo'];
         $direccion = $datos[0]['direccion'];
 
-        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' class='imgperfil rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' class='imgmodal rounded-circle hoverable img-responsive'>";
 
         $contenidoModal = " User: $user
                         <br>
                         Email: $email
                         <br>
-                        Password : $pass
-                        <br>
+                       
                         Nombre completo: $nombreC
                         <br>
                         Fecha de Nacimiento: $fecha_nac
@@ -88,19 +88,19 @@ if (empty($_SESSION['usuario'])) {
             session_destroy();
             header("Location:index.php");
         }
-
+        $load = "";
         if (!isset($_SESSION['auxiliar'])) {
-            $q = "SELECT * FROM `reservas` WHERE uid = '$uid' AND fecha_reserva = '" . date("Y-m-d") . "' ORDER BY hora ASC";
+            $q = "SELECT * FROM `reservas` WHERE uid = '$uid' AND fecha_reserva = '" . date("Y-m-d") . "' AND hora > " . date("G") . " ORDER BY hora ASC";
             $datosRe = $con->selection($q);
-            print_r($datosRe[0]);
+            if (isset($datosRe[0])) {
+                $fecha = $datosRe[0]['fecha_reserva'];
+                $hora = $datosRe[0]['hora'];
+            }
+            $load = "onload='alerta(" . $fecha . "," . $hora . ")'";
 
-            $fecha = $datosRe[0]['fecha_reserva'];
-            $hora = $datosRe[0]['hora'];
-            $load = "alerta(" . $fecha . "," . $hora . ")";
-            $plantilla->assign('load', $load);
-            print_r($q);
             $_SESSION['auxiliar'] = true;
         }
+        $plantilla->assign('load', $load);
     }
 
     $plantilla->assign('contenidoModal', $contenidoModal);
@@ -131,12 +131,16 @@ $listadoPabellones = '';
 
 foreach ($datos as $pabellones) {
     $pid = $pabellones['pid'];
-    if ($_SESSION['tipo'] == 'user') {
-        $action = "action = 'calendario.php'";
-    } else if ($pid == $pid_pab) {
-        $action = "action = 'reservas.php'";
+    if (isset($_SESSION['tipo'])) {
+        if ($_SESSION['tipo'] == 'user') {
+            $action = "action = 'calendario.php'";
+        } else if ($pid == $pid_pab) {
+            $action = "action = 'reservas.php'";
+        } else {
+            $action = "";
+        }
     } else {
-        $action = "";
+        $action = "action = 'calendario.php'";
     }
     $listadoPabellones .= "
                     <div class = 'col-lg-6 col-md-6 mb-lg-0 mb-4 pabellon'>

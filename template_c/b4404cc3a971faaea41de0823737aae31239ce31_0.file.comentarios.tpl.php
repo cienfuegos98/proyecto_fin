@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 20:14:09
+/* Smarty version 3.1.33, created on 2019-05-31 23:51:16
   from 'C:\xampp\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ceecbf18b0575_20336524',
+  'unifunc' => 'content_5cf1a1d4ee3ff6_23232564',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4404cc3a971faaea41de0823737aae31239ce31' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1559153648,
+      1 => 1559339475,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf1a1d4ee3ff6_23232564 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -100,12 +100,23 @@ function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl)
             }
 
         </style>
+        <?php echo '<script'; ?>
+>
+            function dis(valor) {
+                if (valor.value === '--Seleccionar--') {
+                    $('#botoncomentario').attr("disabled", true);
+                } else {
+                    $('#botoncomentario').attr("disabled", false);
+                }
+            }
+        <?php echo '</script'; ?>
+>
     </head>
     <body>
         <div>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
                 <div class="container">
-                    <a class="navbar-brand" href="" target="_blank">
+                    <a class="navbar-brand" href="" >
                         <strong>FUTMATCH</strong>
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -143,9 +154,7 @@ function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl)
                         </ul>
                     </div>
                 </div>
-
             </nav>
-
         </div>
         <br>
         <div id="contenidoPrincipal">
@@ -206,12 +215,12 @@ function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl)
                     <h5 class="mt-0 font-weight-bold blue-text"><?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
 </h5>
                     <!--Disabled option-->
-                    <form action="comentarios.php" method="POST">
+                    <form action="comentarios.php" method="POST" id="formcomentario">
                         <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>
                             <div class="form-group" style="color:#757575">
                                 <label >Filtrar por búsqueda: </label>
-                                <select class="form-control " id="exampleSelect1" name="busqueda">
-                                    <option value="">-Seleccionar-</option>
+                                <select class="form-control " id="exampleSelect1" name="busqueda" onchange="dis(this)">
+                                    <option value="--Seleccionar--">--Seleccionar--</option>
                                     <option value="general">General</option>
                                     <option value="equipo">Equipo</option>
                                     <option value="portero">Portero</option>
@@ -222,15 +231,15 @@ function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                         <?php }?>
                         <div class="md-form">
-                            <input type="text" id="form1" class="form-control" name="asunto">
+                            <input type="text" id="form1" class="form-control" id="asunto" name="asunto">
                             <label for="form1">Asunto</label>
                         </div>
                         <div class="md-form">
-                            <textarea id="form7" class="md-textarea form-control" rows="3" name="comentario"></textarea>
+                            <textarea id="form7" class="md-textarea form-control" rows="3" id="comentario" name="comentario"></textarea>
                             <label for="form7">Escribe tu comentario</label>
                         </div>
                         <div class="text-center">
-                            <input type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario"/>
+                            <input disabled type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario" id="botoncomentario"/>
                         </div>
                     </form>
                 </div>
@@ -252,12 +261,14 @@ function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl)
 
                     </div>
                     <div class="modal-footer" style="justify-content: center">
-                        <form method = 'POST' action = 'pabellones.php'>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                        <form method = 'POST' action = 'pabellones.php' >
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
-                            <div class="text-center" >
-                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
-                            </div>
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value != 'pabellon')) {?>
+                                <div class="text-center" >
+                                    <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                                </div>
+                            <?php }?>
                         </form>
                     </div>
                 </div>
@@ -322,6 +333,42 @@ function content_5ceecbf18b0575_20336524 (Smarty_Internal_Template $_smarty_tpl)
                 });
             <?php echo '</script'; ?>
 >
+            
+                <?php echo '<script'; ?>
+ src="js/jquery.validate.js"><?php echo '</script'; ?>
+>
+                <?php echo '<script'; ?>
+>
+                $(document).ready(function () {
+                    $("#formcomentario").validate({
+                        rules: {
+                            asunto: {
+                                required: true,
+                                maxlength: 30,
+                                minlength: 2
+                            },
+                            comentario: {
+                                required: true,
+                                minlength: 3
+                            }
+                        },
+                        messages: {
+                            asunto: {
+                                required: "Campo obligatorio",
+                                minlength: "Campo demasiado corto",
+                                maxlength: "Campo demasiado largo"
+                            },
+                            comentario: {
+                                required: "Campo obligatorio",
+                                minlength: "Campo demasiado corto",
+                            }
+                        },
+                        errorElement: "em"
+                    });
+                });
+                <?php echo '</script'; ?>
+>
+            
     </body>
 
 </html>

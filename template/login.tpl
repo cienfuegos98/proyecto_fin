@@ -48,17 +48,17 @@
 
             .error {
                 color:#FF0000;
-
             }
         </style>
 
     </head>
+
     <body>
         <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark">
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+                <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/">
                     <strong>FUTMATCH</strong>
                 </a>
 
@@ -126,13 +126,13 @@
                                             <label for="inputValidationEx2">Password</label>
                                         </div>
                                         <div class="text-center">
-                                            <a id="olvidado-contraseña">¿Has olvidado tu contraseña?</a>
+                                            <a id="olvidado-contraseña" data-toggle="modal" data-target="#exampleModal">¿Has olvidado tu contraseña?</a>
                                         </div>
                                         <div class="text-center">
                                             <input type="submit" class="btn btn-primary" name="iniciar" value="Iniciar sesion"/>
                                         </div>
                                         <div class="text-center" >
-                                            <span class="nuevo">¿Eres nuevo?</span> <a  id="olvidado-contraseña">Registrate ahora</a>
+                                            <span class="nuevo" >¿Eres nuevo?</span> <a  id="olvidado-contraseña" href="#" data-ancla="registro" class="ancla">Registrate ahora</a>
                                         </div>
                                     </form>
                                 </div>
@@ -141,9 +141,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
-        <main>
-            <div class="container">
+        <div id="registro"></div>
+        <main   
+            <div class="container" >
                 <!--Section: Main info-->
                 <section class="mt-5 wow fadeIn">
                     <!--Grid row-->
@@ -193,13 +195,24 @@
                                 <span for="form2" >¿Quieres una foto de perfil?</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Subir foto</span>
                                     </div>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile01"
                                                aria-describedby="inputGroupFileAddon01" name="foto">
-                                        <label class="custom-file-label" for="inputGroupFile01">Escoge tu foto de perfil</label>
+                                        <label class="custom-file-label" for="inputGroupFile01"></label>
                                     </div>
+                                </div>
+                                <br>
+                                <label class="custom-file" >Pregunta de seguridad</label>
+                                <select name ='pregunta' id='pregunta' class='custom-select'>
+                                    <option value="Nombre de tu primer animal">Nombre de tu primer animal</option>
+                                    <option value="Nombre de tu serie preferida">Nombre de tu serie preferida</option>
+                                    <option value="Nombre de tu objeto preferido">Nombre de tu objeto preferido</option>
+                                </select>
+                                <div class="md-form">
+                                    <input type="text" id="respuesta" class="form-control" name="respuesta">
+                                    <label for="form5">Respuesta</label>
                                 </div>
                                 <div class="text-center">
                                     <input type="submit" class="btn btn-primary" name="registrarse" value="Registrarse"/>
@@ -210,7 +223,39 @@
                 </section>
             </div>
         </main>
-        <br><br> <br><br>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title text-center col-12" id="exampleModalLabel">RECUPERAR CONTRASEÑA</h5>
+                        <button type="button" class="close position-absolute text-right col-12 px-5" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Introduce tu email para que podamos enviarte tu contraseña y asegurarmos de que eres tu.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="justify-content-center">
+
+                            <div class="md-form">
+                                <input type="text" id="emailAJAX" class="form-control" name="emailAJAX" value=''>
+                                <label for="form3">Email</label>
+                            </div>
+                            <div class="md-form">
+                                <div id="formresp"></div>
+                                <div id='r' class='my-4'></div>
+                            </div>
+                            <div class="text-center" >
+                                <button onclick ="valorEmail($('#emailAJAX').val());
+                                        return false;" class="btn btn-primary " name="emailConfirm" >ACEPTAR</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br> 
         <!-- SCRIPTS -->
 
         <!-- JQuery -->
@@ -345,6 +390,55 @@
                         errorElement: "em"
                     });
                 });
+            </script>
+            <script>
+                //Cuando cargue la página completamente
+                $(document).ready(function () {
+                    //Creamos un evento click para el enlace
+                    $(".ancla").click(function (evento) {
+                        //Anulamos la funcionalidad por defecto del evento
+                        evento.preventDefault();
+                        //Creamos el string del enlace ancla
+                        var codigo = "#" + $(this).data("ancla");
+                        //Funcionalidad de scroll lento para el enlace ancla en 3 segundos
+                        $("html,body").animate({scrollTop: $(codigo).offset().top}, 1000);
+                    });
+                });
+            </script>
+            <script>
+                function getResp(r) {
+                    var email = $('#emailhidden').val();
+                    var data = {
+                        'respuestaP': r,
+                        'emailhidden': email
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#r').html(response);
+                        }
+                    });
+                    return false;
+                }
+                function valorEmail(correo) {
+
+
+                    var data = {
+                        'email': correo
+                    };
+
+                    $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#formresp').html(response);
+                        }
+                    });
+                    return false;
+                }
             </script>
         {/literal}
 

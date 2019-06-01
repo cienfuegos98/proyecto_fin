@@ -58,5 +58,20 @@ body,
     right: 0;
     left: auto;
 }
+.imgmodal{
+    
+    height:120px;
+    width:120px;
+    object-fit: cover !important;
+}
+.imgperfil{
+    height:40px;
+    width:40px;
+    object-fit: cover !important;
+}
+
+.error {
+    color:#FF0000;
+}
 
 

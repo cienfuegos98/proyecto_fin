@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-27 18:24:37
+/* Smarty version 3.1.33, created on 2019-05-30 13:51:43
   from 'C:\xampp\htdocs\proyecto_fin\template\nosotros.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cec0f45a79470_75912789',
+  'unifunc' => 'content_5cefc3cfdab590_75397086',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f0dd1e6eb2f018077a8c51693ed93dd1bb1e57c8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\nosotros.tpl',
-      1 => 1558974145,
+      1 => 1559216358,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cec0f45a79470_75912789 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -74,6 +74,15 @@ function content_5cec0f45a79470_75912789 (Smarty_Internal_Template $_smarty_tpl)
                 margin-left: 10%;
                 margin-right: 10%;
             }
+            #enlace_borrar{
+                color: #4285f4;
+                font-size: 15px;
+            }
+
+            #enlace_borrar:hover{
+                color:  #4285b1;
+                font-size: 17px;
+            }
         </style>
 
     </head>
@@ -83,7 +92,7 @@ function content_5cec0f45a79470_75912789 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="container">
 
                     <!-- Brand -->
-                    <a class="navbar-brand" href="" target="_blank">
+                    <a class="navbar-brand" href="">
                         <strong>FUTMATCH</strong>
                     </a>
 
@@ -114,11 +123,14 @@ function content_5cec0f45a79470_75912789 (Smarty_Internal_Template $_smarty_tpl)
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="reservas.php">Mis reservas
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value != '')) {?>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="reservas.php">
+                                        Administración
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                            <?php }?>
                             <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
 
                             <li class="nav-item active">
@@ -256,41 +268,77 @@ function content_5cec0f45a79470_75912789 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
                         <?php echo $_smarty_tpl->tpl_vars['contenidoModal']->value;?>
 
-
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value != 'pabellon')) {?>
+                                <div class="text-center" >
+                                    <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                                </div>
+                            <?php }?>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!--MODAL DE CONFIRMACION-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                        Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                        <div class="row justify-content-center">
 
-        <!-- SCRIPTS -->
+                            <form action="pabellones.php" method='post'>
+                                <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                            </form>
+                            <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
 
-        <!-- JQuery -->
-        <?php echo '<script'; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCRIPTS -->
+
+            <!-- JQuery -->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/jquery-3.4.0.min.js"><?php echo '</script'; ?>
 >
-        <!-- Bootstrap tooltips -->
-        <?php echo '<script'; ?>
+            <!-- Bootstrap tooltips -->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/popper.min.js"><?php echo '</script'; ?>
 >
-        <!-- Bootstrap core JavaScript -->
-        <?php echo '<script'; ?>
+            <!-- Bootstrap core JavaScript -->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/bootstrap.min.js"><?php echo '</script'; ?>
 >
-        <!-- MDB core JavaScript -->
-        <?php echo '<script'; ?>
+            <!-- MDB core JavaScript -->
+            <?php echo '<script'; ?>
  type="text/javascript" src="js/mdb.min.js"><?php echo '</script'; ?>
 >
-        <!-- Initializations -->
-        <?php echo '<script'; ?>
+            <!-- Initializations -->
+            <?php echo '<script'; ?>
  type="text/javascript">
-            // Animations initialization
-            new WOW().init();
-        <?php echo '</script'; ?>
+                // Animations initialization
+                new WOW().init();
+            <?php echo '</script'; ?>
+>
+            <?php echo '<script'; ?>
+>
+                $('#enlace_borrar').click(function () {
+                    $('#exampleModal').modal('hide');
+                });
+            <?php echo '</script'; ?>
 >
     </body>
 

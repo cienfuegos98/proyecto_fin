@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-30 01:18:39
+/* Smarty version 3.1.33, created on 2019-05-31 22:15:41
   from 'C:\xampp\htdocs\proyecto_fin\template\pabellones.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cef134f7ddad5_76196870',
+  'unifunc' => 'content_5cf18b6d55b094_36501686',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c46ea660ecac53f9a9575cea85b43a111fe92fde' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
-      1 => 1559171916,
+      1 => 1559333740,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cef134f7ddad5_76196870 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf18b6d55b094_36501686 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -77,12 +77,20 @@ function content_5cef134f7ddad5_76196870 (Smarty_Internal_Template $_smarty_tpl)
                 font-size: 17px;
             }
 
+            #exampleModal3{
+                font-size: 20px;
+            }
 
 
         </style>
     </head>
-    <body onload="<?php echo $_smarty_tpl->tpl_vars['load']->value;?>
-">
+    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>
+        <body <?php echo $_smarty_tpl->tpl_vars['load']->value;?>
+>
+        <?php }?>
+        <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>
+        <body>
+        <?php }?>
         <div>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
                 <div class="container">
@@ -107,13 +115,14 @@ function content_5cef134f7ddad5_76196870 (Smarty_Internal_Template $_smarty_tpl)
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="reservas.php">
-                                    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>Reservas<?php }?>
-                                    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>Mis Reservas<?php }?>
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value != '')) {?>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="reservas.php">
+                                        Administración
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                            <?php }?>
                             <?php echo $_smarty_tpl->tpl_vars['foroNav']->value;?>
 
                             <li class="nav-item ">
@@ -157,13 +166,17 @@ function content_5cef134f7ddad5_76196870 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
-                            <div class="text-center" >
-                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
-                            </div>
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value != 'pabellon')) {?>
+                                <div class="text-center" >
+                                    <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                                </div>
+                            <?php }?>
                         </form>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -261,10 +274,10 @@ function content_5cef134f7ddad5_76196870 (Smarty_Internal_Template $_smarty_tpl)
                 });
             });
             function alerta(fecha, hora) {
-                alert(hora);
+
                 $('#exampleModal3').modal('show');
-                document.getElementById("textoRec").innerHTML = "Le recordamos que tiene una reserva hoy, dia " + fecha + " a las " + hora + ":00, \n\
-        esperamos que disfrute su partido y que deje un comentario en el foro de ello.\n\ GRACIAS!";
+                document.getElementById("textoRec").innerHTML = "Le recordamos que tiene una reserva hoy, dia " + fecha + " a las " + hora + ":00. <br> \n\
+       Esperamos que disfrute su partido y que deje un comentario en el foro de ello.<br> GRACIAS!";
                 $('#fecha').value = fecha;
                 $('#hora').value = hora;
             }

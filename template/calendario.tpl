@@ -38,9 +38,7 @@
                         showMonthAfterYear: false,
                         yearSuffix: ''
                     };
-
                     $.datepicker.setDefaults($.datepicker.regional['es']);
-
                     var disabledDates = ['13/05/2019', '10/05/2019']; //Este array lo recogere desde PHP; es un array de las fechas que el usuario y ha reservado
 
                     //opciones del datepicker
@@ -53,9 +51,7 @@
                         }, //elimino los dias del array que le paso
                         onSelect: function (date) {
                             var fecha = document.getElementById("datepicker").value;
-
                             var data = {'fecha': fecha};
-
                             $.ajax({
                                 type: "post",
                                 url: 'index3.php',
@@ -68,30 +64,35 @@
                             return false;
                         }
                     });
-
-
-
                 });
+            </script>
+            <script>
 
+                function getval(sel) {
 
-            {/literal}
-        </script>
-        <script>
-            function getval(sel) {
-                var data = {
-                    'hora': sel.value
-                };
-                $.ajax({
-                    type: "post",
-                    url: 'index3.php',
-                    data: data,
-                    success: function (response) {
-                        $('#respuesta2').html(response);
+                    var data = {
+                        'hora': sel.value
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: 'index3.php',
+                        data: data,
+                        success: function (response) {
+                            $('#respuesta2').html(response);
+                        }
+                    });
+                    return false;
+                }
+                function dis(valor) {
+                    if (valor.value === '--Selecciona hora--') {
+                        $('#a_modal').attr("disabled", true);
+                    } else {
+                        $('#a_modal').attr("disabled", false);
                     }
-                });
-                return false;
-            }
-        </script>
+                }
+            </script>
+
+        {/literal}
         <style>
             #contenidoPrincipal{
                 margin-left: 15%;
@@ -152,12 +153,25 @@
                         <div id="datepicker"></div>
                         <div id="respuesta"></div>
                         <div id="respuesta2"></div>
-                        <a href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</a>
+                        <button disabled href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</button>
                         <!--<a id="a_modal" class="btn btn-primary">PROCEDER A LA RESERVA</a>-->
                     </div>
                 </div>
+                <img src="{$imagen}"/>
             </div>
+            <div>{$nombrePab}</div>
+            <div>{$direccionP}</div>
+            <div>{$ciudad}</div>
+            <div>{$cod_postal}</div>
+            <div>{$telefono}</div>
+            <div>{$horario}</div>
+            <div>{$descripcion}</div>
+            <div>{$otros_servicios}</div>
+            <div>{$accesibilidad}</div>
+            <div>{$tarifa}</div>
+
         </div>
+
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -204,8 +218,13 @@
                         </button>
                     </div>
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres reservar?</div>
-                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-
+                    <div class="modal-body text-center">
+                        <div class="row justify-content-center w-20">
+                            <div class=" float-left">Fecha de la reserva:<br>Hora de la reserva: 
+                            </div>
+                            <div class="float-right">{$fecha_reserva} <br>{$hora_reserva}</div>
+                            En el pabellon: {$nombrePab};
+                        </div>
                         <div class="modal-footer" style="justify-content: center">
                             <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                                 <input name="cmd" type="hidden" value="_cart" />
@@ -216,7 +235,7 @@
                                 <input name="return" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="notify_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
                                 <input name="rm" type="hidden" value="2" />
-                                <input type="submit"  name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
+                                <input type="submit" class="btn btn-primary" name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro" value="REALIZAR PAGO">
                                 {$hiddenPay}
                             </form>
                             <form action="calendario.php" method='post'>
@@ -227,7 +246,7 @@
                 </div>
             </div>
         </div>
-        <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -242,7 +261,7 @@
                     </div>
                     <div class="modal-footer" style="justify-content: center">
                         <form method = 'POST' action = 'pabellones.php'>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
                             <div class="text-center" >
                                 <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
@@ -276,19 +295,20 @@
                     </div>
                 </div>
             </div>
-
-            <!---------------- Modal -------------------->
-            <!---------------- Modal -------------------->
-            <script type="text/javascript" src="js/popper.min.js"></script>
-            <!-- Bootstrap core JavaScript -->
-            <script type="text/javascript" src="js/bootstrap.min.js"></script>
-            <!-- MDB core JavaScript -->
-            <script type="text/javascript" src="js/mdb.min.js"></script>
-            <!-- Initializations -->
-            <script type="text/javascript">
-                // Animations initialization
-                new WOW().init();
-            </script>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!---------------- Modal -------------------->
+        <!---------------- Modal -------------------->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- Initializations -->
+        <script type="text/javascript">
+            // Animations initialization
+            new WOW().init();
+        </script>
 
     </body>
 </html>

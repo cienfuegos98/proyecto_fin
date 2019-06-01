@@ -31,10 +31,10 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $nombrePab = $datospab[0]['nombre'];
         $foto = $datospab[0]['foto'];
 
-        $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
+        $contenidoModal = " User: $name <br>Nombre completo: $nombreC<br>Dirección: $direccion";
 
-        $perfil = "<img src='$foto' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' class='imgperfil rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' class='imgmodal rounded-circle hoverable img-responsive'>";
 
         $plantilla->assign('contenidoModal', $contenidoModal);
         $plantilla->assign('nombre', $name);
@@ -44,9 +44,9 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         if (isset($_POST['enviar'])) {
             $comentario = $_POST['comentario'];
             $asunto = $_POST['asunto'];
-            $busqueda = $_POST['busqueda'];
-            $insert = "INSERT INTO `comentarios` VALUES('','$comentario','$asunto','$fecha','$hora','$busqueda','$uid')";
-            $con->run($insert);
+            $insert = "INSERT INTO `comentarios` VALUES('',:comentario,:asunto,:fecha,:hora,'',:uid)";
+            $array = array(':comentario' => $comentario, ':asunto' => $asunto, ':fecha' => $fecha, ':hora' => $hora, ':uid' => $uid);
+            $con->runPS($insert, $array);
         }
     } else if ($_SESSION['tipo'] == "user") {
 
@@ -61,14 +61,13 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
         $nombreC = $datos[0]['nombre_completo'];
         $direccion = $datos[0]['direccion'];
 
-        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' class='imgperfil rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' class='imgmodal rounded-circle hoverable img-responsive'>";
 
         $contenidoModal = " User: $user
                         <br>
                         Email: $email
-                        <br>
-                        Password : $pass
+    
                         <br>
                         Nombre completo: $nombreC
                         <br>
@@ -84,11 +83,11 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
             $comentario = $_POST['comentario'];
             $asunto = $_POST['asunto'];
             $busqueda = $_POST['busqueda'];
-            $insert = "INSERT INTO `comentarios` VALUES('','$comentario','$asunto','$fecha','$hora','$busqueda','$uid')";
-            $con->run($insert);
+            $insert = "INSERT INTO `comentarios` VALUES('',:comentario,:asunto,:fecha,:hora,:busqueda,:uid)";
+            $array = array(':comentario' => $comentario, ':asunto' => $asunto, ':fecha' => $fecha, ':hora' => $hora, ':busqueda' => $busqueda, ':uid' => $uid);
+            $con->runPS($insert, $array);
         }
     }
-
 
     if (isset($_POST['groupOfDefaultRadios'])) {
         $filtro = $_POST['groupOfDefaultRadios'];
@@ -118,7 +117,6 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
     } else {
         $listadoComentarios = "SELECT * FROM `comentarios` as com JOIN `usuarios` as users ON users.`uid` = com.uid";
     }
-    var_dump($listadoComentarios);
     $coms = $con->selection($listadoComentarios);
 
     $comentarios = '';

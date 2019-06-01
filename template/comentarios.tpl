@@ -77,12 +77,21 @@
             }
 
         </style>
+        <script>
+            function dis(valor) {
+                if (valor.value === '--Seleccionar--') {
+                    $('#botoncomentario').attr("disabled", true);
+                } else {
+                    $('#botoncomentario').attr("disabled", false);
+                }
+            }
+        </script>
     </head>
     <body>
         <div>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
                 <div class="container">
-                    <a class="navbar-brand" href="" target="_blank">
+                    <a class="navbar-brand" href="" >
                         <strong>FUTMATCH</strong>
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -119,9 +128,7 @@
                         </ul>
                     </div>
                 </div>
-
             </nav>
-
         </div>
         <br>
         <div id="contenidoPrincipal">
@@ -179,12 +186,12 @@
                 <div class="media-body">
                     <h5 class="mt-0 font-weight-bold blue-text">{$nombre}</h5>
                     <!--Disabled option-->
-                    <form action="comentarios.php" method="POST">
+                    <form action="comentarios.php" method="POST" id="formcomentario">
                         {if ($tipo == 'user')}
                             <div class="form-group" style="color:#757575">
                                 <label >Filtrar por búsqueda: </label>
-                                <select class="form-control " id="exampleSelect1" name="busqueda">
-                                    <option value="">-Seleccionar-</option>
+                                <select class="form-control " id="exampleSelect1" name="busqueda" onchange="dis(this)">
+                                    <option value="--Seleccionar--">--Seleccionar--</option>
                                     <option value="general">General</option>
                                     <option value="equipo">Equipo</option>
                                     <option value="portero">Portero</option>
@@ -195,15 +202,15 @@
                             </div>
                         {/if}
                         <div class="md-form">
-                            <input type="text" id="form1" class="form-control" name="asunto">
+                            <input type="text" id="form1" class="form-control" id="asunto" name="asunto">
                             <label for="form1">Asunto</label>
                         </div>
                         <div class="md-form">
-                            <textarea id="form7" class="md-textarea form-control" rows="3" name="comentario"></textarea>
+                            <textarea id="form7" class="md-textarea form-control" rows="3" id="comentario" name="comentario"></textarea>
                             <label for="form7">Escribe tu comentario</label>
                         </div>
                         <div class="text-center">
-                            <input type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario"/>
+                            <input disabled type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario" id="botoncomentario"/>
                         </div>
                     </form>
                 </div>
@@ -223,12 +230,14 @@
                         {$contenidoModal}
                     </div>
                     <div class="modal-footer" style="justify-content: center">
-                        <form method = 'POST' action = 'pabellones.php'>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'modificar' value = 'modificar'>
+                        <form method = 'POST' action = 'pabellones.php' >
+                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
                             <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
-                            <div class="text-center" >
-                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
-                            </div>
+                            {if ($tipo != 'pabellon')}
+                                <div class="text-center" >
+                                    <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                                </div>
+                            {/if}
                         </form>
                     </div>
                 </div>
@@ -281,6 +290,38 @@
                     $('#exampleModal').modal('hide');
                 });
             </script>
+            {literal}
+                <script src="js/jquery.validate.js"></script>
+                <script>
+                $(document).ready(function () {
+                    $("#formcomentario").validate({
+                        rules: {
+                            asunto: {
+                                required: true,
+                                maxlength: 30,
+                                minlength: 2
+                            },
+                            comentario: {
+                                required: true,
+                                minlength: 3
+                            }
+                        },
+                        messages: {
+                            asunto: {
+                                required: "Campo obligatorio",
+                                minlength: "Campo demasiado corto",
+                                maxlength: "Campo demasiado largo"
+                            },
+                            comentario: {
+                                required: "Campo obligatorio",
+                                minlength: "Campo demasiado corto",
+                            }
+                        },
+                        errorElement: "em"
+                    });
+                });
+                </script>
+            {/literal}
     </body>
 
 </html>

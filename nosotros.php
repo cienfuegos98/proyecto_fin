@@ -12,6 +12,8 @@ $plantilla->template_dir = "./template";
 $plantilla->compile_dir = "./template_c";
 
 if (empty($_SESSION['usuario'])) {
+    $tipo = '';
+    $plantilla->assign('tipo', '');
     $loginNav = "<li class='nav-item '>
                     <a class='nav-link' href='index.php'>Login
                         <span class='sr-only'>(current)</span>
@@ -19,7 +21,7 @@ if (empty($_SESSION['usuario'])) {
                  </li>";
     $plantilla->assign('loginNav', $loginNav);
     $foroNav = '';
-    $perfil = "<a href='index.php'><img src='./img/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
+    $perfil = "<a href='index.php'><img src='./img/imgperfiles/user.png' height='40' width='40' class='rounded-circle hoverable img-responsive'></a>";
 } else {
     $con = new BD();
     if (isset($_SESSION['tipo'])) {
@@ -44,10 +46,10 @@ if (empty($_SESSION['usuario'])) {
         $nombrePab = $datospab[0]['nombre'];
         $foto = $datospab[0]['foto'];
 
-        $contenidoModal = " User: $name <br> Password : $pass <br> Nombre completo: $nombreC<br>Dirección: $direccion";
+        $contenidoModal = " User: $name <br> Nombre completo: $nombreC<br>Dirección: $direccion";
 
-        $perfil = "<img src='$foto' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' class='imgperfil rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' class='imgmodal rounded-circle hoverable img-responsive'>";
 
         $plantilla->assign('contenidoModal', $contenidoModal);
     } else if ($_SESSION['tipo'] == "user") {
@@ -62,14 +64,12 @@ if (empty($_SESSION['usuario'])) {
         $nombreC = $datos[0]['nombre_completo'];
         $direccion = $datos[0]['direccion'];
 
-        $perfil = "<img src='" . $foto . "' height='40' width='40' class='rounded-circle hoverable img-responsive'>";
-        $foto_modal = "<img src='" . $foto . "' height='120' width='120'  class='rounded-circle hoverable img-responsive'>";
+        $perfil = "<img src='" . $foto . "' class='imgperfil rounded-circle hoverable img-responsive'>";
+        $foto_modal = "<img src='" . $foto . "' class='imgmodal rounded-circle hoverable img-responsive'>";
 
         $contenidoModal = " User: $user
                         <br>
                         Email: $email
-                        <br>
-                        Password : $pass
                         <br>
                         Nombre completo: $nombreC
                         <br>
@@ -98,6 +98,7 @@ if (empty($_SESSION['usuario'])) {
         session_destroy();
     }
 }
-
+$plantilla->assign('foroNav', $foroNav);
+$plantilla->assign('perfil', $perfil);
 $plantilla->display("nosotros.tpl");
 ?>
