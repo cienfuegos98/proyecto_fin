@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Material Design Bootstrap</title>
+        <title>Foro</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -16,67 +16,7 @@
         <link href="css/style.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="./img/loading.gif" sizes="16x16">
-        <style type="text/css">
-            #contenidoPrincipal{
-                padding-left: 10%;
-                padding-right: 10%;
-            }
 
-            .media .avatar {
-                width: 64px;
-            }
-            .shadow-textarea textarea.form-control::placeholder {
-                font-weight: 300;
-            }
-            .shadow-textarea textarea.form-control {
-                padding-left: 0.8rem;
-            }
-            #bloqueMensajes{
-                margin-bottom: 10%;
-                margin-right: 5%;
-
-            }
-
-            .mensaje{
-                padding: 3%;
-                margin-top:10px;
-                margin-bottom: 10px;
-            }
-
-            .comentarioMio{
-                background-color: #dcf8c6;
-                border-radius: 1.625rem;
-                margin-left: 18%;
-                border: 1px solid #128c7e;
-            }
-
-            .comentarioOtro{
-                background-color: #f7f1ea;
-                border-radius: 1.625rem;
-                margin-right: 18%;
-                border: 1px solid #c4bdb4;
-
-            }
-
-            .separadorPeque{
-                height: 20px;
-            }
-            #enlace_borrar{
-                color: #4285f4;
-                font-size: 15px;
-            }
-
-            #enlace_borrar:hover{
-                color:  #4285b1;
-                font-size: 17px;
-            }
-            .linea{
-                border-color:#c4bdb4!important;
-                margin-bottom: 5%;
-                margin-top: -5%;
-            }
-
-        </style>
         <script>
             function dis(valor) {
                 if (valor.value === '--Seleccionar--') {
@@ -89,10 +29,11 @@
     </head>
     <body>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-                    <a class="navbar-brand" href="" >
-                        <strong>FUTMATCH</strong>
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
+                    <!-- Brand -->
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -131,20 +72,19 @@
             </nav>
         </div>
         <br>
+        <section class="portadaForo text-center w-100 row mx-0">
+            <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Foro</h2>
+            <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            <div class="row">
+                <!--listadoMensajes-->
+            </div>
+        </section>
         <div id="contenidoPrincipal">
-            <section class="text-center my-5">
-                <h2 class="h1-responsive font-weight-bold text-center my-5 pat">Foro</h2>
-                <p class="subtitulo grey-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
-                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
-                <div class="row">
-                    <!--listadoMensajes-->
-                </div>
-            </section>
+
+            <section class='separadorGrande'></section>
             <div class="row flex mx-auto">
-                <div id="bloqueMensajes" class="col-8">
-                    {$comentarios}
-                </div>
-                <div id="filtrado" class="col-3">
+                <div id="filtrado" class="col-xl-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 float-right">
                     <h4 class="h4-responsive font-weight-bold pat my-4">Filtrar por: </h4>
                     <form action="comentarios.php" method="POST">
                         <!-- Group of default radios - option 1 -->
@@ -179,43 +119,49 @@
                         <input type="submit" name="filtrar" class="btn btn-primary" value="FILTRAR COMENTARIOS" class="my-4"/>
                     </form>
                 </div>
-            </div>
-            <hr class="linea"/>
-            <div class="media mt-3 shadow-textarea">
-                <div style="margin-right:15px;">{$fotoperfil}</div>
-                <div class="media-body">
-                    <h5 class="mt-0 font-weight-bold blue-text">{$nombre}</h5>
-                    <!--Disabled option-->
-                    <form action="comentarios.php" method="POST" id="formcomentario">
-                        {if ($tipo == 'user')}
-                            <div class="form-group" style="color:#757575">
-                                <label >Filtrar por búsqueda: </label>
-                                <select class="form-control " id="exampleSelect1" name="busqueda" onchange="dis(this)">
-                                    <option value="--Seleccionar--">--Seleccionar--</option>
-                                    <option value="general">General</option>
-                                    <option value="equipo">Equipo</option>
-                                    <option value="portero">Portero</option>
-                                    <option value="defensa"> Defensa</option>
-                                    <option value="ala">Ala</option>
-                                    <option value="delantero">Delantero</option>
-                                </select>
-                            </div>
-                        {/if}
-                        <div class="md-form">
-                            <input type="text" id="form1" class="form-control" id="asunto" name="asunto">
-                            <label for="form1">Asunto</label>
-                        </div>
-                        <div class="md-form">
-                            <textarea id="form7" class="md-textarea form-control" rows="3" id="comentario" name="comentario"></textarea>
-                            <label for="form7">Escribe tu comentario</label>
-                        </div>
-                        <div class="text-center">
-                            <input disabled type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario" id="botoncomentario"/>
-                        </div>
-                    </form>
+                <div id="bloqueMensajes" class="col-xl-8 col-md-8 col-lg-8 col-sm-12 col-xs-12" >
+                    {$comentarios}
                 </div>
+
+                <hr class="linea col-12 text-center"/>
+                <div class="media mt-3 col-10 mx-auto shadow-textarea">
+                    <div class="mx-3">{$fotoperfil}</div>
+                    <div class="media-body">
+                        <h5 class="mt-0 font-weight-bold blue-text">{$nombre}</h5>
+                        <!--Disabled option-->
+                        <form action="comentarios.php" method="POST" id="formcomentario">
+                            {if ($tipo == 'user')}
+                                <div class="form-group" style="color:#757575">
+                                    <label >Filtrar por búsqueda: </label>
+                                    <select class="form-control " id="exampleSelect1" name="busqueda" onchange="dis(this)">
+                                        <option value="--Seleccionar--">--Seleccionar--</option>
+                                        <option value="general">General</option>
+                                        <option value="equipo">Equipo</option>
+                                        <option value="portero">Portero</option>
+                                        <option value="defensa"> Defensa</option>
+                                        <option value="ala">Ala</option>
+                                        <option value="delantero">Delantero</option>
+                                    </select>
+                                </div>
+                            {/if}
+                            <div class="md-form">
+                                <input type="text" id="form1" class="form-control" id="asunto" name="asunto">
+                                <label for="form1">Asunto</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="form7" class="md-textarea form-control" rows="3" id="comentario" name="comentario"></textarea>
+                                <label for="form7">Escribe tu comentario</label>
+                            </div>
+                            <div class="text-center">
+                                <input disabled type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario" id="botoncomentario"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <section class="separadorGrande"></section>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

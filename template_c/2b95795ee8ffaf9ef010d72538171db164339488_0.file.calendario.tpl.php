@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-06-01 01:38:32
+/* Smarty version 3.1.33, created on 2019-06-03 14:08:46
   from 'C:\xampp\htdocs\proyecto_fin\template\calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cf1baf8d99319_30374030',
+  'unifunc' => 'content_5cf50dce45b555_28748571',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2b95795ee8ffaf9ef010d72538171db164339488' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\calendario.tpl',
-      1 => 1559344133,
+      1 => 1559563724,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf1baf8d99319_30374030 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf50dce45b555_28748571 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -166,23 +166,22 @@ function content_5cf1baf8d99319_30374030 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </nav>
+            <br>
+            <section class="portadaPabellones text-center w-100 row mx-0">
+                <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text"><?php echo $_smarty_tpl->tpl_vars['nombreC']->value;?>
+</h2>
+                <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            </section>
         </div>
-        <br><br><br><br>
         <div id="contenidoPrincipal">
-            <h2 class="h1-responsive font-weight-bold text-center pat">Nuestra historia</h2>
-            <!-- Section description -->
-            <p class=" text-center mx-auto mb-5">
-                Todo comenzó tras años trabajando, se nos ocurrio la idea de crear nuestra propia empresa 
-                de desarollo y diseño con nuestr   a propia identidad, capaz de amoldrse 
-                a nuestros clientes y hacer sus sueños realidad.
-                Nuestros sueños son tus sueños.
-            </p>
+
 
             <!--Aqui solo mostraré habilitados las horas que no esten cogidas de ese día-->
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
                     <div class = 'view zoom'>
-                        <div id="datepicker"></div>
+                        <div class="input-group date" data-provide="datepicker" id="datepicker"></div>
                         <div id="respuesta"></div>
                         <div id="respuesta2"></div>
                         <button disabled href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</button>

@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=deºvice-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Material Design Bootstrap</title>
+        <title>Pabellones</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -64,14 +64,15 @@
     {if ($tipo == 'user')}
         <body {$load}>
         {/if}
-        {if ($tipo == 'pabellon')}
+        {if ($tipo == 'pabellon' || $tipo == '')}
         <body>
         {/if}
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-                    <a class="navbar-brand" href="" target="_blank">
-                        <strong>FUTMATCH</strong>
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
+                    <!-- Brand -->
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -107,13 +108,20 @@
                     </div>
                 </div>
             </nav>
+            <br>
+
         </div>
         <br> 
+        <section class="portadaPabellones text-center w-100 row mx-0">
+            <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Pabellones</h2>
+            <p class="subtitulo white-text text-center mx-auto mb-5 col-8">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            <div class="row">
+                <!--listadoMensajes-->
+            </div>
+        </section>
         <div id="contenidoPrincipal">
             <section class="text-center my-5">
-                <h2 class="h1-responsive font-weight-bold text-center my-5 pat">Pabellones</h2>
-                <p class="subtitulo grey-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
-                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
                 <div class="row">
                     {$listadoPabellones}
                 </div>
@@ -216,9 +224,9 @@
             $(document).ready(function () {
                 $('div.expandable p').expander({
                     slicePoint: 250, // si eliminamos por defecto es 100 caracteres
-                    expandText: '[Leer más...]', // por defecto es 'read more...'
+                    expandText: 'Leer más...', // por defecto es 'read more...'
                     collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
-                    userCollapseText: '[Ocultar]' // por defecto es 'read less...'
+                    userCollapseText: 'Ocultar' // por defecto es 'read less...'
                 });
                 $('.enlace').click(function () {
                     var id_form = $(this).parent().attr('id');

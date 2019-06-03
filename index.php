@@ -90,7 +90,6 @@ if (isset($_POST['registrarse'])) {
             ':fecha_nacimiento' => $fecha_nac, ':pregunta' => $pregunta, ':respuesta' => $respuesta);
         $con->runPS($c, $array2);
 
-        var_dump($c);
 
         $plantilla->assign('error2', '');
     } else if ($con->compruebaEmail($email) == false) {

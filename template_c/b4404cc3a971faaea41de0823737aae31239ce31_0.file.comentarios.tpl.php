@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-31 23:51:16
+/* Smarty version 3.1.33, created on 2019-06-03 13:59:08
   from 'C:\xampp\htdocs\proyecto_fin\template\comentarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cf1a1d4ee3ff6_23232564',
+  'unifunc' => 'content_5cf50b8c55b3d2_81143074',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4404cc3a971faaea41de0823737aae31239ce31' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\comentarios.tpl',
-      1 => 1559339475,
+      1 => 1559563146,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf1a1d4ee3ff6_23232564 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf50b8c55b3d2_81143074 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +28,7 @@ function content_5cf1a1d4ee3ff6_23232564 (Smarty_Internal_Template $_smarty_tpl)
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Material Design Bootstrap</title>
+        <title>Foro</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -39,67 +39,7 @@ function content_5cf1a1d4ee3ff6_23232564 (Smarty_Internal_Template $_smarty_tpl)
         <link href="css/style.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="./img/loading.gif" sizes="16x16">
-        <style type="text/css">
-            #contenidoPrincipal{
-                padding-left: 10%;
-                padding-right: 10%;
-            }
 
-            .media .avatar {
-                width: 64px;
-            }
-            .shadow-textarea textarea.form-control::placeholder {
-                font-weight: 300;
-            }
-            .shadow-textarea textarea.form-control {
-                padding-left: 0.8rem;
-            }
-            #bloqueMensajes{
-                margin-bottom: 10%;
-                margin-right: 5%;
-
-            }
-
-            .mensaje{
-                padding: 3%;
-                margin-top:10px;
-                margin-bottom: 10px;
-            }
-
-            .comentarioMio{
-                background-color: #dcf8c6;
-                border-radius: 1.625rem;
-                margin-left: 18%;
-                border: 1px solid #128c7e;
-            }
-
-            .comentarioOtro{
-                background-color: #f7f1ea;
-                border-radius: 1.625rem;
-                margin-right: 18%;
-                border: 1px solid #c4bdb4;
-
-            }
-
-            .separadorPeque{
-                height: 20px;
-            }
-            #enlace_borrar{
-                color: #4285f4;
-                font-size: 15px;
-            }
-
-            #enlace_borrar:hover{
-                color:  #4285b1;
-                font-size: 17px;
-            }
-            .linea{
-                border-color:#c4bdb4!important;
-                margin-bottom: 5%;
-                margin-top: -5%;
-            }
-
-        </style>
         <?php echo '<script'; ?>
 >
             function dis(valor) {
@@ -157,21 +97,19 @@ function content_5cf1a1d4ee3ff6_23232564 (Smarty_Internal_Template $_smarty_tpl)
             </nav>
         </div>
         <br>
+        <section class="portadaForo text-center w-100 row mx-0">
+            <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Foro</h2>
+            <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            <div class="row">
+                <!--listadoMensajes-->
+            </div>
+        </section>
         <div id="contenidoPrincipal">
-            <section class="text-center my-5">
-                <h2 class="h1-responsive font-weight-bold text-center my-5 pat">Foro</h2>
-                <p class="subtitulo grey-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
-                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
-                <div class="row">
-                    <!--listadoMensajes-->
-                </div>
-            </section>
-            <div class="row flex mx-auto">
-                <div id="bloqueMensajes" class="col-8">
-                    <?php echo $_smarty_tpl->tpl_vars['comentarios']->value;?>
 
-                </div>
-                <div id="filtrado" class="col-3">
+            <section class='separadorGrande'></section>
+            <div class="row flex mx-auto">
+                <div id="filtrado" class="col-xl-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 float-right">
                     <h4 class="h4-responsive font-weight-bold pat my-4">Filtrar por: </h4>
                     <form action="comentarios.php" method="POST">
                         <!-- Group of default radios - option 1 -->
@@ -206,45 +144,52 @@ function content_5cf1a1d4ee3ff6_23232564 (Smarty_Internal_Template $_smarty_tpl)
                         <input type="submit" name="filtrar" class="btn btn-primary" value="FILTRAR COMENTARIOS" class="my-4"/>
                     </form>
                 </div>
-            </div>
-            <hr class="linea"/>
-            <div class="media mt-3 shadow-textarea">
-                <div style="margin-right:15px;"><?php echo $_smarty_tpl->tpl_vars['fotoperfil']->value;?>
-</div>
-                <div class="media-body">
-                    <h5 class="mt-0 font-weight-bold blue-text"><?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
-</h5>
-                    <!--Disabled option-->
-                    <form action="comentarios.php" method="POST" id="formcomentario">
-                        <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>
-                            <div class="form-group" style="color:#757575">
-                                <label >Filtrar por búsqueda: </label>
-                                <select class="form-control " id="exampleSelect1" name="busqueda" onchange="dis(this)">
-                                    <option value="--Seleccionar--">--Seleccionar--</option>
-                                    <option value="general">General</option>
-                                    <option value="equipo">Equipo</option>
-                                    <option value="portero">Portero</option>
-                                    <option value="defensa"> Defensa</option>
-                                    <option value="ala">Ala</option>
-                                    <option value="delantero">Delantero</option>
-                                </select>
-                            </div>
-                        <?php }?>
-                        <div class="md-form">
-                            <input type="text" id="form1" class="form-control" id="asunto" name="asunto">
-                            <label for="form1">Asunto</label>
-                        </div>
-                        <div class="md-form">
-                            <textarea id="form7" class="md-textarea form-control" rows="3" id="comentario" name="comentario"></textarea>
-                            <label for="form7">Escribe tu comentario</label>
-                        </div>
-                        <div class="text-center">
-                            <input disabled type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario" id="botoncomentario"/>
-                        </div>
-                    </form>
+                <div id="bloqueMensajes" class="col-xl-8 col-md-8 col-lg-8 col-sm-12 col-xs-12" >
+                    <?php echo $_smarty_tpl->tpl_vars['comentarios']->value;?>
+
                 </div>
+
+                <hr class="linea col-12 text-center"/>
+                <div class="media mt-3 col-10 mx-auto shadow-textarea">
+                    <div class="mx-3"><?php echo $_smarty_tpl->tpl_vars['fotoperfil']->value;?>
+</div>
+                    <div class="media-body">
+                        <h5 class="mt-0 font-weight-bold blue-text"><?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
+</h5>
+                        <!--Disabled option-->
+                        <form action="comentarios.php" method="POST" id="formcomentario">
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>
+                                <div class="form-group" style="color:#757575">
+                                    <label >Filtrar por búsqueda: </label>
+                                    <select class="form-control " id="exampleSelect1" name="busqueda" onchange="dis(this)">
+                                        <option value="--Seleccionar--">--Seleccionar--</option>
+                                        <option value="general">General</option>
+                                        <option value="equipo">Equipo</option>
+                                        <option value="portero">Portero</option>
+                                        <option value="defensa"> Defensa</option>
+                                        <option value="ala">Ala</option>
+                                        <option value="delantero">Delantero</option>
+                                    </select>
+                                </div>
+                            <?php }?>
+                            <div class="md-form">
+                                <input type="text" id="form1" class="form-control" id="asunto" name="asunto">
+                                <label for="form1">Asunto</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="form7" class="md-textarea form-control" rows="3" id="comentario" name="comentario"></textarea>
+                                <label for="form7">Escribe tu comentario</label>
+                            </div>
+                            <div class="text-center">
+                                <input disabled type="submit" class="btn btn-primary" name="enviar" value="Enviar comentario" id="botoncomentario"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <section class="separadorGrande"></section>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

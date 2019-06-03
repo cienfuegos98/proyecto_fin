@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-30 13:51:43
+/* Smarty version 3.1.33, created on 2019-06-03 23:05:44
   from 'C:\xampp\htdocs\proyecto_fin\template\nosotros.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cefc3cfdab590_75397086',
+  'unifunc' => 'content_5cf58ba89a0b67_15911332',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f0dd1e6eb2f018077a8c51693ed93dd1bb1e57c8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\nosotros.tpl',
-      1 => 1559216358,
+      1 => 1559594338,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf58ba89a0b67_15911332 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +28,7 @@ function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl)
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Material Design Bootstrap</title>
+        <title>Sobre Nosotros</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -47,29 +47,6 @@ function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl)
                 height: 100%;
             }
 
-
-            #registrate-ahora{
-                color: #4285f4;
-                font-size: 12px;
-            }
-
-            #olvidado-contraseña{
-                color: #4285f4;
-                font-size: 12px;
-            }
-
-            #registrate-ahora:hover{
-                color:  #4285b1;
-                font-size: 14px;
-            }
-
-            #olvidado-contraseña:hover{
-                color:  #4285b1;
-                font-size: 14px;
-            }
-            .nuevo{
-                font-size: 12px;
-            }
             #contenidoPrincipal{
                 margin-left: 10%;
                 margin-right: 10%;
@@ -83,17 +60,20 @@ function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl)
                 color:  #4285b1;
                 font-size: 17px;
             }
+            .nosotrosContent{
+                background-color: blue;
+            }
+
         </style>
 
     </head>
     <body>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
                     <!-- Brand -->
-                    <a class="navbar-brand" href="">
-                        <strong>FUTMATCH</strong>
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
 
                     <!-- Collapse -->
@@ -159,7 +139,7 @@ function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl)
             </p>
         </div>
         <section class="nosotros my-5">
-            <div id="contenidoPrincipal" class="nosotrosContent">
+            <div id="contenidoPrincipal">
                 <div class="row tituloPricipal">
                     <div class="fotito col-lg-5">
                         <div class=" view overlay rounded z-depth-2 mb-lg-0">
@@ -184,7 +164,7 @@ function content_5cefc3cfdab590_75397086 (Smarty_Internal_Template $_smarty_tpl)
                 <hr class="my-5">
 
                 <!-- Grid row -->
-                <div class="row ">
+                <div class="row " >
 
                     <!-- Grid column -->
                     <div class="parrafito col-lg-7">

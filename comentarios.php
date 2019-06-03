@@ -134,18 +134,18 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
             $text = "text-left";
             $comPropiedad = "comentarioOtro";
         }
-        $fotoperfil = "<img src = '" . $valores['foto'] . "' height = '50' width = '50' class = 'rounded-circle hoverable img-responsive $posicion'>";
+        $fotoperfil = "<img src = '" . $valores['foto'] . "' class = 'imgperfil rounded-circle hoverable $posicion'>";
         $comentarios .= "<div class = 'mensaje $text $comPropiedad'>";
-        $comentarios .= $fotoperfil . "<h5 style = 'margin-left: 20px; margin-right: 20px; margin-top: 20px!important;' class = 'mt-0 font-weight-bold blue-text $posicion'>" . $valores['user'] . "</h5>";
-        $comentarios .= "<p style='margin-left: 50px; margin-right: 50px; margin-top: 20px;'>" . date('d/m/Y', strtotime($valores['fecha'])) . " " . $valores['hora'] . "</p><br>";
+        $comentarios .= $fotoperfil . "<h5 style = 'margin-left: 20px; margin-right: 20px; margin-top: 10px!important;' class = 'mt-0 font-weight-bold blue-text $posicion'>" . $valores['user'] . "</h5>";
+        $comentarios .= "<p style='margin-left: 50px; margin-right: 50px; margin-top: 10px;'>" . date('d/m/Y', strtotime($valores['fecha'])) . " " . $valores['hora'] . "</p><br>";
         $comentarios .= "<p style='margin-left: 50px; margin-right: 50px;'>" . $valores['asunto'] . "<br>";
         $comentarios .= $valores['comentario'] . "</br>";
-        $comentarios .= $valores['busqueda'] . "(prueba)</p>";
+        $comentarios .= $valores['busqueda'] . "</p>";
         if ($uid == $valores['uid']) {
-            $comentarios .= " <form action = 'comentarios.php' method = 'post'>
-            <input class = 'eliminar' type = 'submit' src = 'img/multiplicar.png' name = 'eliminar' value = 'Eliminar'>
-            <input type = 'hidden' name = 'hidden_cid' value = '" . $cid . "' >
-            </form>";
+            $comentarios .= " <form action = 'comentarios.php' method = 'post' class = 'text-center'>
+                <input class = 'eliminar btn btn-primary' type = 'submit' src = 'img/multiplicar.png' name = 'eliminar' value = 'Eliminar' >
+                <input type = 'hidden' name = 'hidden_cid' value = '" . $cid . "' >
+                </form>";
         } else {
             $comentarios .= "";
         }
@@ -154,7 +154,7 @@ if (empty($_SESSION['usuario']) && empty($_SESSION['pabellon'])) {
 
     $plantilla->assign('comentarios', $comentarios);
 }
-$fotoperfil = "<img src = '" . $foto . "' height = '60' width = '60' class = 'rounded-circle hoverable img-responsive float-left'>";
+$fotoperfil = "<img src = '" . $foto . "' class = 'imgComentarios rounded-circle hoverable img-responsive float-left'>";
 $plantilla->assign('fotoperfil', $fotoperfil);
 $plantilla->assign('perfil', $perfil);
 $plantilla->assign('foto_modal', $foto_modal);

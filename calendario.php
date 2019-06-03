@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 require_once "Smarty.class.php";
 
 spl_autoload_register(function($clase) {
@@ -31,9 +32,9 @@ if (empty($_SESSION['usuario'])) {
 
     $fecha_reserva = $_SESSION['fecha'];
     $hora_reserva = $_SESSION['hora'];
+
     $plantilla->assign('fecha_reserva', $fecha_reserva);
     $plantilla->assign('hora_reserva', $hora_reserva);
-
     $id_pab = $_SESSION['pabellon']['pid'];
     $cons = "SELECT * FROM pabellones WHERE pid = '$id_pab'";
     $datosPab = $con->selection($cons);
@@ -62,7 +63,6 @@ if (empty($_SESSION['usuario'])) {
     $plantilla->assign('accesibilidad', $accesibilidad);
     $plantilla->assign('tarifa', $tarifa);
     $plantilla->assign('imagen', $imagen);
-
 
     $user = $_SESSION['usuario']['nombre'];
     $c = "SELECT * FROM `jugadores` as j JOIN `usuarios` as u ON j.uid = u.uid WHERE `user` = '$user'";

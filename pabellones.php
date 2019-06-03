@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 session_start();
 require_once "Smarty.class.php";
 
@@ -145,18 +146,21 @@ foreach ($datos as $pabellones) {
     $listadoPabellones .= "
                     <div class = 'col-lg-6 col-md-6 mb-lg-0 mb-4 pabellon'>
                     <div class = 'card collection-card z-depth-1-half'>
-                    <div class = 'view zoom'>
+                    <div class=' zoom-1 overflow-hidden'>
+                    <div class = 'view zoom'
                     <form $action method = 'post' id = 'form_" . $pid . "' >
                     <input type = 'hidden' name = 'pid' value = '" . $pid . "' >
                     <a class = 'enlace'>
-                    <img style = 'width:100%' src = '" . $pabellones['imagen_web'] . "' class = 'img-fluid img-pabellon' alt = 'Imagen del" . $pabellones['nombre'] . "' >
+                    <img style = 'width:100%' src = '" . $pabellones['imagen_web'] . "' class = 'img-fluid' alt = 'Imagen del" . $pabellones['nombre'] . "' >
                     </a>
                     </form>
+                    </div>
                     <div class = 'stripe dark'>
                     <a>
                     <div class = 'expandable fototxt'>
-                    <h3>" . $pabellones['nombre'] . "</h3>
-                    <p>" . $pabellones['descripcion'] . "</p>
+                    <h3 class='text-left'>" . $pabellones['nombre'] . "</h3>
+                        <hr>
+                    <p class='text-left'>" . $pabellones['descripcion'] . "</p>
                     </div>
                     </a>
                     </div>

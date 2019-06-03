@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-31 22:15:41
+/* Smarty version 3.1.33, created on 2019-06-03 23:05:14
   from 'C:\xampp\htdocs\proyecto_fin\template\pabellones.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cf18b6d55b094_36501686',
+  'unifunc' => 'content_5cf58b8a869a75_25885515',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c46ea660ecac53f9a9575cea85b43a111fe92fde' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
-      1 => 1559333740,
+      1 => 1559595912,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf18b6d55b094_36501686 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf58b8a869a75_25885515 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +28,7 @@ function content_5cf18b6d55b094_36501686 (Smarty_Internal_Template $_smarty_tpl)
         <meta charset="utf-8">
         <meta name="viewport" content="width=deºvice-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Material Design Bootstrap</title>
+        <title>Pabellones</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -88,14 +88,15 @@ function content_5cf18b6d55b094_36501686 (Smarty_Internal_Template $_smarty_tpl)
         <body <?php echo $_smarty_tpl->tpl_vars['load']->value;?>
 >
         <?php }?>
-        <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>
+        <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon' || $_smarty_tpl->tpl_vars['tipo']->value == '')) {?>
         <body>
         <?php }?>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-                    <a class="navbar-brand" href="" target="_blank">
-                        <strong>FUTMATCH</strong>
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
+                    <!-- Brand -->
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -134,13 +135,20 @@ function content_5cf18b6d55b094_36501686 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </nav>
+            <br>
+
         </div>
         <br> 
+        <section class="portadaPabellones text-center w-100 row mx-0">
+            <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Pabellones</h2>
+            <p class="subtitulo white-text text-center mx-auto mb-5 col-8">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            <div class="row">
+                <!--listadoMensajes-->
+            </div>
+        </section>
         <div id="contenidoPrincipal">
             <section class="text-center my-5">
-                <h2 class="h1-responsive font-weight-bold text-center my-5 pat">Pabellones</h2>
-                <p class="subtitulo grey-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
-                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
                 <div class="row">
                     <?php echo $_smarty_tpl->tpl_vars['listadoPabellones']->value;?>
 
@@ -261,9 +269,9 @@ function content_5cf18b6d55b094_36501686 (Smarty_Internal_Template $_smarty_tpl)
             $(document).ready(function () {
                 $('div.expandable p').expander({
                     slicePoint: 250, // si eliminamos por defecto es 100 caracteres
-                    expandText: '[Leer más...]', // por defecto es 'read more...'
+                    expandText: 'Leer más...', // por defecto es 'read more...'
                     collapseTimer: 40000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
-                    userCollapseText: '[Ocultar]' // por defecto es 'read less...'
+                    userCollapseText: 'Ocultar' // por defecto es 'read less...'
                 });
                 $('.enlace').click(function () {
                     var id_form = $(this).parent().attr('id');

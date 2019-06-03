@@ -111,10 +111,11 @@
     </head>
     <body>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-                    <a class="navbar-brand" href="" target="_blank">
-                        <strong>FUTMATCH</strong>
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
+                    <!-- Brand -->
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -134,23 +135,21 @@
                     </div>
                 </div>
             </nav>
+            <br>
+            <section class="portadaPabellones text-center w-100 row mx-0">
+                <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">{$nombreC}</h2>
+                <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            </section>
         </div>
-        <br><br><br><br>
         <div id="contenidoPrincipal">
-            <h2 class="h1-responsive font-weight-bold text-center pat">Nuestra historia</h2>
-            <!-- Section description -->
-            <p class=" text-center mx-auto mb-5">
-                Todo comenzó tras años trabajando, se nos ocurrio la idea de crear nuestra propia empresa 
-                de desarollo y diseño con nuestr   a propia identidad, capaz de amoldrse 
-                a nuestros clientes y hacer sus sueños realidad.
-                Nuestros sueños son tus sueños.
-            </p>
+
 
             <!--Aqui solo mostraré habilitados las horas que no esten cogidas de ese día-->
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
                     <div class = 'view zoom'>
-                        <div id="datepicker"></div>
+                        <div class="input-group date" data-provide="datepicker" id="datepicker"></div>
                         <div id="respuesta"></div>
                         <div id="respuesta2"></div>
                         <button disabled href="calendario.php" data-toggle="modal" id="a_modal" class="btn btn-primary" data-target="#exampleModal2" >PROCEDER A LA RESERVA</button>

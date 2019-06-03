@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 require_once "Smarty.class.php";
 
 spl_autoload_register(function($clase) {
@@ -200,45 +201,6 @@ if (empty($_SESSION['usuario'])) {
             $del = "DELETE FROM reservas WHERE rid = '" . $rid_borrar . "'";
             $con->run($del);
 
-//            $destinatario = "pgmcastillo98@hotmail.com";
-//            $asunto = "Este mensaje es de prueba";
-//            $cuerpo = ' 
-//<html> 
-//<head> 
-//   <title>Prueba de correo</title> 
-//</head> 
-//<body> 
-//<h1>Hola amigos!</h1> 
-//<p> 
-//<b>Bienvenidos a mi correo electrónico de prueba</b>. Estoy encantado de tener tantos lectores. Este cuerpo del mensaje es del artículo de envío de mails por PHP. Habría que cambiarlo para poner tu propio cuerpo. Por cierto, cambia también las cabeceras del mensaje. 
-//</p> 
-//</body> 
-//</html> 
-//';
-//
-//            $headers = "MIME-Version: 1.0\r\n";
-//            $headers .= "Content-type: text / html;
-            //charset = iso-8859-1\r\n";
-//
-////dirección del remitente 
-//            $headers .= "From: Miguel Angel Alvarez <pepito@desarrolloweb.com>\r\n";
-//
-////dirección de respuesta, si queremos que sea distinta que la del remitente 
-//            $headers .= "Reply-To: mariano@desarrolloweb.com\r\n";
-//
-////ruta del mensaje desde origen a destino 
-//            $headers .= "Return-path: holahola@desarrolloweb.com\r\n";
-//
-////direcciones que recibián copia 
-//            $headers .= "Cc: maria@desarrolloweb.com\r\n";
-//
-////direcciones que recibirán copia oculta 
-//            $headers .= "Bcc: pepe@pepe.com, juan@juan.com\r\n";
-//            if (mail($destinatario, $asunto, $cuerpo, $headers)) {
-//                print "<p></p>";
-//            } else {
-//                print "<p>error</p>";
-//            }
             header("location:reservas.php");
         }
     } else if ($_SESSION['tipo'] == "user") {
@@ -273,14 +235,14 @@ if (empty($_SESSION['usuario'])) {
         $datosRe = $con->selection($cons);
         $fecha_actual = date("Y-m-d");
 
-        $tabla = "<table class = 'tablaRes'>";
-        $tabla .= "<tr>";
+        $tabla = "<table class = 'tablaRes table table-striped'>";
+        $tabla .= "<thead><tr>";
         $tabla .= headerTable($tipo);
-        $tabla .= "</tr>";
+        $tabla .= "</thead></tr>";
 
         foreach ($datosRe as $valores) {
             if (calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) > 0 || (calcular_fecha($valores['fecha_reserva'], date("Y-m-d")) == 0 && $valores['hora'] > date("H"))) {
-                $tabla .= "<tr>";
+                $tabla .= "<tbody><tr scope='row'>";
                 $tabla .= "<td>";
                 $tabla .= $valores['rid'];
                 $tabla .= "</td>";
@@ -327,7 +289,7 @@ if (empty($_SESSION['usuario'])) {
             }
         }
 
-        $tabla .= "</table>";
+        $tabla .= "</tbody></table>";
         $f = "SELECT fecha_reserva FROM `reservas` WHERE fecha_reserva >= '$fecha_actual' AND uid = $uid";
         $fechas_aux = $con->selection($f);
         if ($fechas_aux != null) {
@@ -376,6 +338,7 @@ if (empty($_SESSION['usuario'])) {
         $plantilla->assign('telefono', $telefono);
         $plantilla->assign('fecha', $fecha_nac);
         $plantilla->assign('error3', '');
+
         if (isset($_POST['actualizarUser'])) {
             $con = new BD();
             $name = $_POST['user'];
@@ -474,8 +437,7 @@ function headerTable($tipo) {
     return $tabla;
 }
 
-function calcular_fecha(
-$fecha_i, $fecha_f) {
+function calcular_fecha($fecha_i, $fecha_f) {
     $dias = (strtotime($fecha_i) - strtotime($fecha_f)) / 86400;
     $dias = floor($dias);
     return $dias;
@@ -503,9 +465,6 @@ function updatearUser($con, $name, $pass, $destino_img, $uid, $nombreC, $email2,
 
     $array2 = array(':nombre_completo' => $nombreC, ':email' => $email2, ':direccion' => $direccion, ':u_cod_postal' => $cod_postal,
         ':telefono' => $telefono, ':fecha_nacimiento' => $fecha_nac, ':uid' => $uid);
-
-    var_dump($array2);
-    var_dump($insert2);
 
     $con->runPS($insert2, $array2);
 }

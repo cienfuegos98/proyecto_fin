@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Material Design Bootstrap</title>
+        <title>Sobre Nosotros</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -24,29 +24,6 @@
                 height: 100%;
             }
 
-
-            #registrate-ahora{
-                color: #4285f4;
-                font-size: 12px;
-            }
-
-            #olvidado-contraseña{
-                color: #4285f4;
-                font-size: 12px;
-            }
-
-            #registrate-ahora:hover{
-                color:  #4285b1;
-                font-size: 14px;
-            }
-
-            #olvidado-contraseña:hover{
-                color:  #4285b1;
-                font-size: 14px;
-            }
-            .nuevo{
-                font-size: 12px;
-            }
             #contenidoPrincipal{
                 margin-left: 10%;
                 margin-right: 10%;
@@ -60,17 +37,20 @@
                 color:  #4285b1;
                 font-size: 17px;
             }
+            .nosotrosContent{
+                background-color: blue;
+            }
+
         </style>
 
     </head>
     <body>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
                     <!-- Brand -->
-                    <a class="navbar-brand" href="">
-                        <strong>FUTMATCH</strong>
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
 
                     <!-- Collapse -->
@@ -133,7 +113,7 @@
             </p>
         </div>
         <section class="nosotros my-5">
-            <div id="contenidoPrincipal" class="nosotrosContent">
+            <div id="contenidoPrincipal">
                 <div class="row tituloPricipal">
                     <div class="fotito col-lg-5">
                         <div class=" view overlay rounded z-depth-2 mb-lg-0">
@@ -158,7 +138,7 @@
                 <hr class="my-5">
 
                 <!-- Grid row -->
-                <div class="row ">
+                <div class="row " >
 
                     <!-- Grid column -->
                     <div class="parrafito col-lg-7">

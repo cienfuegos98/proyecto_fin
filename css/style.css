@@ -1,3 +1,30 @@
+hr {
+  border: solid #c9c9c9 1px !important; }
+
+h1 {
+  font-size: calc(30px + (35 - 30) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 30px;
+  font-weight: 800; }
+
+h2 {
+  font-size: calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 700; }
+
+h3 {
+  font-size: calc(20px + (25 - 20) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 700; }
+
+h4 {
+  font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 400; }
+
+p {
+  font-weight: 400;
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))) !important; }
+
 /* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
 html,
 body,
@@ -42,10 +69,16 @@ body,
   right: 60px;
   top: 7px; }
 
+.enlacesNav {
+  margin: inherit; }
+
+.header {
+  background-color: #111111 !important; }
+
 #imgperfil {
   position: absolute;
-  right: 9px;
-  top: 7px; }
+  right: 20px;
+  top: 16px; }
 
 #navbarNav > ul.nav.navbar-nav.navbar-right > li > ul {
   right: 0;
@@ -61,7 +94,121 @@ body,
   width: 40px;
   object-fit: cover !important; }
 
+.imgComentarios {
+  height: 60px;
+  width: 60px;
+  object-fit: cover !important; }
+
 .error {
   color: #FF0000; }
+
+#contenidoPrincipal {
+  padding-left: 10%;
+  padding-right: 10%; }
+
+.media .avatar {
+  width: 64px; }
+
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300; }
+
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem; }
+
+#bloqueMensajes {
+  margin-bottom: 10%;
+  margin-right: 5%;
+  overflow: auto;
+  height: 500px; }
+
+.mensaje {
+  padding: 3%;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.comentarioMio {
+  background-color: #dcf8c6;
+  border-radius: 1.625rem;
+  margin-left: 18%;
+  border: 1px solid #128c7e; }
+
+.comentarioOtro {
+  background-color: #f7f1ea;
+  border-radius: 1.625rem;
+  margin-right: 18%;
+  border: 1px solid #c4bdb4; }
+
+.separadorPeque {
+  height: 20px; }
+
+.separadorGrande {
+  height: 60px; }
+
+#enlace_borrar {
+  color: #4285f4;
+  font-size: 15px; }
+
+#enlace_borrar:hover {
+  color: #4285b1;
+  font-size: 17px; }
+
+.linea {
+  border-color: #d8d8d8 !important;
+  margin-bottom: 5%;
+  margin-top: -5%; }
+
+.portadaForo {
+  background-image: url("../img/imagenes/portadaForo.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover; }
+
+.portadaPabellones {
+  background-image: url("../img/imagenes/322.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover; }
+
+.portadaAdm {
+  background-image: url("../img/imagenes/foro.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover; }
+
+.subtitulo {
+  padding-left: 10%;
+  padding-right: 10%; }
+
+.fondoLogin {
+  background-image: url("../img/imagenes/pabellon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+html, body, header, .view {
+  height: 100%; }
+
+.olvidado-contrasena {
+  color: #4285f4 !important;
+  font-size: 12px !important; }
+
+.olvidado-contrasena:hover {
+  color: #4285b1 !important;
+  font-size: 14px !important; }
+
+.nuevo {
+  font-size: 12px; }
+
+.error {
+  color: #FF0000; }
+
+.imgregis {
+  padding-right: 5%; }
+
+.fas {
+  font-size: 20px !important;
+  padding-top: 12px !important; }
+
+.logo {
+  width: 200px; }
 
 /*# sourceMappingURL=style.css.map */

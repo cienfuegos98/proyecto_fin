@@ -111,10 +111,11 @@
     </head>
     <body>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-                    <a class="navbar-brand" href="" >
-                        <strong>FUTMATCH</strong>
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
+                    <!-- Brand -->
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -147,14 +148,15 @@
                     </div>
                 </div>
             </nav>
+            <br>
+            <section class="portadaAdm text-center w-100 row mx-0">
+                <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Administración</h2>
+                <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            </section>
         </div>
         <br><br><br><br>
-        <div id="contenidoPrincipal">
-            <h2 class="h1-responsive font-weight-bold text-center pat">RESERVAS</h2>
-            <!-- Section description -->
-            <p class=" text-center mx-auto mb-5">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit imperdiet ridiculus ad suspendisse auctor, facilisi blandit hendrerit uidiculus sagittis duis penatibus magnis id ut curabitur lectus.
-            </p>       
+        <div id="contenidoPrincipal">    
             {$tabla}
             {if ($tipo == 'pabellon')}
                 <div class="row">
@@ -186,7 +188,7 @@
                         <!-- Card body -->
                         <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
                             <div class="card-body">
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-6 mb-4" style="padding-left:10%;padding-right:10%;padding-top:2%;">
                                     <!-- Main heading -->
                                     <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
                                     <form name="registro-form-pab" id="registro-form-pab" method="POST" action="reservas.php" enctype="multipart/form-data">
@@ -292,9 +294,9 @@
                         <!-- Card body -->
                         <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
                             <div class="card-body">
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-12 mb-4" style="padding-left:10%;padding-right:10%;padding-top:2%;">
                                     <!-- Main heading -->
-                                    <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+                                    <h3 class="h3 mb-3">Mis datos</h3>
                                     <span style="color:red">{$error3}</span>
                                     <form name="registro-usuario" id="registro-usuario" method="POST" action="reservas.php" enctype="multipart/form-data">
                                         <span for="form2" >¿Quieres una foto de perfil?</span>
@@ -351,6 +353,7 @@
                 </div>
             {/if}
         </div>
+        <section class="separadorGrande"></section>
 
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->

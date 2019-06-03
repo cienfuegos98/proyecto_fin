@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-06-01 01:58:59
+/* Smarty version 3.1.33, created on 2019-06-03 13:59:45
   from 'C:\xampp\htdocs\proyecto_fin\template\reservas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cf1bfc3bab426_25373344',
+  'unifunc' => 'content_5cf50bb1707965_59355535',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a59915535ce854585e388ef555647790be80fe92' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\reservas.tpl',
-      1 => 1559347138,
+      1 => 1559563182,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf1bfc3bab426_25373344 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf50bb1707965_59355535 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -180,14 +180,15 @@ function content_5cf1bfc3bab426_25373344 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </nav>
+            <br>
+            <section class="portadaAdm text-center w-100 row mx-0">
+                <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Administración</h2>
+                <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+            </section>
         </div>
         <br><br><br><br>
-        <div id="contenidoPrincipal">
-            <h2 class="h1-responsive font-weight-bold text-center pat">RESERVAS</h2>
-            <!-- Section description -->
-            <p class=" text-center mx-auto mb-5">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit imperdiet ridiculus ad suspendisse auctor, facilisi blandit hendrerit uidiculus sagittis duis penatibus magnis id ut curabitur lectus.
-            </p>       
+        <div id="contenidoPrincipal">    
             <?php echo $_smarty_tpl->tpl_vars['tabla']->value;?>
 
             <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon')) {?>
@@ -220,7 +221,7 @@ function content_5cf1bfc3bab426_25373344 (Smarty_Internal_Template $_smarty_tpl)
                         <!-- Card body -->
                         <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
                             <div class="card-body">
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-6 mb-4" style="padding-left:10%;padding-right:10%;padding-top:2%;">
                                     <!-- Main heading -->
                                     <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
                                     <form name="registro-form-pab" id="registro-form-pab" method="POST" action="reservas.php" enctype="multipart/form-data">
@@ -338,9 +339,9 @@ function content_5cf1bfc3bab426_25373344 (Smarty_Internal_Template $_smarty_tpl)
                         <!-- Card body -->
                         <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
                             <div class="card-body">
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-12 mb-4" style="padding-left:10%;padding-right:10%;padding-top:2%;">
                                     <!-- Main heading -->
-                                    <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+                                    <h3 class="h3 mb-3">Mis datos</h3>
                                     <span style="color:red"><?php echo $_smarty_tpl->tpl_vars['error3']->value;?>
 </span>
                                     <form name="registro-usuario" id="registro-usuario" method="POST" action="reservas.php" enctype="multipart/form-data">
@@ -406,6 +407,7 @@ function content_5cf1bfc3bab426_25373344 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             <?php }?>
         </div>
+        <section class="separadorGrande"></section>
 
         <!---------------- Modal -------------------->
         <!---------------- Modal -------------------->
