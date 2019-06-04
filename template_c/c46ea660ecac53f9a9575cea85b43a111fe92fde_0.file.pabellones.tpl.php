@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-06-03 23:05:14
+/* Smarty version 3.1.33, created on 2019-06-04 04:16:01
   from 'C:\xampp\htdocs\proyecto_fin\template\pabellones.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cf58b8a869a75_25885515',
+  'unifunc' => 'content_5cf5d461983277_87763408',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c46ea660ecac53f9a9575cea85b43a111fe92fde' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\pabellones.tpl',
-      1 => 1559595912,
+      1 => 1559614558,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf58b8a869a75_25885515 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf5d461983277_87763408 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -84,15 +84,11 @@ function content_5cf58b8a869a75_25885515 (Smarty_Internal_Template $_smarty_tpl)
 
         </style>
     </head>
-    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?>
-        <body <?php echo $_smarty_tpl->tpl_vars['load']->value;?>
->
-        <?php }?>
-        <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon' || $_smarty_tpl->tpl_vars['tipo']->value == '')) {?>
-        <body>
-        <?php }?>
+    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'user')) {?><body <?php echo $_smarty_tpl->tpl_vars['load']->value;?>
+><?php }?>
+    <?php if (($_smarty_tpl->tpl_vars['tipo']->value == 'pabellon' || $_smarty_tpl->tpl_vars['tipo']->value == '')) {?><body><?php }?>
         <div>
-            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+            <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
                 <div class="container enlacesNav">
                     <!-- Brand -->
                     <a class="navbar-brand" >

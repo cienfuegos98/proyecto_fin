@@ -61,14 +61,10 @@
 
         </style>
     </head>
-    {if ($tipo == 'user')}
-        <body {$load}>
-        {/if}
-        {if ($tipo == 'pabellon' || $tipo == '')}
-        <body>
-        {/if}
+    {if ($tipo == 'user')}<body {$load}>{/if}
+    {if ($tipo == 'pabellon' || $tipo == '')}<body>{/if}
         <div>
-            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+            <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
                 <div class="container enlacesNav">
                     <!-- Brand -->
                     <a class="navbar-brand" >

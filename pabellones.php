@@ -95,9 +95,11 @@ if (empty($_SESSION['usuario'])) {
             $datosRe = $con->selection($q);
             if (isset($datosRe[0])) {
                 $fecha = $datosRe[0]['fecha_reserva'];
+
                 $hora = $datosRe[0]['hora'];
             }
-            $load = "onload='alerta(" . $fecha . "," . $hora . ")'";
+            $f = date("d-m-Y", strtotime($fecha));
+            $load = "onload=alerta('$f',$hora)";
 
             $_SESSION['auxiliar'] = true;
         }
@@ -147,7 +149,7 @@ foreach ($datos as $pabellones) {
                     <div class = 'col-lg-6 col-md-6 mb-lg-0 mb-4 pabellon'>
                     <div class = 'card collection-card z-depth-1-half'>
                     <div class=' zoom-1 overflow-hidden'>
-                    <div class = 'view zoom'
+                    <div class = 'view zoom'>
                     <form $action method = 'post' id = 'form_" . $pid . "' >
                     <input type = 'hidden' name = 'pid' value = '" . $pid . "' >
                     <a class = 'enlace'>

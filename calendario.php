@@ -16,9 +16,7 @@ session_start();
 
 if (isset($_POST['horaElegida'])) {
     $hora = $_POST['horaElegida'];
-    print $hora;
 }
-
 
 if (empty($_SESSION['usuario'])) {
     header("Location:index.php?error=Debes iniciar sesion");
@@ -88,7 +86,7 @@ if (empty($_SESSION['usuario'])) {
     $plantilla->assign('pass', $pass);
 
     $edad = calcular_edad($fecha_nac);
-    if ($edad >= 18) {
+    if ($edad >= 20) {
         $precio = 24;
     } else {
         $precio = 12;
@@ -111,6 +109,7 @@ if (isset($_POST ['desconectar'])) {
 $tipo = $_SESSION['tipo'];
 $plantilla->assign('tipo', $tipo);
 
+var_dump($_SESSION);
 
 $con->cerrar();
 $plantilla->display("calendario.tpl"

@@ -51,13 +51,14 @@
                         }, //elimino los dias del array que le paso
                         onSelect: function (date) {
                             var fecha = document.getElementById("datepicker").value;
+
                             var data = {'fecha': fecha};
                             $.ajax({
                                 type: "post",
                                 url: 'index3.php',
                                 data: data,
                                 success: function (response) {
-
+                                    $('#fechamodal').html(fecha);
                                     $('#respuesta').html(response);
                                 }
                             });
@@ -73,12 +74,14 @@
                     var data = {
                         'hora': sel.value
                     };
+
                     $.ajax({
                         type: "post",
                         url: 'index3.php',
                         data: data,
                         success: function (response) {
                             $('#respuesta2').html(response);
+                            $('#horamodal').html(sel.value);
                         }
                     });
                     return false;
@@ -88,8 +91,10 @@
                         $('#a_modal').attr("disabled", true);
                     } else {
                         $('#a_modal').attr("disabled", false);
+
                     }
                 }
+
             </script>
 
         {/literal}
@@ -137,7 +142,7 @@
             </nav>
             <br>
             <section class="portadaPabellones text-center w-100 row mx-0">
-                <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">{$nombreC}</h2>
+                <h1 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">{$nombrePab}</h1>
                 <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
                     hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
             </section>
@@ -219,95 +224,93 @@
                     <div class="text-center" style="margin-top:5%">Estas seguro de que quieres reservar?</div>
                     <div class="modal-body text-center">
                         <div class="row justify-content-center w-20">
-                            <div class=" float-left">Fecha de la reserva:<br>Hora de la reserva: 
+                            <div class=" float-left">
+                                Fecha de la reserva: <div id="fechamodal"></div>
+                                Hora de la reserva: <div id="horamodal"></div>
+                                En el pabellon: {$nombrePab}
                             </div>
-                            <div class="float-right">{$fecha_reserva} <br>{$hora_reserva}</div>
-                            En el pabellon: {$nombrePab};
+                            <div class="modal-footer" style="justify-content: center">
+                                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                    <input name="cmd" type="hidden" value="_cart" />
+                                    <input name="upload" type="hidden" value="1" />
+                                    <input name="business" type="hidden" value="pgmcastillo98-facilitator@gmail.com" />
+                                    <input name="shopping_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
+                                    <input name="currency_code" type="hidden" value="EUR" />
+                                    <input name="return" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
+                                    <input name="notify_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
+                                    <input name="rm" type="hidden" value="2" />
+                                    <input type="submit" class="btn btn-primary" name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro" value="REALIZAR PAGO">
+                                    {$hiddenPay}
+                                </form>
+                                <form action="calendario.php" method='post'>
+                                    <input type="submit"  class="btn btn-primary" name="cancelar" value="CANCELAR">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="margin-left:40%">MI PERFIL</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="text-center" style="margin-top:5%">{$foto_modal}</div>
+                        <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                            {$contenidoModal}
                         </div>
                         <div class="modal-footer" style="justify-content: center">
-                            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                                <input name="cmd" type="hidden" value="_cart" />
-                                <input name="upload" type="hidden" value="1" />
-                                <input name="business" type="hidden" value="pgmcastillo98-facilitator@gmail.com" />
-                                <input name="shopping_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
-                                <input name="currency_code" type="hidden" value="EUR" />
-                                <input name="return" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
-                                <input name="notify_url" type="hidden" value="http://localhost/proyecto_fin/reservas.php" />
-                                <input name="rm" type="hidden" value="2" />
-                                <input type="submit" class="btn btn-primary" name="paypal" alt="Realice pagos con PayPal: es rápido, gratis y seguro" value="REALIZAR PAGO">
-                                {$hiddenPay}
-                            </form>
-                            <form action="calendario.php" method='post'>
-                                <input type="submit"  class="btn btn-primary" name="cancelar" value="CANCELAR">
+                            <form method = 'POST' action = 'pabellones.php'>
+                                <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
+                                <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
+                                <div class="text-center" >
+                                    <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" style="margin-left:40%">MI PERFIL</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="text-center" style="margin-top:5%">{$foto_modal}</div>
-                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-                        {$contenidoModal}
-                    </div>
-                    <div class="modal-footer" style="justify-content: center">
-                        <form method = 'POST' action = 'pabellones.php'>
-                            <a class='btn btn-primary' href = 'reservas.php' >Modificar</a>
-                            <input type = 'submit' type='submit' class='btn btn-primary' name = 'desconectar' value = 'desconectar'>
-                            <div class="text-center" >
-                                <a data-toggle="modal" data-target="#exampleModal2" id="enlace_borrar">Eliminar cuenta</a>
+            <!--MODAL DE CONFIRMACION-->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
+                            Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
+                        <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
+                            <div class="row justify-content-center">
+                                <form action="pabellones.php" method='post'>
+                                    <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
+                                </form>
+                                <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--MODAL DE CONFIRMACION-->
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title " id="exampleModalLabel" style="margin-left:30%">TUS PREFERENCIAS</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="text-center" style="margin-top:5%">Estas seguro de que quieres borrar tu cuenta?
-                        Despues de ello no podrás acceder con tu usuario a nuestra web y tendrás que volver a registrarte.</div>
-                    <div class="modal-body" style="padding-left:10%; padding-right:10%; ">
-                        <div class="row justify-content-center">
-
-                            <form action="pabellones.php" method='post'>
-                                <button type="submit"  class="btn btn-primary" name="aceptar" >ACEPTAR </button>
-                            </form>
-                            <button type="submit"  class="btn btn-primary" name="cancelar" class="close" data-dismiss="modal" aria-label="Close">CANCELAR</button>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <!---------------- Modal -------------------->
-        <!---------------- Modal -------------------->
-        <script type="text/javascript" src="js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <!-- Initializations -->
-        <script type="text/javascript">
-            // Animations initialization
-            new WOW().init();
-        </script>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <!---------------- Modal -------------------->
+            <!---------------- Modal -------------------->
+            <script type="text/javascript" src="js/popper.min.js"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+            <!-- Initializations -->
+            <script type="text/javascript">
+                // Animations initialization
+                new WOW().init();
+            </script>
 
     </body>
 </html>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-06-03 13:59:45
+/* Smarty version 3.1.33, created on 2019-06-04 01:39:03
   from 'C:\xampp\htdocs\proyecto_fin\template\reservas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cf50bb1707965_59355535',
+  'unifunc' => 'content_5cf5af97e254b7_20289954',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a59915535ce854585e388ef555647790be80fe92' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyecto_fin\\template\\reservas.tpl',
-      1 => 1559563182,
+      1 => 1559594352,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf50bb1707965_59355535 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf5af97e254b7_20289954 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
     <head>
@@ -142,10 +142,11 @@ function content_5cf50bb1707965_59355535 (Smarty_Internal_Template $_smarty_tpl)
     </head>
     <body>
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav-collapse">
-                <div class="container">
-                    <a class="navbar-brand" href="" >
-                        <strong>FUTMATCH</strong>
+            <nav  class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark header">
+                <div class="container enlacesNav">
+                    <!-- Brand -->
+                    <a class="navbar-brand" >
+                        <img src="img/logoNegativo.png" class="logo">
                     </a>
                     <button id = "hamburguesa" class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
