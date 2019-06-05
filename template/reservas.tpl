@@ -149,28 +149,37 @@
                 </div>
             </nav>
             <br>
-            <section class="portadaAdm text-center w-100 row mx-0">
-                <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Administración</h2>
-                <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
-                    hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
-            </section>
-        </div>
-        <br><br><br><br>
-        <div id="contenidoPrincipal">    
-            {$tabla}
-            {if ($tipo == 'pabellon')}
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
-                        <div class = 'view zoom'>
-                            <div id="datepicker"></div>
-                            <div id="respuesta"></div>
-                            <div id="respuesta2"></div>
-                            <button  href="calendario.php" data-toggle="modal" id="buttoncancelar" class="btn btn-primary" data-target="#exampleModal3" >PROCEDER A LA RESERVA</button>
-                        </div>
-                    </div>
 
+        </div>
+        <br><br>
+        <section class="portadaAdm text-center w-100 row mx-0">
+            <h2 class="col-12 text-center h1-responsive font-weight-bold text-center my-5 pat white-text">Administración</h2>
+            <p class="subtitulo white-text text-center mx-auto mb-5">Aqui os adjuntamos nuestros proyectos tanto web como corporativos, realizados desde la creación de la empresa
+                hasta la actualidad y nuestras 4 mejores ventas ordenadas por el precio.</p>
+        </section>
+        <br><br>
+        <div class="col-sm-11 col-md-10 col-lg-8 mx-auto">
+            {$tabla}
+        </div>
+        <section class="separadorGrande"></section>    
+
+
+        {if ($tipo == 'pabellon')}
+            <h2 class="text-center">Cancela las sesiones que quieras haciendo una reserva interna</h2>
+            <div class="row">
+                <div class="col-12"> 
+                    <div class = 'mx-auto text-center'>
+                        <div class="input-group date my-5" data-provide="datepicker" id="datepicker"></div>
+                        <div id="respuesta"></div>
+                        <div id="respuesta2"></div>
+                        <button  href="calendario.php" data-toggle="modal" id="buttoncancelar" class="btn btn-primary mx-auto" data-target="#exampleModal3" >PROCEDER A LA RESERVA</button>
+                    </div>
                 </div>
+
+            </div>
+            <div class="col-sm-11 col-md-10 col-lg-8 mx-auto">  
                 <br>
+
                 <div class="card card-image accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
 
                     <!-- Accordion card -->
@@ -188,7 +197,7 @@
                         <!-- Card body -->
                         <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
                             <div class="card-body">
-                                <div class="col-md-6 mb-4" style="padding-left:10%;padding-right:10%;padding-top:2%;">
+                                <div class="col-md-12 mb-4" style="padding-left:10%;padding-right:10%;padding-top:2%;">
                                     <!-- Main heading -->
                                     <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
                                     <form name="registro-form-pab" id="registro-form-pab" method="POST" action="reservas.php" enctype="multipart/form-data">
@@ -273,9 +282,11 @@
                         </div>
                     </div>
                 </div>
-            {/if}
-            {if ($tipo == 'user')}
-                <br>
+            </div>
+        {/if}
+        {if ($tipo == 'user')}
+            <br>
+            <div class="col-sm-11 col-md-10 col-lg-8 mx-auto">  
                 <div class="card card-image accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
 
                     <!-- Accordion card -->
@@ -351,8 +362,9 @@
                         </div>
                     </div>
                 </div>
-            {/if}
-        </div>
+            </div>
+        {/if}
+
         <section class="separadorGrande"></section>
 
         <!---------------- Modal -------------------->
